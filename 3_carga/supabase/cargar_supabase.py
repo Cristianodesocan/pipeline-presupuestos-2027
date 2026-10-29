@@ -1,4 +1,4 @@
-"""Carga en Supabase (PostgreSQL), esquema presupuestos_cac.
+"""Carga en Supabase (PostgreSQL), esquema presupuestos_can.
 
     python 3_carga/supabase/cargar_supabase.py --escribir-esquema        # solo regenera esquema.sql (sin conexión)
     python 3_carga/supabase/cargar_supabase.py --solo-esquema            # aplica DDL + vistas + RLS
@@ -11,7 +11,7 @@ sin --confirmar-produccion: así un ensayo contra un PostgreSQL local nunca toca
 
 Seguridad (diseño §6.1): RLS activado en todas las tablas y sin políticas para anon/authenticated;
 solo las vistas v_viz_* tienen GRANT SELECT. Para exponer el esquema por la API REST hay que añadir
-presupuestos_cac a «Exposed schemas» en el panel de Supabase.
+presupuestos_can a «Exposed schemas» en el panel de Supabase.
 """
 import argparse
 import os

@@ -17,7 +17,7 @@ from _comun.rutas import LOGS, ahora, log_evento  # noqa: E402,F401
 
 STG_T = RAIZ / "2_transformacion" / "staging"
 SALIDAS_ANALISIS = RAIZ / "4_analisis" / "salidas"
-ESQUEMA = "presupuestos_cac"
+ESQUEMA = "presupuestos_can"
 TIPOS = {"txt": ("TEXT", "VARCHAR"), "int": ("BIGINT", "BIGINT"), "num": ("DOUBLE PRECISION", "DOUBLE"),
          "bool": ("BOOLEAN", "BOOLEAN"), "ts": ("TIMESTAMPTZ", "TIMESTAMPTZ")}
 

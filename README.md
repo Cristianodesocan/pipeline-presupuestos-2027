@@ -148,7 +148,7 @@ Los enlaces `auto` se usan salvo que se rechacen. Los que están en revisión si
   - RLS activado en todas las tablas y sin políticas para `anon`/`authenticated`; solo las vistas `v_viz_*` tienen `GRANT SELECT`.
   - Contra un host que no sea localhost, la carga se niega sin `--confirmar-produccion`.
   - Credenciales en `.env`; la plantilla es `.env.example`.
-  - Para exponer el esquema por la API REST, añade `presupuestos_cac` a *Exposed schemas* en el panel de Supabase.
+  - Para exponer el esquema por la API REST, añade `presupuestos_can` a *Exposed schemas* en el panel de Supabase.
 - **Probado** contra un PostgreSQL 17 local que imita los roles de Supabase. Resultados:
   - las dos pasadas son idempotentes;
   - `anon` no puede leer las tablas y sí las vistas;
