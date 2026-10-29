@@ -171,6 +171,34 @@ Cada script es independiente y lee de la carga local, o de Supabase con `--fuent
 .venv/bin/python 3_carga/local/cargar_local.py --que analisis && .venv/bin/python 3_carga/exportar_viz.py
 ```
 
+**Hipótesis «el gasto social se acentúa en los presupuestos de años electorales».** La contrasta `4_analisis/analisis_hipotesis_electoral.py`:
+
+```bash
+.venv/bin/python 4_analisis/analisis_hipotesis_electoral.py   # o: 00_maestro.py --pasos analisis --solo hipotesis
+```
+
+- **Años electorales:** 2019, 2023 y 2027; se configuran en `config/analisis.yml`.
+- **Tres perímetros de gasto social con perímetro estable:** la Consejería de Bienestar Social retroproyectada, la función 23 y la subfunción 231 con su desglose por programas.
+- **Medida principal:** crecimiento real del gasto social **menos** el del presupuesto total.
+- **Contraste:**
+  - permutación exacta frente a los años no electorales;
+  - cada año electoral frente a su legislatura;
+  - robustez sin MRR, con Δ peso y en precios corrientes.
+- **Salidas:** `4_analisis/salidas/hipotesis_electoral/`, con el informe, el CSV tidy y las tablas APA.
+- **Resultado con 2015-2026:** **2019 sí** muestra una acentuación clara (mayor diferencial de la serie). **2023 no**: queda por debajo de la media de su legislatura. El efecto medio no se distingue del azar (p ≈ 0,25 con 2 casos). El informe incluye los umbrales con los que juzgar el Proyecto 2027.
+
+**Exploración «¿qué suele pasar en los presupuestos preelectorales?».** La hace `4_analisis/analisis_preelectoral.py` (`00_maestro.py --pasos analisis --solo preelectoral`):
+
+- **Qué recorre:** todas las partidas en cinco niveles: total, capítulos, funciones, consejerías (estructura actual), y subfunciones y programas con peso ≥ 0,5 %.
+- **Medida:** la *anomalía* de cada partida, es decir, su diferencial frente al total en el año electoral menos la media de los tres presupuestos previos de su legislatura. Se acompaña del exceso en € y de una permutación exacta con *q* de Benjamini-Hochberg por nivel.
+- **Salidas:** `4_analisis/salidas/preelectoral/`.
+- **Resultado con 2019 y 2023:**
+  - **Tamaño:** los presupuestos electorales son **más expansivos** (+7,0 % y +7,7 % real, frente al 3,5 % del resto).
+  - **Composición:** no hay un desplazamiento sistemático hacia inversión.
+  - **Lo que más se repite al alza:** las **transferencias a corporaciones locales** (+128 M€ acumulados) y la consejería de **Turismo y Empleo**.
+  - **Lo que crece menos que el total:** sanidad y educación.
+  - **Significación:** ninguna partida supera la corrección por comparaciones múltiples (q ≤ 0,10).
+
 **Salidas:**
 - `4_analisis/salidas/<dim>/` contiene `ana_<dim>.csv` (tidy, §7.1 del diseño), `insights_<dim>.md` (hallazgos con estatus) y `tablas_<dim>.xlsx` (tablas APA).
 - `4_analisis/salidas/ana_<dim>.parquet` es lo que carga `3_carga`.

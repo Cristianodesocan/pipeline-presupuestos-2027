@@ -62,6 +62,10 @@ fases:
       - {script: 4_analisis/analisis_secciones.py, dimension: secciones, paralelo: true}
       - {script: 4_analisis/analisis_programas.py, dimension: programas, paralelo: true}
       - {script: 4_analisis/analisis_entes.py, dimension: entes, paralelo: true}
+      - {script: 4_analisis/analisis_hipotesis_electoral.py, dimension: hipotesis, paralelo: true,
+         nota: "Contraste: ¿se acentúa el gasto social en los presupuestos de años electorales?"}
+      - {script: 4_analisis/analisis_preelectoral.py, dimension: preelectoral, paralelo: true,
+         nota: "Exploración: qué partidas se acentúan o contraen en los presupuestos electorales"}
 
   carga_analisis:
     depende: [analisis]

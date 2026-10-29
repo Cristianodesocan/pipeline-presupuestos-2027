@@ -30,3 +30,18 @@ top_n: 10
 salto:
   var: 40        # |var. interanual| > 40 % …
   peso: 0.5      # … con peso ≥ 0,5 % → flag_salto
+
+# Hipótesis «el gasto social se acentúa en los presupuestos de años electorales» (analisis_hipotesis_electoral.py).
+# Año electoral = año de elecciones autonómicas (mayo); su presupuesto se diseña en otoño del año anterior.
+# 2015 también lo fue, pero la serie no tiene 2014 para calcular su variación.
+hipotesis_electoral:
+  anios_electorales: [2019, 2023, 2027]
+  seccion_bienestar: "23"            # código actual de Bienestar Social, Igualdad, Juventud, Infancia y Familias
+  funcion_social: "23"               # Servicios Sociales y Promoción Social (subfunciones 231, 232, 239)
+  subfuncion_nucleo: "231"           # Acción Social
+  bloques_231:                       # desglose del núcleo por programas
+    Dependencia y mayores: ["231M", "231D"]
+    Discapacidad: ["231N"]
+    Inclusión y prestaciones: ["231I", "231G", "231L"]
+    Infancia, familia y menores: ["231H", "231K"]
+    Planificación y coordinación: ["231B", "231C", "231P"]
