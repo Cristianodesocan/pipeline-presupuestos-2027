@@ -1,0 +1,32 @@
+# Parámetros de 4_analisis (diseno_pipeline_presupuestos_2027.md §7).
+
+# Áreas de gasto de la clasificación funcional (primer dígito del código de función)
+areas_gasto:
+  "1": Servicios públicos básicos
+  "2": Actuaciones de protección y promoción social
+  "3": Producción de bienes públicos de carácter preferente
+  "4": Actuaciones de carácter económico
+  "9": Actuaciones de carácter general
+
+# Secciones cuya dinámica es contable y no de política (§7.3): se analizan aparte
+secciones_no_departamentales:
+  "01": Parlamento (hasta 2021)
+  "05": Deuda Pública
+  "19": Diversas Consejerías
+  "20": Transferencias a Corporaciones Locales
+
+# Etiquetas homogéneas del tipo de ente (la tabla 3.1 cambia de rótulo entre años)
+tipos_ente:
+  organismos autonomos: Organismos autónomos
+  entidades publicas: Entidades públicas
+  consorcios: Consorcios
+  otras entidades publicas de naturaleza consorcial: Consorcios
+  parlamento y organos de relevancia estatutaria: Parlamento y órganos estatutarios
+
+ventana_actual: clavijo_ii
+ventana_anterior: torres
+ventana_previa: clavijo_i
+top_n: 10
+salto:
+  var: 40        # |var. interanual| > 40 % …
+  peso: 0.5      # … con peso ≥ 0,5 % → flag_salto

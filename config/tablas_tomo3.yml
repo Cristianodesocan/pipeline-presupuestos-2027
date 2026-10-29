@@ -1,0 +1,92 @@
+# Especificación declarativa de las tablas del Tomo 3 que extrae extraer_tomo3.py.
+# Añadir una tabla = añadir una entrada; el motor (_comun/tomo3.py) no cambia.
+#
+#   indice           sección del ÍNDICE del tomo (localiza el rango de páginas)
+#   titulo           texto que debe aparecer en la página (verifica; los títulos se repiten entre secciones)
+#   codigo           regex del código de las filas de detalle
+#   codigo_grupo     regex de filas de agregado con código (p. ej. la sección en 2.16)
+#   total            regex de la fila total (por defecto ^TOTAL, sin distinguir mayúsculas)
+#   ente_en_cabecera el ente se lee de la cabecera de cada página (3.2)
+#   perimetro        cac_cap_1_8 | cac_cap_1_9 | entes  (ver diseno_extraccion_tomo3.md §6.2)
+#   min_filas        mínimo de filas de detalle por documento (puerta E6)
+
+version: 1
+
+plantillas:
+  comparativa:
+    columnas: [ajustado_prev, pct_ajustado_prev, inicial, pct_inicial, var_pct]
+    perimetro: cac_cap_1_8
+  capitulos:
+    columnas: [cap_1, cap_2, cap_3, cap_4, cap_6, cap_7, cap_8, cap_9, total]   # no existe el cap. 5
+    perimetro: cac_cap_1_9
+
+tablas:
+  secciones:
+    plantilla: comparativa
+    indice: "2.1"
+    titulo: RESUMEN DE GASTOS POR SECCIONES
+    codigo: '^\d{2}$'
+    min_filas: 12
+  servicios:            # identifica los fondos MRR / REACT-EU (servicios 70-71 de cada sección)
+    plantilla: comparativa
+    indice: "2.2"
+    titulo: RESUMEN DE GASTOS POR SERVICIOS
+    codigo: '^\d{4}$'
+    min_filas: 60
+  funciones:
+    plantilla: comparativa
+    indice: "2.8"
+    titulo: RESUMEN DE GASTOS POR FUNCIONES
+    codigo: '^\d{2}$'
+    min_filas: 20
+  subfunciones:
+    plantilla: comparativa
+    indice: "2.9"
+    titulo: RESUMEN DE GASTOS POR SUBFUNCIONES
+    codigo: '^\d{3}$'
+    min_filas: 50
+  programas:
+    plantilla: comparativa
+    indice: "2.10"
+    titulo: RESUMEN DE GASTOS POR PROGRAMAS
+    codigo: '^\d{3}[A-Z]$'
+    min_filas: 130
+  secciones_cap:
+    plantilla: capitulos
+    indice: "2.11"
+    titulo: RESUMEN DE GASTOS POR SECCIONES Y CAP
+    codigo: '^\d{2}$'
+    min_filas: 12
+  subfunciones_cap:
+    plantilla: capitulos
+    indice: "2.14"
+    titulo: RESUMEN DE GASTOS POR SUBFUNCIONES Y CAP
+    codigo: '^\d{3}$'
+    min_filas: 50
+  secc_prog_cap:
+    plantilla: capitulos
+    indice: "2.16"
+    titulo: RESUMEN DE GASTOS POR SECCIONES, PROGRAMAS
+    codigo: '^\d{3}[A-Z]$'
+    codigo_grupo: '^\d{2}$'
+    min_filas: 140
+  entes:
+    plantilla: comparativa
+    indice: "3.1"
+    titulo: RESUMEN DE GASTOS COMPARATIVO POR ENTES
+    codigo: '^[A-Z][A-Z0-9]{1,5}$'
+    perimetro: entes
+    min_filas: 13
+  entes_prog_cap:
+    plantilla: capitulos
+    indice: "3.2"
+    titulo: RESUMEN DE GASTOS POR PROGRAMAS Y CAP
+    codigo: '^\d{3}[A-Z]$'
+    total: '^Total Ente'
+    ente_en_cabecera: true
+    perimetro: entes
+    min_filas: 30
+
+# Secciones del índice que deben existir en todo documento (puerta de descarga)
+secciones_obligatorias: ["2.1", "2.8", "2.9", "2.10", "2.11", "2.14", "2.16", "3.1", "3.2"]
+entradas_indice_esperadas: 25

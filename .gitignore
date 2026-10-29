@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+.DS_Store
+
+# Datos regenerables
+1_extraccion/raw/
+1_extraccion/staging/
+logs/*.jsonl
+logs/*.json
+config/fuentes_propuestas.yml
+2_transformacion/staging/
+3_carga/local/presupuestos.duckdb*
+3_carga/local/csv/
+4_analisis/salidas/*.parquet
+logs/maestro/
+4_analisis/salidas/*/ana_*.csv

@@ -1,0 +1,31 @@
+# Cifras de regresión leídas a mano en los PDF (diseno_extraccion_tomo3.md §6.1).
+# NO usar las de Canarias en Datos: inflan los programas extinguidos (inicial = 0).
+# Usadas por validar_extraccion.py (puerta E10) y por los tests.
+
+# Total de la tabla 2.10 «Resumen de gastos por programas», columna «presupuesto inicial» (€, caps. 1-8)
+total_programas_inicial:
+  ley:
+    2015: 5898773520
+    2016: 5936626686
+    2017: 6304887669
+    2018: 7000362900
+    2019: 7511638075
+    2020: 7695625854
+    2021: 8044341195
+    2022: 8608863464
+    2023: 9701027711
+    2024: 10744297386
+    2025: 11108726476
+    2026: 11909123064
+  proyecto:
+    2025: 11108726476
+    2026: 11909123064
+
+# Filas concretas: tabla, año, fase, código, columna, valor
+filas:
+  - {tabla: programas, anio: 2015, fase: ley, codigo: "312A", columna: inicial, valor: 2454229799, motivo: "Asistencia Sanitaria; coincide con CED"}
+  - {tabla: programas, anio: 2026, fase: ley, codigo: "261B", columna: inicial, valor: 0, motivo: "Programa extinguido; CED da 1.000.000"}
+  - {tabla: programas, anio: 2026, fase: ley, codigo: "261B", columna: ajustado_prev, valor: 1000000, motivo: "Ajustado 2025"}
+  - {tabla: programas, anio: 2026, fase: ley, codigo: "231D", columna: inicial, valor: 16167596, motivo: "Fila con variación vacía"}
+  - {tabla: programas, anio: 2026, fase: ley, codigo: "231D", columna: var_pct, valor: null, motivo: "Celda vacía legítima"}
+  - {tabla: secciones_cap, anio: 2026, fase: ley, codigo: "05", columna: cap_9, valor: 646436058, motivo: "Primera fila tras la cabecera"}

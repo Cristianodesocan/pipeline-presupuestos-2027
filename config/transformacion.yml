@@ -1,0 +1,41 @@
+# Parámetros de 2_transformacion. Decisiones metodológicas: diseno_pipeline_presupuestos_2027.md §12.
+
+deflactor:
+  base: 2025                  # decisión 1: último IPC Canarias medio anual cerrado
+  serie_ine: IPC293884        # Canarias. Índice general. Índice (IPC base 2025, INE tabla 76136)
+  # Años sin IPC medio anual completo: 2026 usa la media de los meses publicados;
+  # 2027 aplica esta tasa sobre 2026. Sustituir por la previsión del cuadro
+  # macroeconómico del Proyecto 2027 (Tomo 4) cuando se publique.
+  tasa_prevision: {2027: null}   # null = repetir la tasa media 2026/2025
+poblacion:
+  serie_ine: ECP115498        # Canarias. Total. Todas las edades (ECP, INE tabla 56940), a 1 de enero
+pib:
+  # PIB regional nominal (INE CRE) reutilizado de Canarias en Datos; sin dato después de 2024
+  fichero_ced: "/Users/cristiancpv/Desktop/TRABAJO/OBSERVATORIO/CANARIAS EN DATOS/Presupuestos/fuentes/externos/pib_regional_ccaa.csv"
+  ccaa_id3: can
+
+ced:
+  correspondencias: "/Users/cristiancpv/Desktop/TRABAJO/OBSERVATORIO/CANARIAS EN DATOS/Presupuestos/1_extraccion/ccaa/can/correspondencias.yml"
+
+# Fondos extraordinarios (decisión 5): servicios del Tomo 3 §2.2 con estas denominaciones
+fondos_extraordinarios:
+  patron: "REACT|MECANISMO (?:PARA|DE) (?:LA )?RECUPERACI|\\bMRR\\b"
+
+# Emparejamiento (§5.3). Pesos por dimensión; deben sumar 1.
+crosswalk:
+  umbral_auto: 0.85
+  umbral_revision: 0.60
+  identidad_nombre: 0.95      # mismo código y nombre ≥ 0,95 → «identico» aunque cambie el importe
+  tolerancia_division: 0.02
+  pesos:
+    programa:   {importe: 0.35, nombre: 0.30, codigo: 0.15, grupo: 0.10, seccion: 0.10}
+    subfuncion: {importe: 0.40, nombre: 0.30, codigo: 0.20, grupo: 0.10}
+    funcion:    {importe: 0.45, nombre: 0.35, codigo: 0.20}
+    seccion:    {importe: 0.45, nombre: 0.35, codigo: 0.20}
+    ente:       {importe: 0.45, nombre: 0.35, codigo: 0.20}
+
+validacion:
+  continuidad_var: 0.40       # |var. interanual| > 40 % …
+  continuidad_peso: 0.005     # … con peso ≥ 0,5 % → aviso
+  cobertura_minima: 0.90
+  techo_gasto_no_financiero: {}   # {2027: importe €} cuando se cargue el límite aprobado

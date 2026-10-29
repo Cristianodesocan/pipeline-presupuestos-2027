@@ -1,0 +1,50 @@
+# Catálogo canónico de fuentes del Tomo 3 «Resúmenes».
+# Es la fuente de verdad: descubrir_fuentes.py solo PROPONE cambios (config/fuentes_propuestas.yml).
+# Los nombres de fichero no siguen una plantilla (cambian por año y fase): no construir URLs a mano.
+# sha256 = huella de la versión validada; si la web republica el fichero, descargar_tomos.py
+# guarda la nueva versión y avisa (no sobrescribe).
+
+base_url: https://www.gobiernodecanarias.org/cmsgob1/export/sites/hacienda/planificacionypresupuesto/galeria/Presupuestos/
+
+# Páginas del portal por año (solo existen desde 2023; 2015-2022 dan 404).
+portales:
+  2023: https://www.gobiernodecanarias.org/hacienda/planificacionypresupuesto/presupuestos/2023/index.html
+  2024: https://www.gobiernodecanarias.org/hacienda/planificacionypresupuesto/presupuestos/2024_1/index.html
+  2025: https://www.gobiernodecanarias.org/hacienda/planificacionypresupuesto/presupuestos/2025/index.html
+  2026: https://www.gobiernodecanarias.org/hacienda/planificacionypresupuesto/presupuestos/2026/index.html
+  2027: https://www.gobiernodecanarias.org/hacienda/planificacionypresupuesto/presupuestos/2027/index.html
+
+documentos:
+  - {anio: 2015, fase: ley, tomo: 3, ruta: 2015/TOMO_3_-_2015_Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 0c99aa12be89fa0eb9402b21abde45d50c2c35778b4248df538c2b254dc51f3c,
+     nota: "Sin subcarpeta ley/; la portada confirma LEY"}
+  - {anio: 2016, fase: ley, tomo: 3, ruta: 2016/tomos_ley/TOMO_3_-_2016_Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 69bdceab3507f5484fb357712b1f60fd27306252b8a4243ddeb334db25b5c3af}
+  - {anio: 2017, fase: ley, tomo: 3, ruta: 2017/ley/TOMO_3_2017_Resumenes.pdf, verificado: 2026-10-28,
+     sha256: eb438486622f0677b2ed849ca79d25a23d4a0e1b4be126e89b138f90e5166dca}
+  - {anio: 2018, fase: ley, tomo: 3, ruta: 2018/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 327877faeffe129aa2935fbc683f6111588e7f76f74072fc2bff628bc0cc5854}
+  - {anio: 2019, fase: ley, tomo: 3, ruta: 2019/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 65baa58257aecd6563b76520aaa0a007ea33c081771a15425cda219dac1acac7}
+  - {anio: 2020, fase: ley, tomo: 3, ruta: 2020/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 15ca80cfc529b7b255f100f30a34b12195c2f181c99182c2c68fddb15267eee9}
+  - {anio: 2021, fase: ley, tomo: 3, ruta: 2021/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 7a5b595b523a38078498d0e40face3626e2c4755296c3edcc1467be65d4f31e2}
+  - {anio: 2022, fase: ley, tomo: 3, ruta: 2022/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 77e0c73eed46019e48e1f644a622661f2d5fd5fe41fc0dfa67ddf36340caeb96}
+  - {anio: 2023, fase: ley, tomo: 3, ruta: 2023/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 44b4b4b8211e2381abb71a9a8c42ad6d6746936ff9e911106342affde165c6ef}
+  - {anio: 2023, fase: proyecto, tomo: 3, ruta: 2023/proyecto_de_ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 65a7cbfcb14d3e8d44e82cf2fd8027dc2b13e6e1d76f14a5e3d1cb2a9da0900d}
+  - {anio: 2024, fase: ley, tomo: 3, ruta: 2024/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: fba63e39c6422bf6be82dfa2b5285a964f705dcd449f6fb84ef05e5f29820140,
+     nota: "El portal enlaza TOMO-3-Resumenes.html (404); se usa el .pdf directo. El Proyecto 2024 no está disponible (404)"}
+  - {anio: 2025, fase: ley, tomo: 3, ruta: 2025/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 2a0d6cb2035be8f72b70a7cf37787c5a9fcde1407718684d8a2780284f59ba51}
+  - {anio: 2025, fase: proyecto, tomo: 3, ruta: 2025/TOMO_3_Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 720160874c8e3377197fd10db831ef75976a7a1431634dacf5f93bb8564349b0}
+  - {anio: 2026, fase: ley, tomo: 3, ruta: 2026/ley/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 1b77e4ac270c83d098928cb9acd705397ce1efc84cd8a186433633493d55a5cc}
+  - {anio: 2026, fase: proyecto, tomo: 3, ruta: 2026/TOMO-3-Resumenes.pdf, verificado: 2026-10-28,
+     sha256: 9ff53e309a0ee1a63f3912413ca0d1ec7a59d14b9ca92590702226f4a5db7212}
+  # 2027: se añade al aceptar la propuesta de descubrir_fuentes.py (aviso de alerta-presupuestos-2027)

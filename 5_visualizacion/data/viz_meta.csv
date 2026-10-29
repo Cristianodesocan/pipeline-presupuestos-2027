@@ -1,0 +1,8 @@
+tipo,id,inicio,fin,etiqueta,valor
+carga,ultima_carga,,,Fecha de la última carga,2026-10-29 10:03:11.811467+00
+metodologia,precios_base,2025,2025,"Año base de los euros constantes (IPC Canarias, INE)",2025
+serie,fase_ultimo_anio,2026,2026,Fase del último presupuesto de la serie oficial,ley
+ventana,base,2015,2015,Paulino Rivero · CC-PSOE,
+ventana,clavijo_i,2016,2019,Fernando Clavijo · CC-PSOE (hasta dic. 2016); después CC en minoría,
+ventana,clavijo_ii,2024,2027,Fernando Clavijo · CC-PP,
+ventana,torres,2020,2023,Ángel Víctor Torres · PSOE-NC-Podemos-ASG,

@@ -1,0 +1,83 @@
+# DAG del pipeline para 00_maestro.py (diseno_pipeline_presupuestos_2027.md §9).
+# Cada tarea es un script independiente que el maestro lanza como subproceso; también se puede ejecutar suelto.
+#
+# Por fase:
+#   depende     fases cuyas salidas necesita (deben existir; el maestro no las lanza solas)
+#   cache       true → se omite si la huella de sus entradas no cambió desde la última ejecución correcta
+#   entradas    patrones (glob, relativos a la raíz) que forman la huella: código + config + artefactos previos
+#   salidas     patrones que deben existir tras la fase (y para poder usar la caché)
+# Por tarea:
+#   script      ruta del script;  args: argumentos fijos
+#   codigos_ok  códigos de salida aceptados (por defecto [0]); otro código detiene el pipeline
+#   avisos      códigos que no detienen pero se resumen al final como aviso
+#   bloqueante  puerta de calidad: si falla, nada posterior se ejecuta (fail-fast)
+#   filtro      recibe --anio / --fase del maestro;  forzar: recibe --forzar;  estricto: recibe --estricto
+#   destino     local | supabase: solo se ejecuta si --destino lo incluye
+#   dimension   etiqueta para --solo (análisis)
+#   paralelo    puede ejecutarse a la vez que las demás tareas paralelas de su fase (--paralelo)
+
+fases:
+  extraccion:
+    depende: []
+    cache: false              # comprueba la web (descargas condicionales) y tiene su propia caché por documento
+    salidas: ["1_extraccion/staging/stg_tomo3/*.parquet"]
+    tareas:
+      - {script: 1_extraccion/descubrir_fuentes.py, avisos: [2], nota: "2 = hay propuestas nuevas para fuentes.yml"}
+      - {script: 1_extraccion/descargar_tomos.py, filtro: true, forzar: true}
+      - {script: 1_extraccion/extraer_tomo3.py, filtro: true, forzar: true}
+      - {script: 1_extraccion/validar_extraccion.py, bloqueante: true, estricto: true}
+
+  transformacion:
+    depende: [extraccion]
+    cache: true
+    entradas: ["2_transformacion/*.py", "config/transformacion.yml", "config/abreviaturas.yml", "config/legislaturas.yml",
+               "config/correcciones_manuales.csv", "2_transformacion/crosswalks/*_validado.csv",
+               "2_transformacion/externos/*.csv", "1_extraccion/staging/stg_tomo3/*.parquet"]
+    salidas: ["2_transformacion/staging/fact_presupuesto.parquet", "2_transformacion/staging/dim_*.parquet",
+              "2_transformacion/staging/fact_seccion_estructura.parquet"]
+    tareas:
+      - {script: 2_transformacion/externos.py}
+      - {script: 2_transformacion/normalizar.py}
+      - {script: 2_transformacion/crosswalks.py}
+      - {script: 2_transformacion/construir_modelo.py}
+      - {script: 2_transformacion/retroproyectar_secciones.py}
+      - {script: 2_transformacion/validar.py, bloqueante: true, estricto: true}
+
+  carga:
+    depende: [transformacion]
+    cache: true
+    entradas: ["3_carga/*.py", "3_carga/*.sql", "3_carga/local/*.py", "3_carga/supabase/*.py", "2_transformacion/staging/*.parquet"]
+    salidas: ["3_carga/local/presupuestos.duckdb"]
+    tareas:
+      - {script: 3_carga/local/cargar_local.py, args: [--que, base], destino: local}
+      - {script: 3_carga/supabase/cargar_supabase.py, args: [--que, base], destino: supabase}
+
+  analisis:
+    depende: [carga]
+    cache: true
+    entradas: ["4_analisis/*.py", "config/analisis.yml", "config/legislaturas.yml", "2_transformacion/staging/*.parquet"]
+    salidas: ["4_analisis/salidas/ana_*.parquet"]
+    tareas:
+      - {script: 4_analisis/analisis_funciones.py, dimension: funciones, paralelo: true}
+      - {script: 4_analisis/analisis_secciones.py, dimension: secciones, paralelo: true}
+      - {script: 4_analisis/analisis_programas.py, dimension: programas, paralelo: true}
+      - {script: 4_analisis/analisis_entes.py, dimension: entes, paralelo: true}
+
+  carga_analisis:
+    depende: [analisis]
+    cache: true
+    entradas: ["3_carga/*.py", "3_carga/*.sql", "4_analisis/salidas/ana_*.parquet"]
+    salidas: ["3_carga/local/presupuestos.duckdb"]
+    tareas:
+      - {script: 3_carga/local/cargar_local.py, args: [--que, analisis], destino: local}
+      - {script: 3_carga/supabase/cargar_supabase.py, args: [--que, analisis], destino: supabase}
+
+  viz:
+    depende: [carga_analisis]
+    cache: true
+    entradas: ["3_carga/exportar_viz.py", "3_carga/vistas_viz.sql", "4_analisis/salidas/ana_*.parquet",
+               "2_transformacion/staging/*.parquet"]
+    salidas: ["5_visualizacion/data/viz_treemap.csv", "5_visualizacion/data/viz_series.csv", "5_visualizacion/data/viz_meta.csv"]
+    tareas:
+      - {script: 3_carga/exportar_viz.py, destino: local}
+      - {script: 3_carga/exportar_viz.py, args: [--fuente, supabase], destino: supabase}
