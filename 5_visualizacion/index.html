@@ -135,5 +135,13 @@
 
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
   <script type="module" src="js/app.js"></script>
+  <script>
+    // Con doble clic (file://) el navegador no ejecuta módulos ni lee data/*.csv: avisar en vez de quedarse en blanco.
+    if (!/^https?:$/.test(location.protocol)) {
+      document.getElementById("treemap").replaceChildren(Object.assign(document.createElement("p"), { className: "cargando",
+        textContent: "Esta página no funciona abierta con doble clic. Desde la carpeta del pipeline, ejecuta " +
+          "«.venv/bin/python 5_visualizacion/servir.py» y se abrirá en el navegador." }));
+    }
+  </script>
 </body>
 </html>

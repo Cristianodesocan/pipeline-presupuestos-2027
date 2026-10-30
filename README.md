@@ -227,10 +227,10 @@ Cada script es independiente y lee de la carga local, o de Supabase con `--fuent
 ## Visualización
 
 ```bash
-python3 -m http.server 8765 --directory 5_visualizacion   # y abre http://localhost:8765
+.venv/bin/python 5_visualizacion/servir.py   # sirve en http://localhost:8027 y abre el navegador (Ctrl+C para parar)
 ```
 
-Hace falta un servidor, porque el navegador no deja leer los CSV desde `file://`. Los datos son `5_visualizacion/data/viz_*.csv`: la exportación de las vistas `v_viz_*` (`3_carga/exportar_viz.py`). La web no necesita credenciales ni conexión con Supabase. Puede publicarse tal cual en GitHub Pages o integrarse en el Hub de Canarias en Datos.
+Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejecuta los módulos JS ni deja leer los CSV. Los datos son `5_visualizacion/data/viz_*.csv`: la exportación de las vistas `v_viz_*` (`3_carga/exportar_viz.py`). La web no necesita credenciales ni conexión con Supabase. Puede publicarse tal cual en GitHub Pages o integrarse en el Hub de Canarias en Datos.
 
 **Estructura:**
 - `index.html` y `css/odesocan.css`, con la identidad ODESOCAN (Space Grotesk/Inter, paleta teal/navy, modo claro y oscuro).
