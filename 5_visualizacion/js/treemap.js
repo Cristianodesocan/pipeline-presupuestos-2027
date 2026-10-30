@@ -83,7 +83,8 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
       .attr("height", ALTO_CABECERA - 2).attr("rx", 4).attr("fill", pal.band);
     grupos.each(function (n) {
       const w = n.x1 - n.x0 - 8;
-      const texto = `${n.data.grupo} · ${fmt.pct(100 * n.value / jerarquia.value)}`;
+      // mismo denominador que las celdas (total de la tabla), aunque haya filtro o zoom
+      const texto = `${n.data.grupo} · ${fmt.pct(d3.sum(n.leaves(), (h) => h.data.peso_total_pct))}`;
       const t = d3.select(this).append("text").attr("x", n.x0 + 4).attr("y", n.y0 + 13).attr("fill", pal.text)
         .style("font", "600 11.5px Inter");
       const corto = recortar(n.data.grupo, w, "600 11.5px Inter");
