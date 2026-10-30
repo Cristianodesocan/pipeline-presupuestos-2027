@@ -43,9 +43,9 @@ def test_indicadores_diferencial_y_peso():
 
 @pytest.mark.skipif(not BD_LOCAL.exists(), reason="sin base local: ejecuta 00_maestro.py")
 def test_2019_es_el_mayor_diferencial_de_la_funcion_23():
-    from _lectura import cfg, leer
+    from _lectura import cfg, leer, recortar
     from analisis_hipotesis_electoral import serie_tabla
-    datos = leer()
+    datos = recortar(leer(), 2026)   # hallazgo de la serie 2015-2026; desde el Proyecto 2027 el mayor es 2027
     d = indicadores(serie_tabla(datos.fact, "funciones", [cfg()["hipotesis_electoral"]["funcion_social"]]),
                     serie_tabla(datos.fact, "programas"))
     dif = d[d.precios == "constantes"].set_index("anio").dif.dropna()

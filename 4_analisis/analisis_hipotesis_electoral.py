@@ -3,7 +3,7 @@
     python 4_analisis/analisis_hipotesis_electoral.py [--fuente local|supabase] [--anio-actual 2027]
 
 Años electorales (config/analisis.yml): 2019, 2023 y 2027 (autonómicas de mayo; el presupuesto se diseña en otoño
-del año anterior). Con la serie 2015-2026 hay dos casos observables: 2019 y 2023. 2027 entra solo cuando se publique.
+del año anterior). Solo cuentan los que ya están en la serie: 2019 y 2023 con la serie 2015-2026; 2027 entra con su Proyecto.
 
 Perímetros de gasto social (todos con perímetro estable entre años):
   A · Consejería de bienestar social: lo que hoy gestiona la sección 23, retroproyectado (fact_seccion_estructura).
@@ -16,8 +16,8 @@ Indicadores por presupuesto t (euros constantes 2025; corrientes como robustez):
   dif    g − g_tot (pp): ¿crece el gasto social MÁS que el presupuesto? Es la medida de «acentuación», porque
          descuenta que el año electoral sea también un año de expansión general.
   dpeso  cambio del peso en el total (pp)
-Contraste: media de 2019 y 2023 frente a los años no electorales; permutación exacta (todas las parejas de años:
-p unilateral = proporción de parejas con media ≥ la observada); y cada año electoral frente a los otros tres años
+Contraste: media de los años electorales observados frente a los no electorales; permutación exacta (todas las
+combinaciones de k años: p unilateral = proporción con media ≥ la observada); y cada año electoral frente a los otros tres años
 de su legislatura. Robustez: sin fondos MRR/REACT-EU (perímetro A), variación homogénea (B, C) y precios corrientes.
 Salidas en 4_analisis/salidas/hipotesis_electoral/: CSV tidy, informe Markdown y tablas APA.
 """
@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 import _informes as inf
-from _lectura import SALIDAS, ahora, argumentos, cfg, leer, log_evento, recortar
+from _lectura import SALIDAS, ahora, argumentos, cfg, fase_por_anio, leer, log_evento, recortar
 
 SALIDA = SALIDAS / "hipotesis_electoral"
 
@@ -142,7 +142,7 @@ def main() -> int:
                 r = permutacion(d[medida], E)
                 if r.get("k"):
                     resumen.append({"perimetro": p, "precios": precios, "medida": medida, **{k: v for k, v in r.items() if k != "rangos"},
-                                    "rango_2019": r["rangos"].get(2019), "rango_2023": r["rangos"].get(2023)})
+                                    **{f"rango_{x}": r["rangos"].get(x) for x in E}})
             if precios == "constantes":
                 legis.append(dentro_de_legislatura(d["dif"], E).assign(perimetro=p))
     res = pd.DataFrame(resumen)
@@ -165,7 +165,7 @@ def main() -> int:
     largo.dropna(subset=["valor"]).to_csv(SALIDA / "hipotesis_electoral.csv", index=False)
     res.to_csv(SALIDA / "contraste_permutacion.csv", index=False)
 
-    md = informe(ind, res, leg, t_pl, E, ultimo, perimetros)
+    md = informe(ind, res, leg, t_pl, E, ultimo, perimetros, fase_por_anio(f))
     (SALIDA / "informe_hipotesis_electoral.md").write_text(md, encoding="utf-8")
     inf.escribir_xlsx(SALIDA / "tablas_hipotesis_electoral.xlsx", tablas_apa(ind, res, leg, perimetros))
     log_evento("analisis_hipotesis_electoral", filas=len(largo), contrastes=len(res))
@@ -184,11 +184,13 @@ def _tabla_anual(ind, p, E):
                          "Diferencial (pp)": d.dif.map(lambda v: inf.num(v, 1)), "Δ peso (pp)": d.dpeso.map(lambda v: inf.num(v, 2))})
 
 
-def informe(ind, res, leg, t_pl, E, ultimo, perimetros) -> str:
+def informe(ind, res, leg, t_pl, E, ultimo, perimetros, fases) -> str:
     obs = [a for a in E if a <= ultimo]
     pend = [a for a in E if a > ultimo]
     main_p = "B · Función 23: servicios sociales y promoción social"
     principal = res[(res.precios == "constantes") & (res.medida == "dif")].set_index("perimetro")
+    n_anios = int(principal.n.max())   # presupuestos con variación calculable
+    serie = "Ley" if fases.get(ultimo) == "ley" else f"Ley; {ultimo}: Proyecto"
 
     def veredicto(r):
         if r.diferencia > 0 and r.p_unilateral <= 0.10:
@@ -197,11 +199,14 @@ def informe(ind, res, leg, t_pl, E, ultimo, perimetros) -> str:
             return "débil (positivo, no distinguible del azar)"
         return "en contra"
 
+    def rango(v):
+        return "—" if v is None or v != v else str(int(v))
+
     filas = []
     for p, r in principal.iterrows():
         filas.append({"Perímetro": p, "Dif. media años electorales (pp)": inf.num(r.media_electoral),
                       "Dif. media resto (pp)": inf.num(r.media_resto), "Diferencia (pp)": inf.num(r.diferencia),
-                      "Rango 2019 / 2023 (de 11)": f"{r.rango_2019 or '—'} / {r.rango_2023 or '—'}",
+                      f"Rango {' / '.join(map(str, obs))} (de {n_anios})": " / ".join(rango(r.get(f"rango_{x}")) for x in obs),
                       "p permutación": inf.num(r.p_unilateral, 2), "Lectura": veredicto(r)})
     t_res = pd.DataFrame(filas)
     t_leg = leg.assign(**{"Año": leg.anio.astype(str), "Dif. año electoral (pp)": leg.electoral.map(inf.num),
@@ -237,7 +242,7 @@ def informe(ind, res, leg, t_pl, E, ultimo, perimetros) -> str:
 
     partes = [
         "# Hipótesis: ¿se acentúa el gasto social en los presupuestos de años electorales?", "",
-        f"Generado {ahora()} por `analisis_hipotesis_electoral.py`. Serie oficial 2015-{ultimo} (Ley), euros constantes de 2025.", "",
+        f"Generado {ahora()} por `analisis_hipotesis_electoral.py`. Serie oficial 2015-{ultimo} ({serie}), euros constantes de 2025.", "",
         "## Resumen", "", f"**Estatus:** verificado (descripción) · la atribución a la intención electoral es *hipótesis*.", "",
         resumen,
         "",
@@ -256,11 +261,11 @@ def informe(ind, res, leg, t_pl, E, ultimo, perimetros) -> str:
         txt = ("**acentuación clara**: supera el máximo de su legislatura" if supera == len(fil) else
                "**acentuación parcial**: por encima de la media de su legislatura" if sobre_media == len(fil) else
                "**sin acentuación**: por debajo de la media de su legislatura" if sobre_media == 0 else "**resultado mixto**")
-        rango = principal.loc[main_p, f"rango_{anio}"] if main_p in principal.index and f"rango_{anio}" in principal.columns else None
+        puesto = principal.loc[main_p, f"rango_{anio}"] if main_p in principal.index and f"rango_{anio}" in principal.columns else None
         cuenta = supera if supera == len(fil) else sobre_media if sobre_media == len(fil) else \
             len(fil) - sobre_media if sobre_media == 0 else sobre_media
         partes.append(f"- **{anio}**: {txt} en {cuenta} de {len(fil)} perímetros amplios"
-                      + (f" (función 23: puesto {int(rango)} de 11 en diferencial)" if rango == rango and rango is not None else "") + ".")
+                      + (f" (función 23: puesto {int(puesto)} de {n_anios} en diferencial)" if puesto == puesto and puesto is not None else "") + ".")
     if pend:
         partes.append(f"- **{', '.join(map(str, pend))}**: pendiente de publicación; el contraste se repetirá automáticamente al cargarlo.")
     partes += [
@@ -268,9 +273,9 @@ def informe(ind, res, leg, t_pl, E, ultimo, perimetros) -> str:
         "**Comparaciones múltiples.** El desglose por programas hace 5 contrastes adicionales: con un umbral de 0,10, "
         "cabe esperar alrededor de uno «significativo» por azar. Un bloque aislado a favor no basta para sostener la hipótesis.",
         "",
-        "**Advertencia de potencia.** Con 2 casos electorales frente a 9 no electorales, la permutación exacta solo puede "
+        f"**Advertencia de potencia.** Con {len(obs)} casos electorales frente a {n_anios - len(obs)} no electorales, la permutación exacta solo puede "
         f"bajar hasta p = {inf.num(res.p_minimo.min(), 3)} y el contraste detecta únicamente efectos muy grandes. Un resultado "
-        "no significativo **no prueba** que el efecto no exista; un resultado significativo con 2 casos tampoco lo prueba.",
+        f"no significativo **no prueba** que el efecto no exista; un resultado significativo con {len(obs)} casos tampoco lo prueba.",
         "",
         "## 1. Definiciones",
         "",
@@ -283,8 +288,8 @@ def informe(ind, res, leg, t_pl, E, ultimo, perimetros) -> str:
         "## 2. Contraste principal (diferencial real, euros constantes)",
         "",
         inf.tabla_md(t_res),
-        "Rango: posición del año entre los 11 presupuestos con variación calculable (1 = mayor diferencial). "
-        "p: proporción de parejas de años cuya media es ≥ la de 2019+2023.",
+        f"Rango: posición del año entre los {n_anios} presupuestos con variación calculable (1 = mayor diferencial). "
+        f"p: proporción de combinaciones de {len(obs)} años cuya media es ≥ la de {'+'.join(map(str, obs))}.",
         "",
         "## 3. Cada año electoral frente a su propia legislatura",
         "",
@@ -332,8 +337,10 @@ def tablas_apa(ind, res, leg, perimetros):
                                   "Diferencial (pp)": d.dif.round(2), "Δ peso (pp)": d.dpeso.round(3)}),
                     "Euros constantes de 2025. Fuente: Tomo 3 (tablas 2.8, 2.9 y 2.16). Elaboración propia, ODESOCAN."))
     r = res[res.precios == "constantes"][["perimetro", "medida", "media_electoral", "media_resto", "diferencia", "p_unilateral"]].round(3)
-    out.append(("Contraste de permutación exacta: años electorales (2019, 2023) frente al resto", r,
-                "p unilateral = proporción de las 55 parejas de años con media ≥ la observada."))
+    obs = sorted(ind.loc[ind.electoral, "anio"].unique())
+    out.append((f"Contraste de permutación exacta: años electorales ({', '.join(map(str, obs))}) frente al resto", r,
+                f"p unilateral = proporción de las {int(res.combinaciones.max())} combinaciones de {len(obs)} años "
+                "con media ≥ la observada."))
     return out
 
 

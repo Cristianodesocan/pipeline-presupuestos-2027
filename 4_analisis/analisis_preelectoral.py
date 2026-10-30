@@ -4,7 +4,7 @@
 
 Complementa a analisis_hipotesis_electoral.py: en vez de contrastar una partida (el gasto social), recorre TODAS
 las partidas en cinco niveles y busca regularidades que se repitan en los presupuestos electorales observables
-(2019 y 2023; 2027 entra al publicarse):
+(2019 y 2023 con la serie 2015-2026; 2027 entra con su Proyecto):
   total · capítulos (naturaleza económica, tabla 2.11) · funciones (2.8) · consejerías en la estructura actual
   (retroproyección) · subfunciones (2.9) y programas (2.10, series continuas) con peso ≥ 0,5 %.
 Medidas (euros constantes 2025):
@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 
 import _informes as inf
-from _lectura import SALIDAS, ahora, argumentos, cfg, leer, log_evento, panel, recortar
+from _lectura import SALIDAS, ahora, argumentos, cfg, fase_por_anio, leer, log_evento, panel, recortar
 from analisis_hipotesis_electoral import permutacion
 
 SALIDA = SALIDAS / "preelectoral"
@@ -153,7 +153,8 @@ def main() -> int:
     SALIDA.mkdir(parents=True, exist_ok=True)
     largo.dropna(subset=["valor"]).to_csv(SALIDA / "preelectoral.csv", index=False)
     pd.concat([r.assign(nivel=n) for n, r in res.items() if len(r)], ignore_index=True).to_csv(SALIDA / "patrones_preelectorales.csv", index=False)
-    (SALIDA / "informe_preelectoral.md").write_text(informe(res, r_tot, leg_tot, g_tot, obs, E, total), encoding="utf-8")
+    (SALIDA / "informe_preelectoral.md").write_text(informe(res, r_tot, leg_tot, g_tot, obs, E, total, fase_por_anio(datos.fact)),
+                                                    encoding="utf-8")
     inf.escribir_xlsx(SALIDA / "tablas_preelectoral.xlsx", tablas_apa(res, obs))
     log_evento("analisis_preelectoral", filas=len(largo))
     print(f"preelectoral: {len(largo):,} filas tidy · niveles {', '.join(f'{n}={len(r)}' for n, r in res.items())} · salidas/preelectoral/")
@@ -182,8 +183,12 @@ def _tabla(r: pd.DataFrame, obs: list[int], patron: str | None = None, n: int | 
     return out
 
 
-def informe(res, r_tot, leg_tot, g_tot, obs, E, total) -> str:
+def informe(res, r_tot, leg_tot, g_tot, obs, E, total, fases) -> str:
     pend = [a for a in E if a not in obs and a > max(total.index)]
+    ultimo = max(total.index)
+    serie = "Ley" if fases.get(ultimo) == "ley" else f"Ley; {ultimo}: Proyecto"
+    puesto = g_tot.rank(ascending=False)
+    k_obs = len(obs)
     cuenta = lambda n, pat: int((res[n].patron == pat).sum()) if len(res[n]) else 0  # noqa: E731
     sig = {n: r[(r.q <= 0.10)] for n, r in res.items() if len(r)}
     sig_c = {n: r[(r.q_contraccion <= 0.10)] for n, r in res.items() if len(r)}
@@ -202,14 +207,14 @@ def informe(res, r_tot, leg_tot, g_tot, obs, E, total) -> str:
 
     p = [
         "# ¿Qué suele pasar en los presupuestos preelectorales?", "",
-        f"Generado {ahora()} por `analisis_preelectoral.py`. Serie oficial {min(total.index)}-{max(total.index)} (Ley), euros constantes de 2025. "
+        f"Generado {ahora()} por `analisis_preelectoral.py`. Serie oficial {min(total.index)}-{ultimo} ({serie}), euros constantes de 2025. "
         f"Presupuestos electorales observables: {', '.join(map(str, obs))}" + (f"; pendiente: {', '.join(map(str, pend))}." if pend else "."), "",
         "## Resumen", "",
         "**Estatus:** verificado (descripción de cifras) · cualquier lectura sobre la intención electoral es *hipótesis*.", "",
-        f"- **Tamaño del presupuesto.** El total crece en términos reales un {inf.num(g_tot.get(obs[0]))} % en {obs[0]}"
-        + (f" y un {inf.num(g_tot.get(obs[1]))} % en {obs[1]}" if len(obs) > 1 else "")
+        "- **Tamaño del presupuesto.** El total crece en términos reales "
+        + ", ".join(f"un {inf.num(g_tot.get(a))} % en {a}" for a in obs)
         + f", frente a una media del {inf.num(r_tot.get('media_resto'))} % en los demás presupuestos (permutación p = {inf.num(r_tot.get('p_unilateral'), 2)}). "
-        "Los dos presupuestos electorales están entre los más expansivos de la serie.",
+        f"Puesto en crecimiento real (de {len(g_tot)}): " + " · ".join(f"{a}: {int(puesto[a])}.º" for a in obs) + ".",
         linea_cap(corr, "Gasto corriente (caps. 1-4)"),
         linea_cap(capi, "Gasto de capital (caps. 6-7)"),
         f"- **Partidas con el mismo signo en todos los años electorales:** funciones {cuenta('funcion', 'se acentúa')} se acentúan y "
@@ -220,8 +225,8 @@ def informe(res, r_tot, leg_tot, g_tot, obs, E, total) -> str:
         + (", ".join(f"{n}: {len(s)}" for n, s in sig.items()) or "ninguna") + " partidas con acentuación y "
         + (", ".join(f"{n}: {len(s)}" for n, s in sig_c.items()) or "ninguna") + " con contracción distinguibles del azar.",
         "",
-        "**Cómo leerlo.** Con dos casos, una regularidad «en ambos años» puede ser casualidad: si las anomalías fueran ruido "
-        "simétrico, una de cada cuatro partidas tendría el mismo signo positivo en los dos años y otra de cada cuatro, el "
+        f"**Cómo leerlo.** Con {k_obs} casos, una regularidad «en todos los años» puede ser casualidad: si las anomalías fueran ruido "
+        f"simétrico, una de cada {2 ** k_obs} partidas tendría el mismo signo positivo en los {k_obs} años y otra de cada {2 ** k_obs}, el "
         "negativo. El interés está en las partidas que repiten patrón **con importe relevante** y en si el patrón aparece "
         "en la naturaleza del gasto (capítulos), que es lo que predice la literatura sobre ciclos políticos presupuestarios: "
         "más gasto visible (inversión, transferencias) antes de las elecciones.",
@@ -254,9 +259,14 @@ def informe(res, r_tot, leg_tot, g_tot, obs, E, total) -> str:
         "- El equilibrio entre gasto corriente y de capital: un salto del capítulo 6-7 sobre su tendencia sería la señal clásica de ciclo electoral.",
         "- Contrastar después con la **ejecución** (liquidación de 2019 y 2023): un presupuesto inicial expansivo que no se ejecuta es anuncio, no gasto.", "",
         "## 8. Limitaciones", "",
-        "- Dos casos electorales (tres en 2027): la permutación no puede bajar de p ≈ 0,02 y la mayoría de efectos no serán distinguibles del azar.",
-        "- 2019 y 2023 los elaboraron gobiernos distintos (CC en minoría y PSOE-NC-Podemos-ASG): un patrón común no es atribuible a un partido.",
+        f"- {k_obs} casos electorales: la permutación no puede bajar de p ≈ {inf.num(r_tot.get('p_minimo'), 3)} y la mayoría de efectos no serán distinguibles del azar.",
+        ("- 2019, 2023 y 2027 los elaboraron gobiernos distintos (CC en minoría, PSOE-NC-Podemos-ASG y CC-PP)" if 2027 in obs else
+         "- 2019 y 2023 los elaboraron gobiernos distintos (CC en minoría y PSOE-NC-Podemos-ASG)")
+        + ": un patrón común no es atribuible a un partido.",
         "- 2023 se presupuestó con inflación alta y fondos europeos extraordinarios; 2019, en plena recuperación de ingresos.",
+        ("- 2027 es el primer presupuesto casi sin fondos MRR/REACT-EU (447 M€ en 2026, 9 M€ en 2027; 316 M€ de ellos en Transición "
+         "Ecológica y Energía): las consejerías que los gestionaban «se contraen» por esa salida, que no es una decisión del año electoral."
+         if 2027 in obs else None),
         "- Deuda pública y capítulo 3 (gastos financieros): el salto de 2023 coincide con la subida de tipos de interés de 2022-2023, no con una decisión de gasto.",
         "- Diversas Consejerías (sección 19) agrupa fondos y créditos de reserva con oscilaciones muy grandes: su anomalía no es interpretable como prioridad.",
         "- Las elecciones autonómicas coinciden con las municipales y las insulares (mismo día de mayo): las transferencias a cabildos y ayuntamientos son el canal en el que cabría esperar un efecto electoral, pero el pipeline no puede separarlo del calendario de la financiación local.",
