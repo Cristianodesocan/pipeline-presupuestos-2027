@@ -1,20 +1,20 @@
 # Revisión del crosswalk · programa
 
-Generado 2026-10-29T10:03:06+00:00 por `crosswalks.py`.
+Generado 2026-10-30T13:07:13+00:00 por `crosswalks.py`.
 
 ## Resumen
 
 | Estado | Tipo | Enlaces |
 |---|---|---|
-| auto | identico | 1514 |
+| auto | identico | 1655 |
 | auto | renombrado | 5 |
 | pendiente | fusion | 5 |
-| pendiente | renombrado | 2 |
-| sin_enlace | extinguido | 12 |
+| pendiente | renombrado | 3 |
+| sin_enlace | extinguido | 13 |
 | sin_enlace | nuevo | 16 |
 | sin_enlace | nuevo_sin_origen | 4 |
 
-## Enlaces pendientes de revisión (7)
+## Enlaces pendientes de revisión (8)
 
 Para decidir, copia la fila de `xwalk_programa_propuesto.csv` a `xwalk_programa_validado.csv` con `decision=aceptar` o `rechazar`.
 
@@ -27,6 +27,7 @@ Para decidir, copia la fila de `xwalk_programa_propuesto.csv` a `xwalk_programa_
 | 2022 | `911P` Comisionado de la Transparencia | `912L` Palamento y Entes de relevancia Estatutaria | fusion | 0.1378 | 0.0 | 0.4595 | 0,88 | 35,00 |
 | 2017 | `921K` Relaciones Institucionales | `921K` Transparencia, Participación y Colabor. Ciudadana | renombrado | 0.8151 | 1.0 | 0.3836 | 2,23 | 2,23 |
 | 2018 | `922A` Administración Territorial | `922A` Administraciones Públicas y Gobierno abierto | renombrado | 0.834 | 0.893 | 0.5714 | 1,75 | 1,94 |
+| 2027 | `432C` Plan Sect. de Infraestr. y Calidad Turíst. de Can. | `432C` Plan Sect. de Infraestructuras y Calidad Turística | renombrado | 0.8438 | 1.0 | 0.8125 | 0,07 | 0,07 |
 
 ## Unidades con importe reexpresado pero sin origen identificado (4)
 

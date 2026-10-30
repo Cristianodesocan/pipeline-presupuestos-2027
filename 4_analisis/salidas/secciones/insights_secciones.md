@@ -1,67 +1,67 @@
 # Insights · Secciones presupuestarias
 
-Generado 2026-10-29T10:03:10+00:00 por `analisis_secciones.py`. Serie oficial 2015-2026; tabla 2.1 (caps. 1-8). Vista competencial: `estructura_2026`.
+Generado 2026-10-30T13:07:38+00:00 por `analisis_secciones.py`. Serie oficial 2015-2027; tabla 2.1 (caps. 1-8). Vista competencial: `estructura_2027`.
 
 ## 1. Prioridades de la ventana clavijo_ii: quién gana y quién pierde peso
 
 **Estatus:** estimacion
 
-Entre 2023 y 2026 (ventana incompleta: falta el último presupuesto), en euros constantes.
+Entre 2023 y 2027 (ventana completa), en euros constantes.
 
 **Ganan peso**
 
-| Partida | Peso 2023 (%) | Peso 2026 (%) | Δ peso (pp) | TCAC (%) |
+| Partida | Peso 2023 (%) | Peso 2027 (%) | Δ peso (pp) | TCAC (%) |
 |---|---|---|---|---|
-| TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | 1,9 | 3,8 | 1,90 | 31,1 |
-| SANIDAD (14) | 36,8 | 38,1 | 1,31 | 5,6 |
-| HACIENDA Y RELACIONES CON LA UNIÓN EUROPEA (10) | 1,5 | 2,0 | 0,49 | 14,9 |
-| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 2,8 | 3,2 | 0,44 | 9,5 |
-| DEUDA PÚBLICA (05) | 0,5 | 0,9 | 0,38 | 26,1 |
-| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 8,1 | 8,3 | 0,14 | 5,0 |
-| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | 7,1 | 7,0 | -0,02 | 4,3 |
-| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | 0,8 | 0,8 | -0,05 | 2,4 |
-| PRESIDENCIA DEL GOBIERNO (06) | 2,0 | 1,9 | -0,10 | 2,6 |
-| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | 1,2 | 0,9 | -0,22 | -2,6 |
+| SANIDAD (14) | 36,8 | 39,3 | 2,46 | 5,5 |
+| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | 7,1 | 8,3 | 1,20 | 8,0 |
+| DEUDA PÚBLICA (05) | 0,5 | 1,2 | 0,70 | 29,4 |
+| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 2,8 | 3,4 | 0,62 | 9,2 |
+| HACIENDA Y RELACIONES CON LA UNIÓN EUROPEA (10) | 1,5 | 1,8 | 0,32 | 9,0 |
+| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 8,1 | 8,4 | 0,29 | 4,7 |
+| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | 0,8 | 0,8 | -0,06 | 1,9 |
+| PRESIDENCIA DEL GOBIERNO (06) | 2,0 | 1,8 | -0,17 | 1,5 |
+| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | 1,2 | 0,9 | -0,33 | -4,2 |
+| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | 20,6 | 20,2 | -0,42 | 3,3 |
 
 **Pierden peso**
 
-| Partida | Peso 2023 (%) | Peso 2026 (%) | Δ peso (pp) | TCAC (%) |
+| Partida | Peso 2023 (%) | Peso 2027 (%) | Δ peso (pp) | TCAC (%) |
 |---|---|---|---|---|
-| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | 20,6 | 19,4 | -1,17 | 2,4 |
-| OBRAS PÚBLICAS, VIVIENDA Y MOVILIDAD (11) | 5,5 | 4,4 | -1,15 | -3,4 |
-| UNIVERSIDADES, CIENCIA E INNOVACIÓN Y CULTURA (17) | 4,1 | 3,6 | -0,56 | -0,6 |
-| DIVERSAS CONSEJERÍAS (19) | 2,6 | 2,1 | -0,50 | -2,8 |
-| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | 1,7 | 1,3 | -0,42 | -4,9 |
-| TURISMO Y EMPLEO (16) | 2,6 | 2,2 | -0,41 | -1,4 |
-| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | 1,2 | 0,9 | -0,22 | -2,6 |
-| PRESIDENCIA DEL GOBIERNO (06) | 2,0 | 1,9 | -0,10 | 2,6 |
-| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | 0,8 | 0,8 | -0,05 | 2,4 |
-| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | 7,1 | 7,0 | -0,02 | 4,3 |
+| OBRAS PÚBLICAS, VIVIENDA Y MOVILIDAD (11) | 5,5 | 4,4 | -1,14 | -2,0 |
+| TURISMO Y EMPLEO (16) | 2,6 | 1,6 | -0,98 | -7,6 |
+| TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | 1,9 | 1,2 | -0,75 | -8,3 |
+| UNIVERSIDADES, CIENCIA E INNOVACIÓN Y CULTURA (17) | 4,1 | 3,5 | -0,62 | -0,3 |
+| DIVERSAS CONSEJERÍAS (19) | 2,7 | 2,1 | -0,58 | -2,4 |
+| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | 1,7 | 1,2 | -0,50 | -4,7 |
+| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | 20,6 | 20,2 | -0,42 | 3,3 |
+| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | 1,2 | 0,9 | -0,33 | -4,2 |
+| PRESIDENCIA DEL GOBIERNO (06) | 2,0 | 1,8 | -0,17 | 1,5 |
+| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | 0,8 | 0,8 | -0,06 | 1,9 |
 
 ## 2. Vista competencial frente a orgánica (2023)
 
 **Estatus:** verificado
 
-Cuánto tenía en 2023 lo que hoy gestiona cada consejería (estructura 2026 retroproyectada) frente a la sección que entonces tenía el mismo código. La diferencia es el **efecto reestructuración** acumulado: un mismo código puede ser otra consejería.
+Cuánto tenía en 2023 lo que hoy gestiona cada consejería (estructura 2027 retroproyectada) frente a la sección que entonces tenía el mismo código. La diferencia es el **efecto reestructuración** acumulado: un mismo código puede ser otra consejería.
 
-| Consejería actual | Mismo código en 2023 (M€) | Nombre en 2023 | Estructura 2026 retroproyectada (M€) | Diferencia (M€) |
+| Consejería actual | Mismo código en 2023 (M€) | Nombre en 2023 | Estructura 2027 retroproyectada (M€) | Diferencia (M€) |
 |---|---|---|---|---|
 | DEUDA PÚBLICA (05) | 48,3 | DEUDA PÚBLICA | 48,3 | 0,0 |
-| PRESIDENCIA DEL GOBIERNO (06) | 31,5 | PRESIDENCIA DEL GOBIERNO | 191,4 | 159,9 |
-| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 406,0 | ADMONES. PÚBLICAS, JUSTICIA Y SEGURIDAD | 272,7 | -133,2 |
-| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | — | — (no existía) | 111,9 | 111,9 |
-| HACIENDA Y RELACIONES CON LA UNIÓN EUROPEA (10) | 221,8 | HACIENDA, PRESUPUESTOS Y ASUNTOS EUROPEOS | 143,3 | -78,4 |
-| OBRAS PÚBLICAS, VIVIENDA Y MOVILIDAD (11) | 536,7 | OBRAS PÚBLICAS, TRANSPORTES Y VIVIENDA | 537,4 | 0,8 |
-| TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | 261,6 | TRANS. ECOLOG., LUCHA CAMBIO CLIM. Y PLANF. TERRIT | 188,0 | -73,6 |
-| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | 167,6 | AGRICULTURA, GANADERÍA Y PESCA | 168,4 | 0,8 |
+| PRESIDENCIA DEL GOBIERNO (06) | 31,5 | PRESIDENCIA DEL GOBIERNO | 191,8 | 160,3 |
+| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 406,0 | ADMONES. PÚBLICAS, JUSTICIA Y SEGURIDAD | 272,5 | -133,5 |
+| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | — | — (no existía) | 114,8 | 114,8 |
+| HACIENDA Y RELACIONES CON LA UNIÓN EUROPEA (10) | 221,8 | HACIENDA, PRESUPUESTOS Y ASUNTOS EUROPEOS | 141,9 | -79,9 |
+| OBRAS PÚBLICAS, VIVIENDA Y MOVILIDAD (11) | 536,7 | OBRAS PÚBLICAS, TRANSPORTES Y VIVIENDA | 537,2 | 0,6 |
+| TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | 261,6 | TRANS. ECOLOG., LUCHA CAMBIO CLIM. Y PLANF. TERRIT | 185,1 | -76,6 |
+| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | 167,6 | AGRICULTURA, GANADERÍA Y PESCA | 168,3 | 0,7 |
 | SANIDAD (14) | 3.576,3 | SANIDAD | 3.573,4 | -2,9 |
-| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | 239,7 | ECONOMÍA, CONOCIMIENTO Y EMPLEO | 80,0 | -159,7 |
-| TURISMO Y EMPLEO (16) | 173,5 | TURISMO, INDUSTRIA Y COMERCIO | 253,8 | 80,3 |
-| UNIVERSIDADES, CIENCIA E INNOVACIÓN Y CULTURA (17) | — | — (no existía) | 400,0 | 400,0 |
-| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | 2.327,7 | EDUCACIÓN, UNIVERSIDADES, CULTURA Y DEPORTES | 1.999,3 | -328,4 |
-| DIVERSAS CONSEJERÍAS (19) | 239,5 | DIVERSAS CONSEJERÍAS | 254,2 | 14,7 |
+| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | 239,7 | ECONOMÍA, CONOCIMIENTO Y EMPLEO | 79,1 | -160,6 |
+| TURISMO Y EMPLEO (16) | 173,5 | TURISMO, INDUSTRIA Y COMERCIO | 253,6 | 80,2 |
+| UNIVERSIDADES, CIENCIA E INNOVACIÓN Y CULTURA (17) | — | — (no existía) | 399,1 | 399,1 |
+| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | 2.327,7 | EDUCACIÓN, UNIVERSIDADES, CULTURA Y DEPORTES | 1.999,7 | -328,0 |
+| DIVERSAS CONSEJERÍAS (19) | 239,5 | DIVERSAS CONSEJERÍAS | 258,1 | 18,6 |
 | TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 789,3 | TRANSFERENCIAS A CORPORACIONES LOCALES | 789,3 | 0,0 |
-| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | 681,6 | DERECHOS SOCIALES, IGUALDAD, DIVERSIDAD Y JUVENTUD | 684,8 | 3,3 |
+| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | 681,6 | DERECHOS SOCIALES, IGUALDAD, DIVERSIDAD Y JUVENTUD | 684,1 | 2,5 |
 
 ## 3. Reorganización de 2024: competencias que entran y salen por sección
 
@@ -85,33 +85,33 @@ Ajustado 2023 en el tomo 2024 − inicial 2023 de la sección con el mismo códi
 
 **Estatus:** estimacion
 
-TCAC real de `clavijo_ii` menos TCAC real de `torres`, en partidas con peso ≥ 0,5 % en 2026. Positivo = acelera respecto a la legislatura anterior.
+TCAC real de `clavijo_ii` menos TCAC real de `torres`, en partidas con peso ≥ 0,5 % en 2027. Positivo = acelera respecto a la legislatura anterior.
 
 **Más aceleran**
 
 | Partida | Δ TCAC (pp) |
 |---|---|
-| DEUDA PÚBLICA (05) | 41,3 |
-| TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | 12,6 |
-| HACIENDA Y RELACIONES CON LA UNIÓN EUROPEA (10) | 9,2 |
-| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 5,7 |
-| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 5,2 |
-| SANIDAD (14) | 3,4 |
-| DIVERSAS CONSEJERÍAS (19) | 1,5 |
+| DEUDA PÚBLICA (05) | 44,6 |
+| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 5,5 |
+| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 4,8 |
+| SANIDAD (14) | 3,3 |
+| HACIENDA Y RELACIONES CON LA UNIÓN EUROPEA (10) | 3,3 |
+| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | 2,0 |
+| DIVERSAS CONSEJERÍAS (19) | 1,9 |
 
 **Más frenan**
 
 | Partida | Δ TCAC (pp) |
 |---|---|
-| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | -17,0 |
-| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | -14,6 |
-| TURISMO Y EMPLEO (16) | -7,8 |
-| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | -6,5 |
-| OBRAS PÚBLICAS, VIVIENDA Y MOVILIDAD (11) | -5,7 |
-| PRESIDENCIA DEL GOBIERNO (06) | -2,3 |
-| UNIVERSIDADES, CIENCIA E INNOVACIÓN Y CULTURA (17) | -1,8 |
-| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | -1,7 |
-| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | -1,7 |
+| TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | -26,7 |
+| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | -18,9 |
+| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | -14,4 |
+| TURISMO Y EMPLEO (16) | -14,0 |
+| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | -7,2 |
+| OBRAS PÚBLICAS, VIVIENDA Y MOVILIDAD (11) | -4,4 |
+| PRESIDENCIA DEL GOBIERNO (06) | -3,4 |
+| UNIVERSIDADES, CIENCIA E INNOVACIÓN Y CULTURA (17) | -1,5 |
+| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | -0,8 |
 
 ## 5. Crecimiento nominal frente a real
 
@@ -121,8 +121,8 @@ TCAC real de `clavijo_ii` menos TCAC real de `torres`, en partidas con peso ≥ 
 |---|---|---|---|---|
 | clavijo_i | 2015→2019 | 27,3 | 23,1 | 4,3 |
 | torres | 2019→2023 | 29,1 | 11,7 | 17,4 |
-| clavijo_ii | 2023→2026 | 22,8 | 13,8 | 9,0 |
-| 2015_2026 | 2015→2026 | 101,9 | 56,4 | 45,5 |
+| clavijo_ii | 2023→2027 | 29,3 | 16,2 | 13,1 |
+| 2015_2027 | 2015→2027 | 112,6 | 59,8 | 52,8 |
 
 ## 6. Secciones no departamentales (dinámica contable)
 
@@ -130,12 +130,12 @@ TCAC real de `clavijo_ii` menos TCAC real de `torres`, en partidas con peso ≥ 
 
 Peso (%) de Deuda Pública, Diversas Consejerías, Transferencias a Corporaciones Locales y Parlamento.
 
-| etiqueta | 2015 | 2019 | 2023 | 2026 |
+| etiqueta | 2015 | 2019 | 2023 | 2027 |
 |---|---|---|---|---|
-| DEUDA PÚBLICA (05) | 2,40 | 1,10 | 0,50 | 0,90 |
+| DEUDA PÚBLICA (05) | 2,40 | 1,10 | 0,50 | 1,20 |
 | DIVERSAS CONSEJERÍAS (19) | 0,20 | 3,50 | 2,50 | 2,10 |
 | PARLAMENTO (01) | 0,40 | 0,40 | — | — |
-| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 8,20 | 9,30 | 8,10 | 8,30 |
+| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 8,20 | 9,30 | 8,10 | 8,40 |
 
 ## 7. Fondos MRR / REACT-EU (servicios 70-71 de la tabla 2.2)
 
@@ -150,6 +150,7 @@ La Ley 2021 no los etiqueta; desde 2022 se aíslan por sección.
 | 2024 | 377,9 | 3,5 |
 | 2025 | 417,6 | 3,8 |
 | 2026 | 447,4 | 3,8 |
+| 2027 | 8,6 | 0,1 |
 
 Crecimiento real del total con y sin estos fondos:
 
@@ -157,8 +158,8 @@ Crecimiento real del total con y sin estos fondos:
 |---|---|---|
 | clavijo_i | 23,1 | 23,1 |
 | torres | 11,7 | 8,5 |
-| clavijo_ii | 13,8 | 12,8 |
-| 2015_2026 | 56,4 | 50,6 |
+| clavijo_ii | 16,2 | 19,6 |
+| 2015_2027 | 59,8 | 59,7 |
 
 ## 8. Concentración del gasto (HHI, 0-10.000)
 
@@ -175,9 +176,10 @@ Crecimiento real del total con y sin estos fondos:
 | 2021 | 2.095 |
 | 2022 | 2.047 |
 | 2023 | 1.982 |
-| 2024 | 2.034 |
-| 2025 | 2.073 |
+| 2024 | 2.033 |
+| 2025 | 2.072 |
 | 2026 | 2.029 |
+| 2027 | 2.153 |
 
 ## 9. Saltos singulares desde 2024 (titular o error: revisar)
 
@@ -188,12 +190,40 @@ Crecimiento real del total con y sin estos fondos:
 | 2024 | DEUDA PÚBLICA (05) | 100,5 |
 | 2024 | PRESIDENCIA DEL GOBIERNO (06) | 517,1 |
 | 2026 | TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | 45,7 |
+| 2027 | DEUDA PÚBLICA (05) | 44,3 |
+| 2027 | TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | -68,2 |
 
-## 10. Presupuesto preelectoral
+## 10. Presupuesto preelectoral: desvío de 2027 frente a la media de la legislatura
 
-**Estatus:** verificado
+**Estatus:** estimacion
 
-_Pendiente: el presupuesto 2027 aún no está publicado (último año con datos: 2026)._
+Euros constantes. Partidas con peso ≥ 0,5 %.
+
+| Partida | Var. 2027 (%) | Media 2024-2026 (%) | Desvío (pp) |
+|---|---|---|---|
+| BIENESTAR SOC,IGUALDAD,JUVENT.,INFANCIA Y FAMILIAS (23) | 19,8 | 4,3 | 15,5 |
+| DEUDA PÚBLICA (05) | 39,9 | 32,7 | 7,2 |
+| OBRAS PÚBLICAS, VIVIENDA Y MOVILIDAD (11) | 2,2 | -2,8 | 5,0 |
+| EDUCAC.,FORMAC.PROFESIONAL,ACTIV. FÍSICA Y DEPORT (18) | 6,1 | 2,4 | 3,7 |
+| DIVERSAS CONSEJERÍAS (19) | 0,2 | -1,4 | 1,6 |
+| UNIVERSIDADES, CIENCIA E INNOVACIÓN Y CULTURA (17) | 0,1 | -0,5 | 0,6 |
+| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | -3,9 | -4,4 | 0,6 |
+| SANIDAD (14) | 5,2 | 5,7 | -0,5 |
+| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 4,0 | 5,0 | -0,9 |
+| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 8,0 | 10,0 | -2,0 |
+
+| Partida | Var. 2027 (%) | Media 2024-2026 (%) | Desvío (pp) |
+|---|---|---|---|
+| AGRICULTURA,GANADERÍA,PESCA Y SOBERNÍA ALIMENTARIA (13) | -3,9 | -4,4 | 0,6 |
+| SANIDAD (14) | 5,2 | 5,7 | -0,5 |
+| TRANSFERENCIAS A CORPORACIONES LOCALES (20) | 4,0 | 5,0 | -0,9 |
+| CONSEJ. PRESIDENCIA, ADMONES. PÚBL.,JUSTICIA Y SEG (08) | 8,0 | 10,0 | -2,0 |
+| ECONOMÍA, INDUSTRIA, COMERCIO Y AUTÓNOMOS (15) | -0,6 | 2,8 | -3,4 |
+| PRESIDENCIA DEL GOBIERNO (06) | -1,4 | 2,7 | -4,1 |
+| POLÍTICA TERRITORIAL, COHESIÓN TERRITORIAL Y AGUAS (09) | -11,4 | -1,1 | -10,3 |
+| TURISMO Y EMPLEO (16) | -24,1 | -1,2 | -22,9 |
+| HACIENDA Y RELACIONES CON LA UNIÓN EUROPEA (10) | -7,7 | 16,6 | -24,4 |
+| TRANSICIÓN ECOLÓGICA Y ENERGÍA (12) | -68,7 | 32,0 | -100,7 |
 
 ---
 

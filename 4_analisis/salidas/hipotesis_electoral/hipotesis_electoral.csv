@@ -1,52 +1,56 @@
 perimetro,anio,precios,electoral,legislatura,posicion_ciclo,metrica,valor,estatus_dato
-A · Consejería de bienestar social (estructura actual),2015,constantes,False,base,1,importe,337688040.186964,verificado
-A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,importe,375633763.4466515,verificado
-A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,importe,401893769.2331612,verificado
-A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,importe,478470342.975491,verificado
-A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,importe,569292119.8109065,verificado
-A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,importe,627428528.0940225,verificado
-A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,importe,618860154.4797679,verificado
-A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,importe,653664733.4826149,verificado
-A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,importe,718584182.7711164,verificado
+A · Consejería de bienestar social (estructura actual),2015,constantes,False,base,1,importe,337198621.85458416,verificado
+A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,importe,374933279.0242184,verificado
+A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,importe,401146345.01890415,verificado
+A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,importe,477657680.16794544,verificado
+A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,importe,568226109.4510063,verificado
+A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,importe,626672303.5011907,verificado
+A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,importe,618074586.9696213,verificado
+A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,importe,652790079.7824024,verificado
+A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,importe,717821080.9887084,verificado
 A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,importe,730214772.920914,verificado
 A · Consejería de bienestar social (estructura actual),2025,constantes,False,clavijo_ii,2,importe,774249465.0,verificado
 A · Consejería de bienestar social (estructura actual),2026,constantes,False,clavijo_ii,3,importe,814663297.0924011,estimacion
-A · Consejería de bienestar social (estructura actual),2015,corrientes,False,base,1,importe,269061164.00233155,verificado
-A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,importe,298592594.87726194,verificado
-A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,importe,325208483.0301869,verificado
-A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,importe,393146392.7171069,verificado
-A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,importe,469310748.997025,verificado
-A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,importe,520054682.1310703,verificado
-A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,importe,524340174.7023366,verificado
-A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,importe,595619353.5205086,verificado
-A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,importe,684836503.5704892,verificado
+A · Consejería de bienestar social (estructura actual),2027,constantes,True,clavijo_ii,4,importe,976210037.3333682,estimacion
+A · Consejería de bienestar social (estructura actual),2015,corrientes,False,base,1,importe,268671208.0355129,verificado
+A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,importe,298035777.35519934,verificado
+A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,importe,324603674.71140563,verificado
+A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,importe,392478649.2383888,verificado
+A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,importe,468431955.6622261,verificado
+A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,importe,519427872.66571254,verificado
+A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,importe,523674588.7819488,verificado
+A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,importe,594822369.0041507,verificado
+A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,importe,684109240.1975085,verificado
 A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,importe,715191225.0,verificado
 A · Consejería de bienestar social (estructura actual),2025,corrientes,False,clavijo_ii,2,importe,774249465.0,verificado
 A · Consejería de bienestar social (estructura actual),2026,corrientes,False,clavijo_ii,3,importe,837741105.0,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,constantes,False,base,1,importe,337688040.186964,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,importe,375633763.4466515,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,importe,401893769.2331612,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,importe,478470342.975491,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,importe,569292119.8109065,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,importe,627428528.0940225,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,importe,618860154.4797679,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,importe,628382855.597252,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,importe,677593273.4795824,verificado
+A · Consejería de bienestar social (estructura actual),2027,corrientes,True,clavijo_ii,4,importe,1034983935.0,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,constantes,False,base,1,importe,337198621.85458416,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,importe,374933279.0242184,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,importe,401146345.01890415,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,importe,477657680.16794544,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,importe,568226109.4510063,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,importe,626672303.5011907,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,importe,618074586.9696213,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,importe,627508201.8970395,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,importe,676830171.6971744,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,importe,688471320.8974377,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,constantes,False,clavijo_ii,2,importe,709611171.0,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,constantes,False,clavijo_ii,3,importe,803565602.9272697,estimacion
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,corrientes,False,base,1,importe,269061164.00233155,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,importe,298592594.87726194,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,importe,325208483.0301869,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,importe,393146392.7171069,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,importe,469310748.997025,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,importe,520054682.1310703,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,importe,524340174.7023366,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,importe,572582504.5205086,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,importe,645770696.5704892,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,constantes,True,clavijo_ii,4,importe,974978941.9117005,estimacion
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,corrientes,False,base,1,importe,268671208.0355129,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,importe,298035777.35519934,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,importe,324603674.71140563,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,importe,392478649.2383888,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,importe,468431955.6622261,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,importe,519427872.66571254,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,importe,523674588.7819488,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,importe,571785520.0041507,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,importe,645043433.1975085,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,importe,674306609.0,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,corrientes,False,clavijo_ii,2,importe,709611171.0,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,corrientes,False,clavijo_ii,3,importe,826329035.0,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,corrientes,True,clavijo_ii,4,importe,1033678720.0,verificado
 B · Función 23: servicios sociales y promoción social,2015,constantes,False,base,1,importe,338190910.2965476,verificado
 B · Función 23: servicios sociales y promoción social,2016,constantes,False,clavijo_i,1,importe,375780673.2566022,verificado
 B · Función 23: servicios sociales y promoción social,2017,constantes,False,clavijo_i,2,importe,401978723.26905483,verificado
@@ -59,6 +63,7 @@ B · Función 23: servicios sociales y promoción social,2023,constantes,True,to
 B · Función 23: servicios sociales y promoción social,2024,constantes,False,clavijo_ii,1,importe,728144834.7025082,verificado
 B · Función 23: servicios sociales y promoción social,2025,constantes,False,clavijo_ii,2,importe,774464288.0,verificado
 B · Función 23: servicios sociales y promoción social,2026,constantes,False,clavijo_ii,3,importe,816468491.4878918,estimacion
+B · Función 23: servicios sociales y promoción social,2027,constantes,True,clavijo_ii,4,importe,978107607.8231632,estimacion
 B · Función 23: servicios sociales y promoción social,2015,corrientes,False,base,1,importe,269461838.0,verificado
 B · Función 23: servicios sociales y promoción social,2016,corrientes,False,clavijo_i,1,importe,298709374.0,verificado
 B · Función 23: servicios sociales y promoción social,2017,corrientes,False,clavijo_i,2,importe,325277227.0,verificado
@@ -71,6 +76,7 @@ B · Función 23: servicios sociales y promoción social,2023,corrientes,True,to
 B · Función 23: servicios sociales y promoción social,2024,corrientes,False,clavijo_ii,1,importe,713163874.0,verificado
 B · Función 23: servicios sociales y promoción social,2025,corrientes,False,clavijo_ii,2,importe,774464288.0,verificado
 B · Función 23: servicios sociales y promoción social,2026,corrientes,False,clavijo_ii,3,importe,839597437.0,verificado
+B · Función 23: servicios sociales y promoción social,2027,corrientes,True,clavijo_ii,4,importe,1036995751.0,verificado
 C · Subfunción 231: acción social,2015,constantes,False,base,1,importe,313867556.5891814,verificado
 C · Subfunción 231: acción social,2016,constantes,False,clavijo_i,1,importe,352501905.58086145,verificado
 C · Subfunción 231: acción social,2017,constantes,False,clavijo_i,2,importe,375260643.76781744,verificado
@@ -83,6 +89,7 @@ C · Subfunción 231: acción social,2023,constantes,True,torres,4,importe,67584
 C · Subfunción 231: acción social,2024,constantes,False,clavijo_ii,1,importe,686329160.7747749,verificado
 C · Subfunción 231: acción social,2025,constantes,False,clavijo_ii,2,importe,733568511.0,verificado
 C · Subfunción 231: acción social,2026,constantes,False,clavijo_ii,3,importe,773827372.4697723,estimacion
+C · Subfunción 231: acción social,2027,constantes,True,clavijo_ii,4,importe,931426855.5731256,estimacion
 C · Subfunción 231: acción social,2015,corrientes,False,base,1,importe,250081614.0,verificado
 C · Subfunción 231: acción social,2016,corrientes,False,clavijo_i,1,importe,280205000.0,verificado
 C · Subfunción 231: acción social,2017,corrientes,False,clavijo_i,2,importe,303657220.0,verificado
@@ -95,6 +102,7 @@ C · Subfunción 231: acción social,2023,corrientes,True,torres,4,importe,64410
 C · Subfunción 231: acción social,2024,corrientes,False,clavijo_ii,1,importe,672208522.0,verificado
 C · Subfunción 231: acción social,2025,corrientes,False,clavijo_ii,2,importe,733568511.0,verificado
 C · Subfunción 231: acción social,2026,corrientes,False,clavijo_ii,3,importe,795748379.0,verificado
+C · Subfunción 231: acción social,2027,corrientes,True,clavijo_ii,4,importe,987504528.0,verificado
 C · Dependencia y mayores,2015,constantes,False,base,1,importe,120971001.00048007,verificado
 C · Dependencia y mayores,2016,constantes,False,clavijo_i,1,importe,131095631.66249286,verificado
 C · Dependencia y mayores,2017,constantes,False,clavijo_i,2,importe,146274534.7089675,verificado
@@ -107,6 +115,7 @@ C · Dependencia y mayores,2023,constantes,True,torres,4,importe,278582331.12660
 C · Dependencia y mayores,2024,constantes,False,clavijo_ii,1,importe,311610435.6964926,verificado
 C · Dependencia y mayores,2025,constantes,False,clavijo_ii,2,importe,350955290.0,verificado
 C · Dependencia y mayores,2026,constantes,False,clavijo_ii,3,importe,400817351.26763225,estimacion
+C · Dependencia y mayores,2027,constantes,True,clavijo_ii,4,importe,550452635.9900297,estimacion
 C · Dependencia y mayores,2015,corrientes,False,base,1,importe,96386589.0,verificado
 C · Dependencia y mayores,2016,corrientes,False,clavijo_i,1,importe,104208377.0,verificado
 C · Dependencia y mayores,2017,corrientes,False,clavijo_i,2,importe,118363914.0,verificado
@@ -119,6 +128,7 @@ C · Dependencia y mayores,2023,corrientes,True,torres,4,importe,265498955.0,ver
 C · Dependencia y mayores,2024,corrientes,False,clavijo_ii,1,importe,305199316.0,verificado
 C · Dependencia y mayores,2025,corrientes,False,clavijo_ii,2,importe,350955290.0,verificado
 C · Dependencia y mayores,2026,corrientes,False,clavijo_ii,3,importe,412171718.0,verificado
+C · Dependencia y mayores,2027,corrientes,True,clavijo_ii,4,importe,583593298.0,verificado
 C · Discapacidad,2015,constantes,False,base,1,importe,40976234.45432316,verificado
 C · Discapacidad,2016,constantes,False,clavijo_i,1,importe,41331035.55898772,verificado
 C · Discapacidad,2017,constantes,False,clavijo_i,2,importe,41862770.60205411,verificado
@@ -131,6 +141,7 @@ C · Discapacidad,2023,constantes,True,torres,4,importe,67012428.2252589,verific
 C · Discapacidad,2024,constantes,False,clavijo_ii,1,importe,63602752.54075516,verificado
 C · Discapacidad,2025,constantes,False,clavijo_ii,2,importe,64159598.0,verificado
 C · Discapacidad,2026,constantes,False,clavijo_ii,3,importe,65875288.71659576,estimacion
+C · Discapacidad,2027,constantes,True,clavijo_ii,4,importe,63951150.20071771,estimacion
 C · Discapacidad,2015,corrientes,False,base,1,importe,32648812.0,verificado
 C · Discapacidad,2016,corrientes,False,clavijo_i,1,importe,32854185.0,verificado
 C · Discapacidad,2017,corrientes,False,clavijo_i,2,importe,33874942.0,verificado
@@ -143,6 +154,7 @@ C · Discapacidad,2023,corrientes,True,torres,4,importe,63865248.0,verificado
 C · Discapacidad,2024,corrientes,False,clavijo_ii,1,importe,62294180.0,verificado
 C · Discapacidad,2025,corrientes,False,clavijo_ii,2,importe,64159598.0,verificado
 C · Discapacidad,2026,corrientes,False,clavijo_ii,3,importe,67741406.0,verificado
+C · Discapacidad,2027,corrientes,True,clavijo_ii,4,importe,67801406.0,verificado
 C · Inclusión y prestaciones,2015,constantes,False,base,1,importe,43888062.678591825,verificado
 C · Inclusión y prestaciones,2016,constantes,False,clavijo_i,1,importe,64978284.43834005,verificado
 C · Inclusión y prestaciones,2017,constantes,False,clavijo_i,2,importe,72128974.07395247,verificado
@@ -155,6 +167,7 @@ C · Inclusión y prestaciones,2023,constantes,True,torres,4,importe,101624953.2
 C · Inclusión y prestaciones,2024,constantes,False,clavijo_ii,1,importe,106385972.91372167,verificado
 C · Inclusión y prestaciones,2025,constantes,False,clavijo_ii,2,importe,122724375.0,verificado
 C · Inclusión y prestaciones,2026,constantes,False,clavijo_ii,3,importe,127227843.5822181,estimacion
+C · Inclusión y prestaciones,2027,constantes,True,clavijo_ii,4,importe,126226284.92593099,estimacion
 C · Inclusión y prestaciones,2015,corrientes,False,base,1,importe,34968882.0,verificado
 C · Inclusión y prestaciones,2016,corrientes,False,clavijo_i,1,importe,51651466.0,verificado
 C · Inclusión y prestaciones,2017,corrientes,False,clavijo_i,2,importe,58366056.0,verificado
@@ -167,6 +180,7 @@ C · Inclusión y prestaciones,2023,corrientes,True,torres,4,importe,96852226.0,
 C · Inclusión y prestaciones,2024,corrientes,False,clavijo_ii,1,importe,104197172.0,verificado
 C · Inclusión y prestaciones,2025,corrientes,False,clavijo_ii,2,importe,122724375.0,verificado
 C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,importe,130831958.0,verificado
+C · Inclusión y prestaciones,2027,corrientes,True,clavijo_ii,4,importe,133825890.0,verificado
 "C · Infancia, familia y menores",2015,constantes,False,base,1,importe,74211082.51962182,verificado
 "C · Infancia, familia y menores",2016,constantes,False,clavijo_i,1,importe,77790616.93603945,verificado
 "C · Infancia, familia y menores",2017,constantes,False,clavijo_i,2,importe,76586665.45816448,verificado
@@ -179,6 +193,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,importe,130831
 "C · Infancia, familia y menores",2024,constantes,False,clavijo_ii,1,importe,118435290.37275638,verificado
 "C · Infancia, familia y menores",2025,constantes,False,clavijo_ii,2,importe,105599217.0,verificado
 "C · Infancia, familia y menores",2026,constantes,False,clavijo_ii,3,importe,103543004.46153253,estimacion
+"C · Infancia, familia y menores",2027,constantes,True,clavijo_ii,4,importe,118416556.9761562,estimacion
 "C · Infancia, familia y menores",2015,corrientes,False,base,1,importe,59129486.0,verificado
 "C · Infancia, familia y menores",2016,corrientes,False,clavijo_i,1,importe,61836034.0,verificado
 "C · Infancia, familia y menores",2017,corrientes,False,clavijo_i,2,importe,61973176.0,verificado
@@ -191,6 +206,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,importe,130831
 "C · Infancia, familia y menores",2024,corrientes,False,clavijo_ii,1,importe,115998585.0,verificado
 "C · Infancia, familia y menores",2025,corrientes,False,clavijo_ii,2,importe,105599217.0,verificado
 "C · Infancia, familia y menores",2026,corrientes,False,clavijo_ii,3,importe,106476174.0,verificado
+"C · Infancia, familia y menores",2027,corrientes,True,clavijo_ii,4,importe,125545968.0,verificado
 C · Planificación y coordinación,2015,constantes,False,base,1,importe,33821175.93616454,verificado
 C · Planificación y coordinación,2016,constantes,False,clavijo_i,1,importe,37306336.98500134,verificado
 C · Planificación y coordinación,2017,constantes,False,clavijo_i,2,importe,38407698.92467887,verificado
@@ -203,6 +219,7 @@ C · Planificación y coordinación,2023,constantes,True,torres,4,importe,987078
 C · Planificación y coordinación,2024,constantes,False,clavijo_ii,1,importe,86294709.25104912,verificado
 C · Planificación y coordinación,2025,constantes,False,clavijo_ii,2,importe,90130031.0,verificado
 C · Planificación y coordinación,2026,constantes,False,clavijo_ii,3,importe,76363884.44179365,estimacion
+C · Planificación y coordinación,2027,constantes,True,clavijo_ii,4,importe,72380227.48029102,estimacion
 C · Planificación y coordinación,2015,corrientes,False,base,1,importe,26947845.0,verificado
 C · Planificación y coordinación,2016,corrientes,False,clavijo_i,1,importe,29654938.0,verificado
 C · Planificación y coordinación,2017,corrientes,False,clavijo_i,2,importe,31079132.0,verificado
@@ -215,50 +232,55 @@ C · Planificación y coordinación,2023,corrientes,True,torres,4,importe,940721
 C · Planificación y coordinación,2024,corrientes,False,clavijo_ii,1,importe,84519269.0,verificado
 C · Planificación y coordinación,2025,corrientes,False,clavijo_ii,2,importe,90130031.0,verificado
 C · Planificación y coordinación,2026,corrientes,False,clavijo_ii,3,importe,78527123.0,verificado
-A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,g,11.236916545424158,verificado
-A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,g,6.990853416785359,verificado
-A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,g,19.05393405039415,verificado
-A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,g,18.981694094270708,verificado
-A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,g,10.212052171462748,verificado
-A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,g,-1.3656334117103763,verificado
-A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,g,5.6239812421119195,verificado
-A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,g,9.931612639192222,verificado
-A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,g,1.6185424656782743,verificado
+C · Planificación y coordinación,2027,corrientes,True,clavijo_ii,4,importe,76737966.0,verificado
+A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,g,11.19063208565163,verificado
+A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,g,6.991394859081734,verificado
+A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,g,19.073172695973504,verificado
+A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,g,18.96094903178711,verificado
+A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,g,10.28572835321706,verificado
+A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,g,-1.371963701528578,verificado
+A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,g,5.616715772604208,verificado
+A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,g,9.962008189214977,verificado
+A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,g,1.7265711833281516,verificado
 A · Consejería de bienestar social (estructura actual),2025,constantes,False,clavijo_ii,2,g,6.0303754062580595,verificado
 A · Consejería de bienestar social (estructura actual),2026,constantes,False,clavijo_ii,3,g,5.219742979402797,estimacion
-A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,g,10.975731478911799,verificado
-A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,g,8.913780384897208,verificado
-A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,g,20.89057119725064,verificado
-A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,g,19.373026865013898,verificado
-A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,g,10.812437866060254,verificado
-A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,g,0.8240465317426393,verificado
-A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,g,13.594071607928315,verificado
-A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,g,14.978887022835563,verificado
-A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,g,4.43240412437893,verificado
+A · Consejería de bienestar social (estructura actual),2027,constantes,True,clavijo_ii,4,g,19.829878284383295,estimacion
+A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,g,10.929555695378056,verificado
+A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,g,8.914331558436572,verificado
+A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,g,20.910106636139748,verificado
+A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,g,19.35221357167478,verificado
+A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,g,10.886515402518416,verificado
+A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,g,0.8175757096826608,verificado
+A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,g,13.58625790640129,verificado
+A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,g,15.010678119392429,verificado
+A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,g,4.543424204227664,verificado
 A · Consejería de bienestar social (estructura actual),2025,corrientes,False,clavijo_ii,2,g,8.257685208595777,verificado
 A · Consejería de bienestar social (estructura actual),2026,corrientes,False,clavijo_ii,3,g,8.200411220174363,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,g,11.236916545424158,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,g,6.990853416785359,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,g,19.05393405039415,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,g,18.981694094270708,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,g,10.212052171462748,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,g,-1.3656334117103763,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,g,1.5387484633728299,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,g,7.831279520756174,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,g,1.6053948354584735,verificado
+A · Consejería de bienestar social (estructura actual),2027,corrientes,True,clavijo_ii,4,g,23.544604511199196,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,g,11.19063208565163,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,g,6.991394859081734,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,g,19.073172695973504,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,g,18.96094903178711,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,g,10.28572835321706,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,g,-1.371963701528578,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,g,1.5262906979674806,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,g,7.85997213279892,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,g,1.7199512798125927,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,constantes,False,clavijo_ii,2,g,3.070549122511901,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,constantes,False,clavijo_ii,3,g,13.240269568314012,estimacion
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,g,10.975731478911799,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,g,8.913780384897208,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,g,20.89057119725064,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,g,19.373026865013898,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,g,10.812437866060254,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,g,0.8240465317426393,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,g,9.200578583466124,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,g,12.78212161080081,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,g,4.418892430557353,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,constantes,True,clavijo_ii,4,g,21.331592387727593,estimacion
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,g,10.929555695378056,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,g,8.914331558436572,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,g,20.910106636139748,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,g,19.35221357167478,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,g,10.886515402518416,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,g,0.8175757096826608,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,g,9.187180789907433,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,g,12.812131582630126,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,g,4.5366209927032,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,corrientes,False,clavijo_ii,2,g,5.2356838163512665,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,corrientes,False,clavijo_ii,3,g,16.448143542542958,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,corrientes,True,clavijo_ii,4,g,25.092871751747168,verificado
 B · Función 23: servicios sociales y promoción social,2016,constantes,False,clavijo_i,1,g,11.114953659485849,verificado
 B · Función 23: servicios sociales y promoción social,2017,constantes,False,clavijo_i,2,g,6.971633156493717,verificado
 B · Función 23: servicios sociales y promoción social,2018,constantes,False,clavijo_i,3,g,19.10767878370332,verificado
@@ -270,6 +292,7 @@ B · Función 23: servicios sociales y promoción social,2023,constantes,True,to
 B · Función 23: servicios sociales y promoción social,2024,constantes,False,clavijo_ii,1,g,1.6703455805156642,verificado
 B · Función 23: servicios sociales y promoción social,2025,constantes,False,clavijo_ii,2,g,6.361296694004026,verificado
 B · Función 23: servicios sociales y promoción social,2026,constantes,False,clavijo_ii,3,g,5.4236462724917445,estimacion
+B · Función 23: servicios sociales y promoción social,2027,constantes,True,clavijo_ii,4,g,19.79734895105483,estimacion
 B · Función 23: servicios sociales y promoción social,2016,corrientes,False,clavijo_i,1,g,10.854054962691961,verificado
 B · Función 23: servicios sociales y promoción social,2017,corrientes,False,clavijo_i,2,g,8.894214682395596,verificado
 B · Función 23: servicios sociales y promoción social,2018,corrientes,False,clavijo_i,3,g,20.945145046997094,verificado
@@ -281,6 +304,7 @@ B · Función 23: servicios sociales y promoción social,2023,corrientes,True,to
 B · Función 23: servicios sociales y promoción social,2024,corrientes,False,clavijo_ii,1,g,4.485641690007536,verificado
 B · Función 23: servicios sociales y promoción social,2025,corrientes,False,clavijo_ii,2,g,8.595557940446108,verificado
 B · Función 23: servicios sociales y promoción social,2026,corrientes,False,clavijo_ii,3,g,8.410090692264438,verificado
+B · Función 23: servicios sociales y promoción social,2027,corrientes,True,clavijo_ii,4,g,23.51106676853756,verificado
 C · Subfunción 231: acción social,2016,constantes,False,clavijo_i,1,g,12.309124718566622,verificado
 C · Subfunción 231: acción social,2017,constantes,False,clavijo_i,2,g,6.456344725130947,verificado
 C · Subfunción 231: acción social,2018,constantes,False,clavijo_i,3,g,19.900450137158888,verificado
@@ -292,6 +316,7 @@ C · Subfunción 231: acción social,2023,constantes,True,torres,4,g,10.30008722
 C · Subfunción 231: acción social,2024,constantes,False,clavijo_ii,1,g,1.5507732861235857,verificado
 C · Subfunción 231: acción social,2025,constantes,False,clavijo_ii,2,g,6.882900060941322,verificado
 C · Subfunción 231: acción social,2026,constantes,False,clavijo_ii,3,g,5.488084734565768,estimacion
+C · Subfunción 231: acción social,2027,constantes,True,clavijo_ii,4,g,20.366232665090877,estimacion
 C · Subfunción 231: acción social,2016,corrientes,False,clavijo_i,1,g,12.045422099683023,verificado
 C · Subfunción 231: acción social,2017,corrientes,False,clavijo_i,2,g,8.369665066647624,verificado
 C · Subfunción 231: acción social,2018,corrientes,False,clavijo_i,3,g,21.75014643155859,verificado
@@ -303,6 +328,7 @@ C · Subfunción 231: acción social,2023,corrientes,True,torres,4,g,15.36427932
 C · Subfunción 231: acción social,2024,corrientes,False,clavijo_ii,1,g,4.362758386753618,verificado
 C · Subfunción 231: acción social,2025,corrientes,False,clavijo_ii,2,g,9.128118283510833,verificado
 C · Subfunción 231: acción social,2026,corrientes,False,clavijo_ii,3,g,8.476354569150812,verificado
+C · Subfunción 231: acción social,2027,corrientes,True,clavijo_ii,4,g,24.097585877708717,verificado
 C · Dependencia y mayores,2016,constantes,False,clavijo_i,1,g,8.369469193672785,verificado
 C · Dependencia y mayores,2017,constantes,False,clavijo_i,2,g,11.578496441096453,verificado
 C · Dependencia y mayores,2018,constantes,False,clavijo_i,3,g,34.96591440727536,verificado
@@ -314,6 +340,7 @@ C · Dependencia y mayores,2023,constantes,True,torres,4,g,6.247212799540636,ver
 C · Dependencia y mayores,2024,constantes,False,clavijo_ii,1,g,11.855778662027806,verificado
 C · Dependencia y mayores,2025,constantes,False,clavijo_ii,2,g,12.626295462655523,verificado
 C · Dependencia y mayores,2026,constantes,False,clavijo_ii,3,g,14.207525200042493,estimacion
+C · Dependencia y mayores,2027,constantes,True,clavijo_ii,4,g,37.33253669013035,estimacion
 C · Dependencia y mayores,2016,corrientes,False,clavijo_i,1,g,8.115016913815687,verificado
 C · Dependencia y mayores,2017,corrientes,False,clavijo_i,2,g,13.583876275129004,verificado
 C · Dependencia y mayores,2018,corrientes,False,clavijo_i,3,g,37.04802462007129,verificado
@@ -325,6 +352,7 @@ C · Dependencia y mayores,2023,corrientes,True,torres,4,g,11.1253258611282,veri
 C · Dependencia y mayores,2024,corrientes,False,clavijo_ii,1,g,14.953113845589328,verificado
 C · Dependencia y mayores,2025,corrientes,False,clavijo_ii,2,g,14.99216138479158,verificado
 C · Dependencia y mayores,2026,corrientes,False,clavijo_ii,3,g,17.44279962270978,verificado
+C · Dependencia y mayores,2027,corrientes,True,clavijo_ii,4,g,41.58984532752439,verificado
 C · Discapacidad,2016,constantes,False,clavijo_i,1,g,0.8658704475640988,verificado
 C · Discapacidad,2017,constantes,False,clavijo_i,2,g,1.2865272690965934,verificado
 C · Discapacidad,2018,constantes,False,clavijo_i,3,g,4.296365410339087,verificado
@@ -336,6 +364,7 @@ C · Discapacidad,2023,constantes,True,torres,4,g,-2.856480198012734,verificado
 C · Discapacidad,2024,constantes,False,clavijo_ii,1,g,-5.088124359622204,verificado
 C · Discapacidad,2025,constantes,False,clavijo_ii,2,g,0.8755052839702682,verificado
 C · Discapacidad,2026,constantes,False,clavijo_ii,3,g,2.674098295621752,estimacion
+C · Discapacidad,2027,constantes,True,clavijo_ii,4,g,-2.92088058111738,estimacion
 C · Discapacidad,2016,corrientes,False,clavijo_i,1,g,0.6290366706145356,verificado
 C · Discapacidad,2017,corrientes,False,clavijo_i,2,g,3.1069314305011586,verificado
 C · Discapacidad,2018,corrientes,False,clavijo_i,3,g,5.905338524269643,verificado
@@ -347,6 +376,7 @@ C · Discapacidad,2023,corrientes,True,torres,4,g,1.603656311061985,verificado
 C · Discapacidad,2024,corrientes,False,clavijo_ii,1,g,-2.459973223622336,verificado
 C · Discapacidad,2025,corrientes,False,clavijo_ii,2,g,2.9945301471180796,verificado
 C · Discapacidad,2026,corrientes,False,clavijo_ii,3,g,5.582653432460716,verificado
+C · Discapacidad,2027,corrientes,True,clavijo_ii,4,g,0.08857212086799127,verificado
 C · Inclusión y prestaciones,2016,constantes,False,clavijo_i,1,g,48.054574461852106,verificado
 C · Inclusión y prestaciones,2017,constantes,False,clavijo_i,2,g,11.0047375018002,verificado
 C · Inclusión y prestaciones,2018,constantes,False,clavijo_i,3,g,5.990986146125832,verificado
@@ -358,6 +388,7 @@ C · Inclusión y prestaciones,2023,constantes,True,torres,4,g,13.56812422170003
 C · Inclusión y prestaciones,2024,constantes,False,clavijo_ii,1,g,4.68489233733238,verificado
 C · Inclusión y prestaciones,2025,constantes,False,clavijo_ii,2,g,15.357665713626245,verificado
 C · Inclusión y prestaciones,2026,constantes,False,clavijo_ii,3,g,3.6695795616951354,estimacion
+C · Inclusión y prestaciones,2027,constantes,True,clavijo_ii,4,g,-0.7872165621040872,estimacion
 C · Inclusión y prestaciones,2016,corrientes,False,clavijo_i,1,g,47.706941274244905,verificado
 C · Inclusión y prestaciones,2017,corrientes,False,clavijo_i,2,g,12.999805271741938,verificado
 C · Inclusión y prestaciones,2018,corrientes,False,clavijo_i,3,g,7.626102061787421,verificado
@@ -369,6 +400,7 @@ C · Inclusión y prestaciones,2023,corrientes,True,torres,4,g,18.78236124070886
 C · Inclusión y prestaciones,2024,corrientes,False,clavijo_ii,1,g,7.583662558256532,verificado
 C · Inclusión y prestaciones,2025,corrientes,False,clavijo_ii,2,g,17.78090771983716,verificado
 C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g,6.606334723643936,verificado
+C · Inclusión y prestaciones,2027,corrientes,True,clavijo_ii,4,g,2.2883797244706905,verificado
 "C · Infancia, familia y menores",2016,constantes,False,clavijo_i,1,g,4.823449941551772,verificado
 "C · Infancia, familia y menores",2017,constantes,False,clavijo_i,2,g,-1.5476821309501565,verificado
 "C · Infancia, familia y menores",2018,constantes,False,clavijo_i,3,g,4.931158096938559,verificado
@@ -380,6 +412,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g,6.6063347236
 "C · Infancia, familia y menores",2024,constantes,False,clavijo_ii,1,g,-8.840311538072054,verificado
 "C · Infancia, familia y menores",2025,constantes,False,clavijo_ii,2,g,-10.838047791631078,verificado
 "C · Infancia, familia y menores",2026,constantes,False,clavijo_ii,3,g,-1.9471854023950463,estimacion
+"C · Infancia, familia y menores",2027,constantes,True,clavijo_ii,4,g,14.364613613418342,estimacion
 "C · Infancia, familia y menores",2016,corrientes,False,clavijo_i,1,g,4.5773237399695965,verificado
 "C · Infancia, familia y menores",2017,corrientes,False,clavijo_i,2,g,0.22178330518416445,verificado
 "C · Infancia, familia y menores",2018,corrientes,False,clavijo_i,3,g,6.549924115556061,verificado
@@ -391,6 +424,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g,6.6063347236
 "C · Infancia, familia y menores",2024,corrientes,False,clavijo_ii,1,g,-6.316060097752951,verificado
 "C · Infancia, familia y menores",2025,corrientes,False,clavijo_ii,2,g,-8.965081772333683,verificado
 "C · Infancia, familia y menores",2026,corrientes,False,clavijo_ii,3,g,0.8304578622017722,verificado
+"C · Infancia, familia y menores",2027,corrientes,True,clavijo_ii,4,g,17.90991663543433,verificado
 C · Planificación y coordinación,2016,constantes,False,clavijo_i,1,g,10.304671414781176,verificado
 C · Planificación y coordinación,2017,constantes,False,clavijo_i,2,g,2.9522114168440527,verificado
 C · Planificación y coordinación,2018,constantes,False,clavijo_i,3,g,35.50305037324524,verificado
@@ -402,6 +436,7 @@ C · Planificación y coordinación,2023,constantes,True,torres,4,g,11.772545795
 C · Planificación y coordinación,2024,constantes,False,clavijo_ii,1,g,-12.57567220671052,verificado
 C · Planificación y coordinación,2025,constantes,False,clavijo_ii,2,g,4.444445994705348,verificado
 C · Planificación y coordinación,2026,constantes,False,clavijo_ii,3,g,-15.273651196465632,estimacion
+C · Planificación y coordinación,2027,constantes,True,clavijo_ii,4,g,-5.216676692945166,estimacion
 C · Planificación y coordinación,2016,corrientes,False,clavijo_i,1,g,10.045675266426679,verificado
 C · Planificación y coordinación,2017,corrientes,False,clavijo_i,2,g,4.802552613665889,verificado
 C · Planificación y coordinación,2018,corrientes,False,clavijo_i,3,g,37.59344694697393,verificado
@@ -413,6 +448,7 @@ C · Planificación y coordinación,2023,corrientes,True,torres,4,g,16.904342679
 C · Planificación y coordinación,2024,corrientes,False,clavijo_ii,1,g,-10.154854528693713,verificado
 C · Planificación y coordinación,2025,corrientes,False,clavijo_ii,2,g,6.638441229301217,verificado
 C · Planificación y coordinación,2026,corrientes,False,clavijo_ii,3,g,-12.87352048064867,verificado
+C · Planificación y coordinación,2027,corrientes,True,clavijo_ii,4,g,-2.2783936704264596,verificado
 B · Función 23: servicios sociales y promoción social,2015,constantes,False,base,1,g_homog,4.57524643434728,verificado
 B · Función 23: servicios sociales y promoción social,2016,constantes,False,clavijo_i,1,g_homog,11.721733365069431,verificado
 B · Función 23: servicios sociales y promoción social,2017,constantes,False,clavijo_i,2,g_homog,6.971633156493717,verificado
@@ -425,6 +461,7 @@ B · Función 23: servicios sociales y promoción social,2023,constantes,True,to
 B · Función 23: servicios sociales y promoción social,2024,constantes,False,clavijo_ii,1,g_homog,1.6703455805156642,verificado
 B · Función 23: servicios sociales y promoción social,2025,constantes,False,clavijo_ii,2,g_homog,6.361296694004026,verificado
 B · Función 23: servicios sociales y promoción social,2026,constantes,False,clavijo_ii,3,g_homog,5.4236462724917445,estimacion
+B · Función 23: servicios sociales y promoción social,2027,constantes,True,clavijo_ii,4,g_homog,19.79734895105483,estimacion
 B · Función 23: servicios sociales y promoción social,2015,corrientes,False,base,1,g_homog,3.7421668768804928,verificado
 B · Función 23: servicios sociales y promoción social,2016,corrientes,False,clavijo_i,1,g_homog,11.459409945236798,verificado
 B · Función 23: servicios sociales y promoción social,2017,corrientes,False,clavijo_i,2,g_homog,8.894214682395596,verificado
@@ -437,6 +474,7 @@ B · Función 23: servicios sociales y promoción social,2023,corrientes,True,to
 B · Función 23: servicios sociales y promoción social,2024,corrientes,False,clavijo_ii,1,g_homog,4.485641690007536,verificado
 B · Función 23: servicios sociales y promoción social,2025,corrientes,False,clavijo_ii,2,g_homog,8.595557940446108,verificado
 B · Función 23: servicios sociales y promoción social,2026,corrientes,False,clavijo_ii,3,g_homog,8.410090692264438,verificado
+B · Función 23: servicios sociales y promoción social,2027,corrientes,True,clavijo_ii,4,g_homog,23.51106676853756,verificado
 C · Subfunción 231: acción social,2015,constantes,False,base,1,g_homog,4.451239705960486,verificado
 C · Subfunción 231: acción social,2016,constantes,False,clavijo_i,1,g_homog,12.332440466949945,verificado
 C · Subfunción 231: acción social,2017,constantes,False,clavijo_i,2,g_homog,6.456344725130947,verificado
@@ -449,6 +487,7 @@ C · Subfunción 231: acción social,2023,constantes,True,torres,4,g_homog,10.30
 C · Subfunción 231: acción social,2024,constantes,False,clavijo_ii,1,g_homog,1.5507732861235857,verificado
 C · Subfunción 231: acción social,2025,constantes,False,clavijo_ii,2,g_homog,6.882900060941322,verificado
 C · Subfunción 231: acción social,2026,constantes,False,clavijo_ii,3,g_homog,5.488084734565768,estimacion
+C · Subfunción 231: acción social,2027,constantes,True,clavijo_ii,4,g_homog,20.366232665090877,estimacion
 C · Subfunción 231: acción social,2015,corrientes,False,base,1,g_homog,3.619148025395069,verificado
 C · Subfunción 231: acción social,2016,corrientes,False,clavijo_i,1,g_homog,12.068683102524291,verificado
 C · Subfunción 231: acción social,2017,corrientes,False,clavijo_i,2,g_homog,8.369665066647624,verificado
@@ -461,6 +500,7 @@ C · Subfunción 231: acción social,2023,corrientes,True,torres,4,g_homog,15.36
 C · Subfunción 231: acción social,2024,corrientes,False,clavijo_ii,1,g_homog,4.362758386753618,verificado
 C · Subfunción 231: acción social,2025,corrientes,False,clavijo_ii,2,g_homog,9.128118283510833,verificado
 C · Subfunción 231: acción social,2026,corrientes,False,clavijo_ii,3,g_homog,8.476354569150812,verificado
+C · Subfunción 231: acción social,2027,corrientes,True,clavijo_ii,4,g_homog,24.097585877708717,verificado
 C · Dependencia y mayores,2015,constantes,False,base,1,g_homog,9.380457927592856,verificado
 C · Dependencia y mayores,2016,constantes,False,clavijo_i,1,g_homog,8.369469193672785,verificado
 C · Dependencia y mayores,2017,constantes,False,clavijo_i,2,g_homog,11.578496441096453,verificado
@@ -473,6 +513,7 @@ C · Dependencia y mayores,2023,constantes,True,torres,4,g_homog,6.2472127995406
 C · Dependencia y mayores,2024,constantes,False,clavijo_ii,1,g_homog,11.855778662027806,verificado
 C · Dependencia y mayores,2025,constantes,False,clavijo_ii,2,g_homog,12.626295462655523,verificado
 C · Dependencia y mayores,2026,constantes,False,clavijo_ii,3,g_homog,14.207525200042493,estimacion
+C · Dependencia y mayores,2027,constantes,True,clavijo_ii,4,g_homog,37.33253669013035,estimacion
 C · Dependencia y mayores,2015,corrientes,False,base,1,g_homog,8.509098532393743,verificado
 C · Dependencia y mayores,2016,corrientes,False,clavijo_i,1,g_homog,8.115016913815687,verificado
 C · Dependencia y mayores,2017,corrientes,False,clavijo_i,2,g_homog,13.583876275129004,verificado
@@ -485,6 +526,7 @@ C · Dependencia y mayores,2023,corrientes,True,torres,4,g_homog,11.125325861128
 C · Dependencia y mayores,2024,corrientes,False,clavijo_ii,1,g_homog,14.953113845589328,verificado
 C · Dependencia y mayores,2025,corrientes,False,clavijo_ii,2,g_homog,14.99216138479158,verificado
 C · Dependencia y mayores,2026,corrientes,False,clavijo_ii,3,g_homog,17.44279962270978,verificado
+C · Dependencia y mayores,2027,corrientes,True,clavijo_ii,4,g_homog,41.58984532752439,verificado
 C · Discapacidad,2015,constantes,False,base,1,g_homog,-1.836223584454455,verificado
 C · Discapacidad,2016,constantes,False,clavijo_i,1,g_homog,0.8658704475640988,verificado
 C · Discapacidad,2017,constantes,False,clavijo_i,2,g_homog,1.2865272690965934,verificado
@@ -497,6 +539,7 @@ C · Discapacidad,2023,constantes,True,torres,4,g_homog,-2.856480198012734,verif
 C · Discapacidad,2024,constantes,False,clavijo_ii,1,g_homog,-5.088124359622204,verificado
 C · Discapacidad,2025,constantes,False,clavijo_ii,2,g_homog,0.8755052839702682,verificado
 C · Discapacidad,2026,constantes,False,clavijo_ii,3,g_homog,2.674098295621752,estimacion
+C · Discapacidad,2027,constantes,True,clavijo_ii,4,g_homog,-2.92088058111738,estimacion
 C · Discapacidad,2015,corrientes,False,base,1,g_homog,-2.618227339682222,verificado
 C · Discapacidad,2016,corrientes,False,clavijo_i,1,g_homog,0.6290366706145356,verificado
 C · Discapacidad,2017,corrientes,False,clavijo_i,2,g_homog,3.1069314305011586,verificado
@@ -509,6 +552,7 @@ C · Discapacidad,2023,corrientes,True,torres,4,g_homog,1.603656311061985,verifi
 C · Discapacidad,2024,corrientes,False,clavijo_ii,1,g_homog,-2.459973223622336,verificado
 C · Discapacidad,2025,corrientes,False,clavijo_ii,2,g_homog,2.9945301471180796,verificado
 C · Discapacidad,2026,corrientes,False,clavijo_ii,3,g_homog,5.582653432460716,verificado
+C · Discapacidad,2027,corrientes,True,clavijo_ii,4,g_homog,0.08857212086799127,verificado
 C · Inclusión y prestaciones,2015,constantes,False,base,1,g_homog,15.068463462092453,verificado
 C · Inclusión y prestaciones,2016,constantes,False,clavijo_i,1,g_homog,48.054574461852106,verificado
 C · Inclusión y prestaciones,2017,constantes,False,clavijo_i,2,g_homog,11.0047375018002,verificado
@@ -521,6 +565,7 @@ C · Inclusión y prestaciones,2023,constantes,True,torres,4,g_homog,13.56812422
 C · Inclusión y prestaciones,2024,constantes,False,clavijo_ii,1,g_homog,4.68489233733238,verificado
 C · Inclusión y prestaciones,2025,constantes,False,clavijo_ii,2,g_homog,15.357665713626245,verificado
 C · Inclusión y prestaciones,2026,constantes,False,clavijo_ii,3,g_homog,3.6695795616951354,estimacion
+C · Inclusión y prestaciones,2027,constantes,True,clavijo_ii,4,g_homog,-0.7872165621040872,estimacion
 C · Inclusión y prestaciones,2015,corrientes,False,base,1,g_homog,14.151791612033149,verificado
 C · Inclusión y prestaciones,2016,corrientes,False,clavijo_i,1,g_homog,47.706941274244905,verificado
 C · Inclusión y prestaciones,2017,corrientes,False,clavijo_i,2,g_homog,12.999805271741938,verificado
@@ -533,6 +578,7 @@ C · Inclusión y prestaciones,2023,corrientes,True,torres,4,g_homog,18.78236124
 C · Inclusión y prestaciones,2024,corrientes,False,clavijo_ii,1,g_homog,7.583662558256532,verificado
 C · Inclusión y prestaciones,2025,corrientes,False,clavijo_ii,2,g_homog,17.78090771983716,verificado
 C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g_homog,6.606334723643936,verificado
+C · Inclusión y prestaciones,2027,corrientes,True,clavijo_ii,4,g_homog,2.2883797244706905,verificado
 "C · Infancia, familia y menores",2015,constantes,False,base,1,g_homog,-2.6951193945726537,verificado
 "C · Infancia, familia y menores",2016,constantes,False,clavijo_i,1,g_homog,4.823449941551772,verificado
 "C · Infancia, familia y menores",2017,constantes,False,clavijo_i,2,g_homog,-1.5476821309501565,verificado
@@ -545,6 +591,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g_homog,6.6063
 "C · Infancia, familia y menores",2024,constantes,False,clavijo_ii,1,g_homog,-8.840311538072054,verificado
 "C · Infancia, familia y menores",2025,constantes,False,clavijo_ii,2,g_homog,-10.838047791631078,verificado
 "C · Infancia, familia y menores",2026,constantes,False,clavijo_ii,3,g_homog,-1.9471854023950463,estimacion
+"C · Infancia, familia y menores",2027,constantes,True,clavijo_ii,4,g_homog,14.364613613418342,estimacion
 "C · Infancia, familia y menores",2015,corrientes,False,base,1,g_homog,-3.4702809135561896,verificado
 "C · Infancia, familia y menores",2016,corrientes,False,clavijo_i,1,g_homog,4.5773237399695965,verificado
 "C · Infancia, familia y menores",2017,corrientes,False,clavijo_i,2,g_homog,0.22178330518416445,verificado
@@ -557,6 +604,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g_homog,6.6063
 "C · Infancia, familia y menores",2024,corrientes,False,clavijo_ii,1,g_homog,-6.316060097752951,verificado
 "C · Infancia, familia y menores",2025,corrientes,False,clavijo_ii,2,g_homog,-8.965081772333683,verificado
 "C · Infancia, familia y menores",2026,corrientes,False,clavijo_ii,3,g_homog,0.8304578622017722,verificado
+"C · Infancia, familia y menores",2027,corrientes,True,clavijo_ii,4,g_homog,17.90991663543433,verificado
 C · Planificación y coordinación,2015,constantes,False,base,1,g_homog,0.2248692365080629,verificado
 C · Planificación y coordinación,2016,constantes,False,clavijo_i,1,g_homog,10.517550570701584,verificado
 C · Planificación y coordinación,2017,constantes,False,clavijo_i,2,g_homog,2.9522114168440527,verificado
@@ -569,6 +617,7 @@ C · Planificación y coordinación,2023,constantes,True,torres,4,g_homog,11.772
 C · Planificación y coordinación,2024,constantes,False,clavijo_ii,1,g_homog,-12.57567220671052,verificado
 C · Planificación y coordinación,2025,constantes,False,clavijo_ii,2,g_homog,4.444445994705348,verificado
 C · Planificación y coordinación,2026,constantes,False,clavijo_ii,3,g_homog,-15.273651196465632,estimacion
+C · Planificación y coordinación,2027,constantes,True,clavijo_ii,4,g_homog,-5.216676692945166,estimacion
 C · Planificación y coordinación,2015,corrientes,False,base,1,g_homog,-0.5735538373800031,verificado
 C · Planificación y coordinación,2016,corrientes,False,clavijo_i,1,g_homog,10.258054580583886,verificado
 C · Planificación y coordinación,2017,corrientes,False,clavijo_i,2,g_homog,4.802552613665889,verificado
@@ -581,6 +630,7 @@ C · Planificación y coordinación,2023,corrientes,True,torres,4,g_homog,16.904
 C · Planificación y coordinación,2024,corrientes,False,clavijo_ii,1,g_homog,-10.154854528693713,verificado
 C · Planificación y coordinación,2025,corrientes,False,clavijo_ii,2,g_homog,6.638441229301217,verificado
 C · Planificación y coordinación,2026,corrientes,False,clavijo_ii,3,g_homog,-12.87352048064867,verificado
+C · Planificación y coordinación,2027,corrientes,True,clavijo_ii,4,g_homog,-2.2783936704264596,verificado
 A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -592,6 +642,7 @@ A · Consejería de bienestar social (estructura actual),2023,constantes,True,to
 A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 A · Consejería de bienestar social (estructura actual),2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 A · Consejería de bienestar social (estructura actual),2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+A · Consejería de bienestar social (estructura actual),2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -603,6 +654,7 @@ A · Consejería de bienestar social (estructura actual),2023,corrientes,True,to
 A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 A · Consejería de bienestar social (estructura actual),2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 A · Consejería de bienestar social (estructura actual),2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+A · Consejería de bienestar social (estructura actual),2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -614,6 +666,7 @@ A · Consejería de bienestar social (estructura actual),2026,corrientes,False,c
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -625,6 +678,7 @@ A · Consejería de bienestar social (estructura actual),2026,corrientes,False,c
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 B · Función 23: servicios sociales y promoción social,2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 B · Función 23: servicios sociales y promoción social,2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 B · Función 23: servicios sociales y promoción social,2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -636,6 +690,7 @@ B · Función 23: servicios sociales y promoción social,2023,constantes,True,to
 B · Función 23: servicios sociales y promoción social,2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 B · Función 23: servicios sociales y promoción social,2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 B · Función 23: servicios sociales y promoción social,2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+B · Función 23: servicios sociales y promoción social,2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 B · Función 23: servicios sociales y promoción social,2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 B · Función 23: servicios sociales y promoción social,2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 B · Función 23: servicios sociales y promoción social,2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -647,6 +702,7 @@ B · Función 23: servicios sociales y promoción social,2023,corrientes,True,to
 B · Función 23: servicios sociales y promoción social,2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 B · Función 23: servicios sociales y promoción social,2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 B · Función 23: servicios sociales y promoción social,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+B · Función 23: servicios sociales y promoción social,2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 C · Subfunción 231: acción social,2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 C · Subfunción 231: acción social,2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 C · Subfunción 231: acción social,2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -658,6 +714,7 @@ C · Subfunción 231: acción social,2023,constantes,True,torres,4,g_tot,7.73986
 C · Subfunción 231: acción social,2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 C · Subfunción 231: acción social,2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 C · Subfunción 231: acción social,2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+C · Subfunción 231: acción social,2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 C · Subfunción 231: acción social,2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 C · Subfunción 231: acción social,2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 C · Subfunción 231: acción social,2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -669,6 +726,7 @@ C · Subfunción 231: acción social,2023,corrientes,True,torres,4,g_tot,12.6865
 C · Subfunción 231: acción social,2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 C · Subfunción 231: acción social,2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 C · Subfunción 231: acción social,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+C · Subfunción 231: acción social,2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 C · Dependencia y mayores,2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 C · Dependencia y mayores,2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 C · Dependencia y mayores,2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -680,6 +738,7 @@ C · Dependencia y mayores,2023,constantes,True,torres,4,g_tot,7.739864153332099
 C · Dependencia y mayores,2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 C · Dependencia y mayores,2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 C · Dependencia y mayores,2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+C · Dependencia y mayores,2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 C · Dependencia y mayores,2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 C · Dependencia y mayores,2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 C · Dependencia y mayores,2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -691,6 +750,7 @@ C · Dependencia y mayores,2023,corrientes,True,torres,4,g_tot,12.68650910270725
 C · Dependencia y mayores,2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 C · Dependencia y mayores,2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 C · Dependencia y mayores,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+C · Dependencia y mayores,2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 C · Discapacidad,2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 C · Discapacidad,2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 C · Discapacidad,2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -702,6 +762,7 @@ C · Discapacidad,2023,constantes,True,torres,4,g_tot,7.739864153332099,verifica
 C · Discapacidad,2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 C · Discapacidad,2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 C · Discapacidad,2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+C · Discapacidad,2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 C · Discapacidad,2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 C · Discapacidad,2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 C · Discapacidad,2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -713,6 +774,7 @@ C · Discapacidad,2023,corrientes,True,torres,4,g_tot,12.686509102707255,verific
 C · Discapacidad,2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 C · Discapacidad,2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 C · Discapacidad,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+C · Discapacidad,2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 C · Inclusión y prestaciones,2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 C · Inclusión y prestaciones,2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 C · Inclusión y prestaciones,2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -724,6 +786,7 @@ C · Inclusión y prestaciones,2023,constantes,True,torres,4,g_tot,7.73986415333
 C · Inclusión y prestaciones,2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 C · Inclusión y prestaciones,2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 C · Inclusión y prestaciones,2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+C · Inclusión y prestaciones,2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 C · Inclusión y prestaciones,2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 C · Inclusión y prestaciones,2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 C · Inclusión y prestaciones,2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -735,6 +798,7 @@ C · Inclusión y prestaciones,2023,corrientes,True,torres,4,g_tot,12.6865091027
 C · Inclusión y prestaciones,2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 C · Inclusión y prestaciones,2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+C · Inclusión y prestaciones,2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 "C · Infancia, familia y menores",2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 "C · Infancia, familia y menores",2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 "C · Infancia, familia y menores",2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -746,6 +810,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115
 "C · Infancia, familia y menores",2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 "C · Infancia, familia y menores",2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 "C · Infancia, familia y menores",2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+"C · Infancia, familia y menores",2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 "C · Infancia, familia y menores",2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 "C · Infancia, familia y menores",2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 "C · Infancia, familia y menores",2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -757,6 +822,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115
 "C · Infancia, familia y menores",2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 "C · Infancia, familia y menores",2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 "C · Infancia, familia y menores",2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
+"C · Infancia, familia y menores",2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
 C · Planificación y coordinación,2016,constantes,False,clavijo_i,1,g_tot,0.8785760925252406,verificado
 C · Planificación y coordinación,2017,constantes,False,clavijo_i,2,g_tot,4.3281322650804865,verificado
 C · Planificación y coordinación,2018,constantes,False,clavijo_i,3,g_tot,9.343890563774714,verificado
@@ -768,6 +834,7 @@ C · Planificación y coordinación,2023,constantes,True,torres,4,g_tot,7.739864
 C · Planificación y coordinación,2024,constantes,False,clavijo_ii,1,g_tot,7.770019339203138,verificado
 C · Planificación y coordinación,2025,constantes,False,clavijo_ii,2,g_tot,1.2646382132526224,verificado
 C · Planificación y coordinación,2026,constantes,False,clavijo_ii,3,g_tot,4.251865458031157,estimacion
+C · Planificación y coordinación,2027,constantes,True,clavijo_ii,4,g_tot,2.1494472740553494,estimacion
 C · Planificación y coordinación,2016,corrientes,False,clavijo_i,1,g_tot,0.6417124826314735,verificado
 C · Planificación y coordinación,2017,corrientes,False,clavijo_i,2,g_tot,6.203202634729399,verificado
 C · Planificación y coordinación,2018,corrientes,False,clavijo_i,3,g_tot,11.030731513576786,verificado
@@ -779,50 +846,55 @@ C · Planificación y coordinación,2023,corrientes,True,torres,4,g_tot,12.68650
 C · Planificación y coordinación,2024,corrientes,False,clavijo_ii,1,g_tot,10.754218069257092,verificado
 C · Planificación y coordinación,2025,corrientes,False,clavijo_ii,2,g_tot,3.3918373338665875,verificado
 C · Planificación y coordinación,2026,corrientes,False,clavijo_ii,3,g_tot,7.205115633454717,verificado
-A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,dif,10.358340452898918,verificado
-A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,dif,2.662721151704872,verificado
-A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,dif,9.710043486619437,verificado
-A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,dif,12.02990786356979,verificado
-A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,dif,8.31775687362628,verificado
-A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,dif,-3.626783766255992,verificado
-A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,dif,6.1150174002828965,verificado
-A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,dif,2.1917484858601233,verificado
-A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,dif,-6.151476873524864,verificado
+C · Planificación y coordinación,2027,corrientes,True,clavijo_ii,4,g_tot,5.3160801395510715,verificado
+A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,dif,10.312055993126389,verificado
+A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,dif,2.6632625940012478,verificado
+A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,dif,9.72928213219879,verificado
+A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,dif,12.009162801086191,verificado
+A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,dif,8.391433055380592,verificado
+A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,dif,-3.6331140560741937,verificado
+A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,dif,6.107751930775185,verificado
+A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,dif,2.222144035882878,verificado
+A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,dif,-6.043448155874986,verificado
 A · Consejería de bienestar social (estructura actual),2025,constantes,False,clavijo_ii,2,dif,4.765737193005437,verificado
 A · Consejería de bienestar social (estructura actual),2026,constantes,False,clavijo_ii,3,dif,0.9678775213716406,estimacion
-A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,dif,10.334018996280324,verificado
-A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,dif,2.7105777501678094,verificado
-A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,dif,9.859839683673854,verificado
-A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,dif,12.069474430610816,verificado
-A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,dif,8.363068272331532,verificado
-A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,dif,-3.7072982557478484,verificado
-A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,dif,6.576439519537014,verificado
-A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,dif,2.292377920128308,verificado
-A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,dif,-6.321813944878162,verificado
+A · Consejería de bienestar social (estructura actual),2027,constantes,True,clavijo_ii,4,dif,17.680431010327943,estimacion
+A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,dif,10.287843212746584,verificado
+A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,dif,2.7111289237071734,verificado
+A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,dif,9.879375122562962,verificado
+A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,dif,12.048661137271699,verificado
+A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,dif,8.437145808789694,verificado
+A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,dif,-3.713769077807827,verificado
+A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,dif,6.568625818009989,verificado
+A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,dif,2.3241690166851736,verificado
+A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,dif,-6.210793865029428,verificado
 A · Consejería de bienestar social (estructura actual),2025,corrientes,False,clavijo_ii,2,dif,4.86584787472919,verificado
 A · Consejería de bienestar social (estructura actual),2026,corrientes,False,clavijo_ii,3,dif,0.9952955867196458,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,dif,10.358340452898918,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,dif,2.662721151704872,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,dif,9.710043486619437,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,dif,12.02990786356979,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,dif,8.31775687362628,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,dif,-3.626783766255992,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,dif,2.0297846215438065,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,dif,0.09141536742407474,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,dif,-6.1646245037446645,verificado
+A · Consejería de bienestar social (estructura actual),2027,corrientes,True,clavijo_ii,4,dif,18.228524371648124,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,dif,10.312055993126389,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,dif,2.6632625940012478,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,dif,9.72928213219879,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,dif,12.009162801086191,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,dif,8.391433055380592,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,dif,-3.6331140560741937,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,dif,2.017326856138457,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,dif,0.12010797946682139,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,dif,-6.050068059390545,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,constantes,False,clavijo_ii,2,dif,1.8059109092592784,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,constantes,False,clavijo_ii,3,dif,8.988404110282856,estimacion
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,dif,10.334018996280324,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,dif,2.7105777501678094,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,dif,9.859839683673854,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,dif,12.069474430610816,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,dif,8.363068272331532,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,dif,-3.7072982557478484,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,dif,2.1829464950748223,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,dif,0.0956125080935557,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,dif,-6.335325638699739,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,constantes,True,clavijo_ii,4,dif,19.18214511367224,estimacion
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,dif,10.287843212746584,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,dif,2.7111289237071734,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,dif,9.879375122562962,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,dif,12.048661137271699,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,dif,8.437145808789694,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,dif,-3.713769077807827,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,dif,2.169548701516132,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,dif,0.12562247992287112,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,dif,-6.217597076553893,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,corrientes,False,clavijo_ii,2,dif,1.843846482484679,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,corrientes,False,clavijo_ii,3,dif,9.24302790908824,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,corrientes,True,clavijo_ii,4,dif,19.776791612196096,verificado
 B · Función 23: servicios sociales y promoción social,2016,constantes,False,clavijo_i,1,dif,10.23637756696061,verificado
 B · Función 23: servicios sociales y promoción social,2017,constantes,False,clavijo_i,2,dif,2.6435008914132307,verificado
 B · Función 23: servicios sociales y promoción social,2018,constantes,False,clavijo_i,3,dif,9.763788219928607,verificado
@@ -834,6 +906,7 @@ B · Función 23: servicios sociales y promoción social,2023,constantes,True,to
 B · Función 23: servicios sociales y promoción social,2024,constantes,False,clavijo_ii,1,dif,-6.099673758687474,verificado
 B · Función 23: servicios sociales y promoción social,2025,constantes,False,clavijo_ii,2,dif,5.096658480751404,verificado
 B · Función 23: servicios sociales y promoción social,2026,constantes,False,clavijo_ii,3,dif,1.171780814460588,estimacion
+B · Función 23: servicios sociales y promoción social,2027,constantes,True,clavijo_ii,4,dif,17.64790167699948,estimacion
 B · Función 23: servicios sociales y promoción social,2016,corrientes,False,clavijo_i,1,dif,10.212342480060489,verificado
 B · Función 23: servicios sociales y promoción social,2017,corrientes,False,clavijo_i,2,dif,2.691012047666197,verificado
 B · Función 23: servicios sociales y promoción social,2018,corrientes,False,clavijo_i,3,dif,9.914413533420309,verificado
@@ -845,6 +918,7 @@ B · Función 23: servicios sociales y promoción social,2023,corrientes,True,to
 B · Función 23: servicios sociales y promoción social,2024,corrientes,False,clavijo_ii,1,dif,-6.268576379249557,verificado
 B · Función 23: servicios sociales y promoción social,2025,corrientes,False,clavijo_ii,2,dif,5.2037206065795205,verificado
 B · Función 23: servicios sociales y promoción social,2026,corrientes,False,clavijo_ii,3,dif,1.2049750588097208,verificado
+B · Función 23: servicios sociales y promoción social,2027,corrientes,True,clavijo_ii,4,dif,18.194986628986488,verificado
 C · Subfunción 231: acción social,2016,constantes,False,clavijo_i,1,dif,11.430548626041382,verificado
 C · Subfunción 231: acción social,2017,constantes,False,clavijo_i,2,dif,2.1282124600504604,verificado
 C · Subfunción 231: acción social,2018,constantes,False,clavijo_i,3,dif,10.556559573384174,verificado
@@ -856,6 +930,7 @@ C · Subfunción 231: acción social,2023,constantes,True,torres,4,dif,2.5602230
 C · Subfunción 231: acción social,2024,constantes,False,clavijo_ii,1,dif,-6.219246053079552,verificado
 C · Subfunción 231: acción social,2025,constantes,False,clavijo_ii,2,dif,5.618261847688699,verificado
 C · Subfunción 231: acción social,2026,constantes,False,clavijo_ii,3,dif,1.2362192765346114,estimacion
+C · Subfunción 231: acción social,2027,constantes,True,clavijo_ii,4,dif,18.21678539103553,estimacion
 C · Subfunción 231: acción social,2016,corrientes,False,clavijo_i,1,dif,11.40370961705155,verificado
 C · Subfunción 231: acción social,2017,corrientes,False,clavijo_i,2,dif,2.166462431918225,verificado
 C · Subfunción 231: acción social,2018,corrientes,False,clavijo_i,3,dif,10.719414917981805,verificado
@@ -867,6 +942,7 @@ C · Subfunción 231: acción social,2023,corrientes,True,torres,4,dif,2.6777702
 C · Subfunción 231: acción social,2024,corrientes,False,clavijo_ii,1,dif,-6.391459682503474,verificado
 C · Subfunción 231: acción social,2025,corrientes,False,clavijo_ii,2,dif,5.736280949644246,verificado
 C · Subfunción 231: acción social,2026,corrientes,False,clavijo_ii,3,dif,1.2712389356960951,verificado
+C · Subfunción 231: acción social,2027,corrientes,True,clavijo_ii,4,dif,18.781505738157644,verificado
 C · Dependencia y mayores,2016,constantes,False,clavijo_i,1,dif,7.490893101147544,verificado
 C · Dependencia y mayores,2017,constantes,False,clavijo_i,2,dif,7.2503641760159665,verificado
 C · Dependencia y mayores,2018,constantes,False,clavijo_i,3,dif,25.62202384350065,verificado
@@ -878,6 +954,7 @@ C · Dependencia y mayores,2023,constantes,True,torres,4,dif,-1.4926513537914632
 C · Dependencia y mayores,2024,constantes,False,clavijo_ii,1,dif,4.085759322824668,verificado
 C · Dependencia y mayores,2025,constantes,False,clavijo_ii,2,dif,11.361657249402901,verificado
 C · Dependencia y mayores,2026,constantes,False,clavijo_ii,3,dif,9.955659742011337,estimacion
+C · Dependencia y mayores,2027,constantes,True,clavijo_ii,4,dif,35.183089416075,estimacion
 C · Dependencia y mayores,2016,corrientes,False,clavijo_i,1,dif,7.473304431184213,verificado
 C · Dependencia y mayores,2017,corrientes,False,clavijo_i,2,dif,7.380673640399605,verificado
 C · Dependencia y mayores,2018,corrientes,False,clavijo_i,3,dif,26.017293106494503,verificado
@@ -889,6 +966,7 @@ C · Dependencia y mayores,2023,corrientes,True,torres,4,dif,-1.5611832415790552
 C · Dependencia y mayores,2024,corrientes,False,clavijo_ii,1,dif,4.198895776332236,verificado
 C · Dependencia y mayores,2025,corrientes,False,clavijo_ii,2,dif,11.600324050924993,verificado
 C · Dependencia y mayores,2026,corrientes,False,clavijo_ii,3,dif,10.237683989255064,verificado
+C · Dependencia y mayores,2027,corrientes,True,clavijo_ii,4,dif,36.27376518797332,verificado
 C · Discapacidad,2016,constantes,False,clavijo_i,1,dif,-0.012705644961141793,verificado
 C · Discapacidad,2017,constantes,False,clavijo_i,2,dif,-3.041604995983893,verificado
 C · Discapacidad,2018,constantes,False,clavijo_i,3,dif,-5.047525153435627,verificado
@@ -900,6 +978,7 @@ C · Discapacidad,2023,constantes,True,torres,4,dif,-10.596344351344833,verifica
 C · Discapacidad,2024,constantes,False,clavijo_ii,1,dif,-12.85814369882534,verificado
 C · Discapacidad,2025,constantes,False,clavijo_ii,2,dif,-0.3891329292823542,verificado
 C · Discapacidad,2026,constantes,False,clavijo_ii,3,dif,-1.5777671624094047,estimacion
+C · Discapacidad,2027,constantes,True,clavijo_ii,4,dif,-5.07032785517273,estimacion
 C · Discapacidad,2016,corrientes,False,clavijo_i,1,dif,-0.012675812016937904,verificado
 C · Discapacidad,2017,corrientes,False,clavijo_i,2,dif,-3.0962712042282403,verificado
 C · Discapacidad,2018,corrientes,False,clavijo_i,3,dif,-5.125392989307143,verificado
@@ -911,6 +990,7 @@ C · Discapacidad,2023,corrientes,True,torres,4,dif,-11.08285279164527,verificad
 C · Discapacidad,2024,corrientes,False,clavijo_ii,1,dif,-13.214191292879429,verificado
 C · Discapacidad,2025,corrientes,False,clavijo_ii,2,dif,-0.39730718674850785,verificado
 C · Discapacidad,2026,corrientes,False,clavijo_ii,3,dif,-1.6224622009940015,verificado
+C · Discapacidad,2027,corrientes,True,clavijo_ii,4,dif,-5.22750801868308,verificado
 C · Inclusión y prestaciones,2016,constantes,False,clavijo_i,1,dif,47.17599836932686,verificado
 C · Inclusión y prestaciones,2017,constantes,False,clavijo_i,2,dif,6.6766052367197135,verificado
 C · Inclusión y prestaciones,2018,constantes,False,clavijo_i,3,dif,-3.3529044176488823,verificado
@@ -922,6 +1002,7 @@ C · Inclusión y prestaciones,2023,constantes,True,torres,4,dif,5.8282600683679
 C · Inclusión y prestaciones,2024,constantes,False,clavijo_ii,1,dif,-3.0851270018707577,verificado
 C · Inclusión y prestaciones,2025,constantes,False,clavijo_ii,2,dif,14.093027500373623,verificado
 C · Inclusión y prestaciones,2026,constantes,False,clavijo_ii,3,dif,-0.5822858963360211,estimacion
+C · Inclusión y prestaciones,2027,constantes,True,clavijo_ii,4,dif,-2.9366638361594366,estimacion
 C · Inclusión y prestaciones,2016,corrientes,False,clavijo_i,1,dif,47.06522879161343,verificado
 C · Inclusión y prestaciones,2017,corrientes,False,clavijo_i,2,dif,6.796602637012539,verificado
 C · Inclusión y prestaciones,2018,corrientes,False,clavijo_i,3,dif,-3.404629451789365,verificado
@@ -933,6 +1014,7 @@ C · Inclusión y prestaciones,2023,corrientes,True,torres,4,dif,6.0958521380016
 C · Inclusión y prestaciones,2024,corrientes,False,clavijo_ii,1,dif,-3.1705555110005603,verificado
 C · Inclusión y prestaciones,2025,corrientes,False,clavijo_ii,2,dif,14.389070385970573,verificado
 C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,dif,-0.598780909810781,verificado
+C · Inclusión y prestaciones,2027,corrientes,True,clavijo_ii,4,dif,-3.027700415080381,verificado
 "C · Infancia, familia y menores",2016,constantes,False,clavijo_i,1,dif,3.944873849026531,verificado
 "C · Infancia, familia y menores",2017,constantes,False,clavijo_i,2,dif,-5.875814396030643,verificado
 "C · Infancia, familia y menores",2018,constantes,False,clavijo_i,3,dif,-4.412732466836155,verificado
@@ -944,6 +1026,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,dif,-0.5987809
 "C · Infancia, familia y menores",2024,constantes,False,clavijo_ii,1,dif,-16.610330877275192,verificado
 "C · Infancia, familia y menores",2025,constantes,False,clavijo_ii,2,dif,-12.1026860048837,verificado
 "C · Infancia, familia y menores",2026,constantes,False,clavijo_ii,3,dif,-6.199050860426203,estimacion
+"C · Infancia, familia y menores",2027,constantes,True,clavijo_ii,4,dif,12.215166339362993,estimacion
 "C · Infancia, familia y menores",2016,corrientes,False,clavijo_i,1,dif,3.935611257338123,verificado
 "C · Infancia, familia y menores",2017,corrientes,False,clavijo_i,2,dif,-5.9814193295452345,verificado
 "C · Infancia, familia y menores",2018,corrientes,False,clavijo_i,3,dif,-4.480807398020725,verificado
@@ -955,6 +1038,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,dif,-0.5987809
 "C · Infancia, familia y menores",2024,corrientes,False,clavijo_ii,1,dif,-17.070278167010045,verificado
 "C · Infancia, familia y menores",2025,corrientes,False,clavijo_ii,2,dif,-12.35691910620027,verificado
 "C · Infancia, familia y menores",2026,corrientes,False,clavijo_ii,3,dif,-6.374657771252945,verificado
+"C · Infancia, familia y menores",2027,corrientes,True,clavijo_ii,4,dif,12.59383649588326,verificado
 C · Planificación y coordinación,2016,constantes,False,clavijo_i,1,dif,9.426095322255936,verificado
 C · Planificación y coordinación,2017,constantes,False,clavijo_i,2,dif,-1.3759208482364338,verificado
 C · Planificación y coordinación,2018,constantes,False,clavijo_i,3,dif,26.159159809470523,verificado
@@ -966,6 +1050,7 @@ C · Planificación y coordinación,2023,constantes,True,torres,4,dif,4.03268164
 C · Planificación y coordinación,2024,constantes,False,clavijo_ii,1,dif,-20.34569154591366,verificado
 C · Planificación y coordinación,2025,constantes,False,clavijo_ii,2,dif,3.179807781452726,verificado
 C · Planificación y coordinación,2026,constantes,False,clavijo_ii,3,dif,-19.52551665449679,estimacion
+C · Planificación y coordinación,2027,constantes,True,clavijo_ii,4,dif,-7.366123967000515,estimacion
 C · Planificación y coordinación,2016,corrientes,False,clavijo_i,1,dif,9.403962783795205,verificado
 C · Planificación y coordinación,2017,corrientes,False,clavijo_i,2,dif,-1.4006500210635098,verificado
 C · Planificación y coordinación,2018,corrientes,False,clavijo_i,3,dif,26.56271543339714,verificado
@@ -977,54 +1062,59 @@ C · Planificación y coordinación,2023,corrientes,True,torres,4,dif,4.21783357
 C · Planificación y coordinación,2024,corrientes,False,clavijo_ii,1,dif,-20.909072597950804,verificado
 C · Planificación y coordinación,2025,corrientes,False,clavijo_ii,2,dif,3.24660389543463,verificado
 C · Planificación y coordinación,2026,corrientes,False,clavijo_ii,3,dif,-20.07863611410339,verificado
-A · Consejería de bienestar social (estructura actual),2015,constantes,False,base,1,peso,4.561306907106539,verificado
-A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,peso,5.0296676996957785,verificado
-A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,peso,5.158037701911464,verificado
-A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,peso,5.61608588487758,verificado
-A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,peso,6.2477816996930455,verificado
-A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,peso,6.757795818006907,verificado
-A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,peso,6.518124505065036,verificado
-A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,peso,6.918675804433791,verificado
-A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,peso,7.059422197031277,verificado
+C · Planificación y coordinación,2027,corrientes,True,clavijo_ii,4,dif,-7.594473809977531,verificado
+A · Consejería de bienestar social (estructura actual),2015,constantes,False,base,1,peso,4.554696109701003,verificado
+A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,peso,5.020288340818864,verificado
+A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,peso,5.148445012072515,verificado
+A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,peso,5.606547186837825,verificado
+A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,peso,6.236082609214717,verificado
+A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,peso,6.7496508083969085,verificado
+A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,peso,6.509850540743365,verificado
+A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,peso,6.909418083949656,verificado
+A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,peso,7.051925430764379,verificado
 A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,peso,6.6564727250746625,verificado
 A · Consejería de bienestar social (estructura actual),2025,constantes,False,clavijo_ii,2,peso,6.969741011021721,verificado
 A · Consejería de bienestar social (estructura actual),2026,constantes,False,clavijo_ii,3,peso,7.0344483006679255,estimacion
-A · Consejería de bienestar social (estructura actual),2015,corrientes,False,base,1,peso,4.561306907106539,verificado
-A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,peso,5.0296676996957785,verificado
-A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,peso,5.158037701911464,verificado
-A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,peso,5.61608588487758,verificado
-A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,peso,6.2477816996930455,verificado
-A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,peso,6.757795818006907,verificado
-A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,peso,6.518124505065036,verificado
-A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,peso,6.91867580443379,verificado
-A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,peso,7.059422197031277,verificado
+A · Consejería de bienestar social (estructura actual),2027,constantes,True,clavijo_ii,4,peso,8.251998480278804,estimacion
+A · Consejería de bienestar social (estructura actual),2015,corrientes,False,base,1,peso,4.554696109701003,verificado
+A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,peso,5.0202883408188645,verificado
+A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,peso,5.148445012072516,verificado
+A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,peso,5.606547186837824,verificado
+A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,peso,6.236082609214717,verificado
+A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,peso,6.7496508083969085,verificado
+A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,peso,6.509850540743365,verificado
+A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,peso,6.909418083949656,verificado
+A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,peso,7.051925430764379,verificado
 A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,peso,6.656472725074663,verificado
 A · Consejería de bienestar social (estructura actual),2025,corrientes,False,clavijo_ii,2,peso,6.969741011021721,verificado
 A · Consejería de bienestar social (estructura actual),2026,corrientes,False,clavijo_ii,3,peso,7.0344483006679255,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,constantes,False,base,1,peso,4.561306907106539,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,peso,5.0296676996957785,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,peso,5.158037701911464,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,peso,5.61608588487758,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,peso,6.2477816996930455,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,peso,6.757795818006907,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,peso,6.518124505065036,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,peso,6.651081259621527,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,peso,6.656724584326766,verificado
+A · Consejería de bienestar social (estructura actual),2027,corrientes,True,clavijo_ii,4,peso,8.251998480278804,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,constantes,False,base,1,peso,4.554696109701003,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,peso,5.020288340818864,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,peso,5.148445012072515,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,peso,5.606547186837825,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,peso,6.236082609214717,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,peso,6.7496508083969085,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,peso,6.509850540743365,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,peso,6.641823539137393,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,peso,6.6492278180598685,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,peso,6.275948857099142,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,constantes,False,clavijo_ii,2,peso,6.387871485836735,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,constantes,False,clavijo_ii,3,peso,6.938622017417084,estimacion
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,corrientes,False,base,1,peso,4.561306907106539,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,peso,5.0296676996957785,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,peso,5.158037701911464,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,peso,5.61608588487758,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,peso,6.2477816996930455,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,peso,6.757795818006907,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,peso,6.518124505065036,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,peso,6.651081259621527,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,peso,6.656724584326767,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,constantes,True,clavijo_ii,4,peso,8.241591910831483,estimacion
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2015,corrientes,False,base,1,peso,4.554696109701003,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,peso,5.0202883408188645,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,peso,5.148445012072516,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,peso,5.606547186837824,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,peso,6.236082609214717,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,peso,6.7496508083969085,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,peso,6.509850540743365,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,peso,6.641823539137393,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,peso,6.6492278180598685,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,peso,6.275948857099142,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,corrientes,False,clavijo_ii,2,peso,6.387871485836735,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,corrientes,False,clavijo_ii,3,peso,6.938622017417083,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,corrientes,True,clavijo_ii,4,peso,8.241591910831485,verificado
 B · Función 23: servicios sociales y promoción social,2015,constantes,False,base,1,peso,4.568099403823187,verificado
 B · Función 23: servicios sociales y promoción social,2016,constantes,False,clavijo_i,1,peso,5.031634795302674,verificado
 B · Función 23: servicios sociales y promoción social,2017,constantes,False,clavijo_i,2,peso,5.159128030136519,verificado
@@ -1037,6 +1127,7 @@ B · Función 23: servicios sociales y promoción social,2023,constantes,True,to
 B · Función 23: servicios sociales y promoción social,2024,constantes,False,clavijo_ii,1,peso,6.637603636411484,verificado
 B · Función 23: servicios sociales y promoción social,2025,constantes,False,clavijo_ii,2,peso,6.971674833053114,verificado
 B · Función 23: servicios sociales y promoción social,2026,constantes,False,clavijo_ii,3,peso,7.050035779191945,estimacion
+B · Función 23: servicios sociales y promoción social,2027,constantes,True,clavijo_ii,4,peso,8.268038828358796,estimacion
 B · Función 23: servicios sociales y promoción social,2015,corrientes,False,base,1,peso,4.568099403823187,verificado
 B · Función 23: servicios sociales y promoción social,2016,corrientes,False,clavijo_i,1,peso,5.031634795302674,verificado
 B · Función 23: servicios sociales y promoción social,2017,corrientes,False,clavijo_i,2,peso,5.159128030136519,verificado
@@ -1049,6 +1140,7 @@ B · Función 23: servicios sociales y promoción social,2023,corrientes,True,to
 B · Función 23: servicios sociales y promoción social,2024,corrientes,False,clavijo_ii,1,peso,6.637603636411484,verificado
 B · Función 23: servicios sociales y promoción social,2025,corrientes,False,clavijo_ii,2,peso,6.971674833053114,verificado
 B · Función 23: servicios sociales y promoción social,2026,corrientes,False,clavijo_ii,3,peso,7.050035779191945,verificado
+B · Función 23: servicios sociales y promoción social,2027,corrientes,True,clavijo_ii,4,peso,8.268038828358796,verificado
 C · Subfunción 231: acción social,2015,constantes,False,base,1,peso,4.239552733328199,verificado
 C · Subfunción 231: acción social,2016,constantes,False,clavijo_i,1,peso,4.719936334565067,verificado
 C · Subfunción 231: acción social,2017,constantes,False,clavijo_i,2,peso,4.816219351425213,verificado
@@ -1061,6 +1153,7 @@ C · Subfunción 231: acción social,2023,constantes,True,torres,4,peso,6.639581
 C · Subfunción 231: acción social,2024,constantes,False,clavijo_ii,1,peso,6.256421409890413,verificado
 C · Subfunción 231: acción social,2025,constantes,False,clavijo_ii,2,peso,6.603533830676704,verificado
 C · Subfunción 231: acción social,2026,constantes,False,clavijo_ii,3,peso,6.681838576389071,estimacion
+C · Subfunción 231: acción social,2027,constantes,True,clavijo_ii,4,peso,7.873441885186786,estimacion
 C · Subfunción 231: acción social,2015,corrientes,False,base,1,peso,4.239552733328199,verificado
 C · Subfunción 231: acción social,2016,corrientes,False,clavijo_i,1,peso,4.719936334565067,verificado
 C · Subfunción 231: acción social,2017,corrientes,False,clavijo_i,2,peso,4.816219351425213,verificado
@@ -1073,6 +1166,7 @@ C · Subfunción 231: acción social,2023,corrientes,True,torres,4,peso,6.639581
 C · Subfunción 231: acción social,2024,corrientes,False,clavijo_ii,1,peso,6.256421409890413,verificado
 C · Subfunción 231: acción social,2025,corrientes,False,clavijo_ii,2,peso,6.603533830676704,verificado
 C · Subfunción 231: acción social,2026,corrientes,False,clavijo_ii,3,peso,6.68183857638907,verificado
+C · Subfunción 231: acción social,2027,corrientes,True,clavijo_ii,4,peso,7.873441885186785,verificado
 C · Dependencia y mayores,2015,constantes,False,base,1,peso,1.6340106748156693,verificado
 C · Dependencia y mayores,2016,constantes,False,clavijo_i,1,peso,1.7553466389548886,verificado
 C · Dependencia y mayores,2017,constantes,False,clavijo_i,2,peso,1.877335810152084,verificado
@@ -1085,6 +1179,7 @@ C · Dependencia y mayores,2023,constantes,True,torres,4,peso,2.7368126646927373
 C · Dependencia y mayores,2024,constantes,False,clavijo_ii,1,peso,2.840570258206738,verificado
 C · Dependencia y mayores,2025,constantes,False,clavijo_ii,2,peso,3.159275644766537,verificado
 C · Dependencia y mayores,2026,constantes,False,clavijo_ii,3,peso,3.460974546866098,estimacion
+C · Dependencia y mayores,2027,constantes,True,clavijo_ii,4,peso,4.6530297189558745,estimacion
 C · Dependencia y mayores,2015,corrientes,False,base,1,peso,1.634010674815669,verificado
 C · Dependencia y mayores,2016,corrientes,False,clavijo_i,1,peso,1.7553466389548888,verificado
 C · Dependencia y mayores,2017,corrientes,False,clavijo_i,2,peso,1.877335810152084,verificado
@@ -1097,6 +1192,7 @@ C · Dependencia y mayores,2023,corrientes,True,torres,4,peso,2.7368126646927378
 C · Dependencia y mayores,2024,corrientes,False,clavijo_ii,1,peso,2.840570258206738,verificado
 C · Dependencia y mayores,2025,corrientes,False,clavijo_ii,2,peso,3.159275644766537,verificado
 C · Dependencia y mayores,2026,corrientes,False,clavijo_ii,3,peso,3.4609745468660984,verificado
+C · Dependencia y mayores,2027,corrientes,True,clavijo_ii,4,peso,4.6530297189558745,verificado
 C · Discapacidad,2015,constantes,False,base,1,peso,0.5534847521998099,verificado
 C · Discapacidad,2016,constantes,False,clavijo_i,1,peso,0.5534150408594515,verificado
 C · Discapacidad,2017,constantes,False,clavijo_i,2,peso,0.5372806587269905,verificado
@@ -1109,6 +1205,7 @@ C · Discapacidad,2023,constantes,True,torres,4,peso,0.6583348682488883,verifica
 C · Discapacidad,2024,constantes,False,clavijo_ii,1,peso,0.579788307806617,verificado
 C · Discapacidad,2025,constantes,False,clavijo_ii,2,peso,0.5775603363591181,verificado
 C · Discapacidad,2026,constantes,False,clavijo_ii,3,peso,0.5688194305823826,estimacion
+C · Discapacidad,2027,constantes,True,clavijo_ii,4,peso,0.5405852983338975,estimacion
 C · Discapacidad,2015,corrientes,False,base,1,peso,0.5534847521998099,verificado
 C · Discapacidad,2016,corrientes,False,clavijo_i,1,peso,0.5534150408594515,verificado
 C · Discapacidad,2017,corrientes,False,clavijo_i,2,peso,0.5372806587269906,verificado
@@ -1121,6 +1218,7 @@ C · Discapacidad,2023,corrientes,True,torres,4,peso,0.6583348682488883,verifica
 C · Discapacidad,2024,corrientes,False,clavijo_ii,1,peso,0.5797883078066172,verificado
 C · Discapacidad,2025,corrientes,False,clavijo_ii,2,peso,0.5775603363591181,verificado
 C · Discapacidad,2026,corrientes,False,clavijo_ii,3,peso,0.5688194305823826,verificado
+C · Discapacidad,2027,corrientes,True,clavijo_ii,4,peso,0.5405852983338975,verificado
 C · Inclusión y prestaciones,2015,constantes,False,base,1,peso,0.592816148669495,verificado
 C · Inclusión y prestaciones,2016,constantes,False,clavijo_i,1,peso,0.8700473978228518,verificado
 C · Inclusión y prestaciones,2017,constantes,False,clavijo_i,2,peso,0.9257271352664282,verificado
@@ -1133,6 +1231,7 @@ C · Inclusión y prestaciones,2023,constantes,True,torres,4,peso,0.998370779728
 C · Inclusión y prestaciones,2024,constantes,False,clavijo_ii,1,peso,0.9697904689027934,verificado
 C · Inclusión y prestaciones,2025,constantes,False,clavijo_ii,2,peso,1.104756474697091,verificado
 C · Inclusión y prestaciones,2026,constantes,False,clavijo_ii,3,peso,1.0985859940896148,estimacion
+C · Inclusión y prestaciones,2027,constantes,True,clavijo_ii,4,peso,1.0670030746921289,estimacion
 C · Inclusión y prestaciones,2015,corrientes,False,base,1,peso,0.592816148669495,verificado
 C · Inclusión y prestaciones,2016,corrientes,False,clavijo_i,1,peso,0.8700473978228518,verificado
 C · Inclusión y prestaciones,2017,corrientes,False,clavijo_i,2,peso,0.9257271352664285,verificado
@@ -1145,6 +1244,7 @@ C · Inclusión y prestaciones,2023,corrientes,True,torres,4,peso,0.998370779728
 C · Inclusión y prestaciones,2024,corrientes,False,clavijo_ii,1,peso,0.9697904689027936,verificado
 C · Inclusión y prestaciones,2025,corrientes,False,clavijo_ii,2,peso,1.104756474697091,verificado
 C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,peso,1.0985859940896148,verificado
+C · Inclusión y prestaciones,2027,corrientes,True,clavijo_ii,4,peso,1.0670030746921289,verificado
 "C · Infancia, familia y menores",2015,constantes,False,base,1,peso,1.002403055474488,verificado
 "C · Infancia, familia y menores",2016,constantes,False,clavijo_i,1,peso,1.0416021971842073,verificado
 "C · Infancia, familia y menores",2017,constantes,False,clavijo_i,2,peso,0.9829386224390796,verificado
@@ -1157,6 +1257,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,peso,1.0985859
 "C · Infancia, familia y menores",2024,constantes,False,clavijo_ii,1,peso,1.0796293217939787,verificado
 "C · Infancia, familia y menores",2025,constantes,False,clavijo_ii,2,peso,0.9505969674214526,verificado
 "C · Infancia, familia y menores",2026,constantes,False,clavijo_ii,3,peso,0.8940723294888608,estimacion
+"C · Infancia, familia y menores",2027,constantes,True,clavijo_ii,4,peso,1.0009866840504449,estimacion
 "C · Infancia, familia y menores",2015,corrientes,False,base,1,peso,1.0024030554744878,verificado
 "C · Infancia, familia y menores",2016,corrientes,False,clavijo_i,1,peso,1.0416021971842075,verificado
 "C · Infancia, familia y menores",2017,corrientes,False,clavijo_i,2,peso,0.9829386224390797,verificado
@@ -1169,6 +1270,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,peso,1.0985859
 "C · Infancia, familia y menores",2024,corrientes,False,clavijo_ii,1,peso,1.079629321793979,verificado
 "C · Infancia, familia y menores",2025,corrientes,False,clavijo_ii,2,peso,0.9505969674214526,verificado
 "C · Infancia, familia y menores",2026,corrientes,False,clavijo_ii,3,peso,0.8940723294888608,verificado
+"C · Infancia, familia y menores",2027,corrientes,True,clavijo_ii,4,peso,1.000986684050445,verificado
 C · Planificación y coordinación,2015,constantes,False,base,1,peso,0.45683810216873694,verificado
 C · Planificación y coordinación,2016,constantes,False,clavijo_i,1,peso,0.4995250597436674,verificado
 C · Planificación y coordinación,2017,constantes,False,clavijo_i,2,peso,0.4929371248406297,verificado
@@ -1181,6 +1283,7 @@ C · Planificación y coordinación,2023,constantes,True,torres,4,peso,0.9697133
 C · Planificación y coordinación,2024,constantes,False,clavijo_ii,1,peso,0.7866430531802854,verificado
 C · Planificación y coordinación,2025,constantes,False,clavijo_ii,2,peso,0.811344407432505,verificado
 C · Planificación y coordinación,2026,constantes,False,clavijo_ii,3,peso,0.6593862753621134,estimacion
+C · Planificación y coordinación,2027,constantes,True,clavijo_ii,4,peso,0.6118371091544397,estimacion
 C · Planificación y coordinación,2015,corrientes,False,base,1,peso,0.45683810216873694,verificado
 C · Planificación y coordinación,2016,corrientes,False,clavijo_i,1,peso,0.49952505974366734,verificado
 C · Planificación y coordinación,2017,corrientes,False,clavijo_i,2,peso,0.49293712484062974,verificado
@@ -1193,50 +1296,55 @@ C · Planificación y coordinación,2023,corrientes,True,torres,4,peso,0.9697133
 C · Planificación y coordinación,2024,corrientes,False,clavijo_ii,1,peso,0.7866430531802855,verificado
 C · Planificación y coordinación,2025,corrientes,False,clavijo_ii,2,peso,0.811344407432505,verificado
 C · Planificación y coordinación,2026,corrientes,False,clavijo_ii,3,peso,0.6593862753621135,verificado
-A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,dpeso,0.46836079258923924,verificado
-A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,dpeso,0.12837000221568573,verificado
-A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,dpeso,0.4580481829661167,verificado
-A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,dpeso,0.6316958148154654,verificado
-A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,dpeso,0.5100141183138609,verificado
-A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,dpeso,-0.23967131294187194,verificado
-A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,dpeso,0.40055129936875566,verificado
-A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,dpeso,0.14074639259748611,verificado
-A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,dpeso,-0.4029494719566147,verificado
+C · Planificación y coordinación,2027,corrientes,True,clavijo_ii,4,peso,0.6118371091544397,verificado
+A · Consejería de bienestar social (estructura actual),2016,constantes,False,clavijo_i,1,dpeso,0.46559223111786086,verificado
+A · Consejería de bienestar social (estructura actual),2017,constantes,False,clavijo_i,2,dpeso,0.1281566712536515,verificado
+A · Consejería de bienestar social (estructura actual),2018,constantes,False,clavijo_i,3,dpeso,0.4581021747653091,verificado
+A · Consejería de bienestar social (estructura actual),2019,constantes,True,clavijo_i,4,dpeso,0.6295354223768923,verificado
+A · Consejería de bienestar social (estructura actual),2020,constantes,False,torres,1,dpeso,0.5135681991821928,verificado
+A · Consejería de bienestar social (estructura actual),2021,constantes,False,torres,2,dpeso,-0.23980026765354445,verificado
+A · Consejería de bienestar social (estructura actual),2022,constantes,False,torres,3,dpeso,0.39956754320629173,verificado
+A · Consejería de bienestar social (estructura actual),2023,constantes,True,torres,4,dpeso,0.14250734681472288,verificado
+A · Consejería de bienestar social (estructura actual),2024,constantes,False,clavijo_ii,1,dpeso,-0.39545270568971613,verificado
 A · Consejería de bienestar social (estructura actual),2025,constantes,False,clavijo_ii,2,dpeso,0.3132682859470588,verificado
 A · Consejería de bienestar social (estructura actual),2026,constantes,False,clavijo_ii,3,dpeso,0.0647072896462042,estimacion
-A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,dpeso,0.46836079258923924,verificado
-A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,dpeso,0.12837000221568573,verificado
-A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,dpeso,0.4580481829661158,verificado
-A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,dpeso,0.6316958148154646,verificado
-A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,dpeso,0.5100141183138609,verificado
-A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,dpeso,-0.23967131294187016,verificado
-A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,dpeso,0.400551299368753,verificado
-A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,dpeso,0.1407463925974879,verificado
-A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,dpeso,-0.4029494719566138,verificado
+A · Consejería de bienestar social (estructura actual),2027,constantes,True,clavijo_ii,4,dpeso,1.2175501796108783,estimacion
+A · Consejería de bienestar social (estructura actual),2016,corrientes,False,clavijo_i,1,dpeso,0.46559223111786174,verificado
+A · Consejería de bienestar social (estructura actual),2017,corrientes,False,clavijo_i,2,dpeso,0.1281566712536515,verificado
+A · Consejería de bienestar social (estructura actual),2018,corrientes,False,clavijo_i,3,dpeso,0.45810217476530823,verificado
+A · Consejería de bienestar social (estructura actual),2019,corrientes,True,clavijo_i,4,dpeso,0.6295354223768914,verificado
+A · Consejería de bienestar social (estructura actual),2020,corrientes,False,torres,1,dpeso,0.5135681991821928,verificado
+A · Consejería de bienestar social (estructura actual),2021,corrientes,False,torres,2,dpeso,-0.23980026765354445,verificado
+A · Consejería de bienestar social (estructura actual),2022,corrientes,False,torres,3,dpeso,0.39956754320628995,verificado
+A · Consejería de bienestar social (estructura actual),2023,corrientes,True,torres,4,dpeso,0.14250734681472288,verificado
+A · Consejería de bienestar social (estructura actual),2024,corrientes,False,clavijo_ii,1,dpeso,-0.39545270568971524,verificado
 A · Consejería de bienestar social (estructura actual),2025,corrientes,False,clavijo_ii,2,dpeso,0.3132682859470579,verificado
 A · Consejería de bienestar social (estructura actual),2026,corrientes,False,clavijo_ii,3,dpeso,0.0647072896462042,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,dpeso,0.46836079258923924,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,dpeso,0.12837000221568573,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,dpeso,0.4580481829661167,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,dpeso,0.6316958148154654,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,dpeso,0.5100141183138609,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,dpeso,-0.23967131294187194,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,dpeso,0.13295675455649203,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,dpeso,0.005643324705238761,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,dpeso,-0.38077572722762376,verificado
+A · Consejería de bienestar social (estructura actual),2027,corrientes,True,clavijo_ii,4,dpeso,1.2175501796108783,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,constantes,False,clavijo_i,1,dpeso,0.46559223111786086,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,constantes,False,clavijo_i,2,dpeso,0.1281566712536515,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,constantes,False,clavijo_i,3,dpeso,0.4581021747653091,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,constantes,True,clavijo_i,4,dpeso,0.6295354223768923,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,constantes,False,torres,1,dpeso,0.5135681991821928,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,constantes,False,torres,2,dpeso,-0.23980026765354445,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,constantes,False,torres,3,dpeso,0.13197299839402898,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,constantes,True,torres,4,dpeso,0.007404278922475527,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,constantes,False,clavijo_ii,1,dpeso,-0.3732789609607252,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,constantes,False,clavijo_ii,2,dpeso,0.11192262873759429,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,constantes,False,clavijo_ii,3,dpeso,0.5507505315803494,estimacion
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,dpeso,0.46836079258923924,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,dpeso,0.12837000221568573,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,dpeso,0.4580481829661158,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,dpeso,0.6316958148154646,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,dpeso,0.5100141183138609,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,dpeso,-0.23967131294187016,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,dpeso,0.13295675455649025,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,dpeso,0.00564332470523965,verificado
-"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,dpeso,-0.38077572722762376,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,constantes,True,clavijo_ii,4,dpeso,1.3029698934143985,estimacion
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2016,corrientes,False,clavijo_i,1,dpeso,0.46559223111786174,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2017,corrientes,False,clavijo_i,2,dpeso,0.1281566712536515,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2018,corrientes,False,clavijo_i,3,dpeso,0.45810217476530823,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2019,corrientes,True,clavijo_i,4,dpeso,0.6295354223768914,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2020,corrientes,False,torres,1,dpeso,0.5135681991821928,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2021,corrientes,False,torres,2,dpeso,-0.23980026765354445,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2022,corrientes,False,torres,3,dpeso,0.1319729983940272,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2023,corrientes,True,torres,4,dpeso,0.007404278922475527,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2024,corrientes,False,clavijo_ii,1,dpeso,-0.3732789609607252,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2025,corrientes,False,clavijo_ii,2,dpeso,0.11192262873759251,verificado
 "A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2026,corrientes,False,clavijo_ii,3,dpeso,0.5507505315803485,verificado
+"A' · Consejería de bienestar social, sin fondos MRR/REACT-EU",2027,corrientes,True,clavijo_ii,4,dpeso,1.3029698934144003,verificado
 B · Función 23: servicios sociales y promoción social,2016,constantes,False,clavijo_i,1,dpeso,0.4635353914794864,verificado
 B · Función 23: servicios sociales y promoción social,2017,constantes,False,clavijo_i,2,dpeso,0.12749323483384511,verificado
 B · Función 23: servicios sociales y promoción social,2018,constantes,False,clavijo_i,3,dpeso,0.4606808229159416,verificado
@@ -1248,6 +1356,7 @@ B · Función 23: servicios sociales y promoción social,2023,constantes,True,to
 B · Función 23: servicios sociales y promoción social,2024,constantes,False,clavijo_ii,1,dpeso,-0.3982205085505939,verificado
 B · Función 23: servicios sociales y promoción social,2025,constantes,False,clavijo_ii,2,dpeso,0.3340711966416299,verificado
 B · Función 23: servicios sociales y promoción social,2026,constantes,False,clavijo_ii,3,dpeso,0.07836094613883127,estimacion
+B · Función 23: servicios sociales y promoción social,2027,constantes,True,clavijo_ii,4,dpeso,1.2180030491668505,estimacion
 B · Función 23: servicios sociales y promoción social,2016,corrientes,False,clavijo_i,1,dpeso,0.4635353914794873,verificado
 B · Función 23: servicios sociales y promoción social,2017,corrientes,False,clavijo_i,2,dpeso,0.12749323483384511,verificado
 B · Función 23: servicios sociales y promoción social,2018,corrientes,False,clavijo_i,3,dpeso,0.4606808229159425,verificado
@@ -1259,6 +1368,7 @@ B · Función 23: servicios sociales y promoción social,2023,corrientes,True,to
 B · Función 23: servicios sociales y promoción social,2024,corrientes,False,clavijo_ii,1,dpeso,-0.39822050855059477,verificado
 B · Función 23: servicios sociales y promoción social,2025,corrientes,False,clavijo_ii,2,dpeso,0.3340711966416299,verificado
 B · Función 23: servicios sociales y promoción social,2026,corrientes,False,clavijo_ii,3,dpeso,0.07836094613883127,verificado
+B · Función 23: servicios sociales y promoción social,2027,corrientes,True,clavijo_ii,4,dpeso,1.2180030491668505,verificado
 C · Subfunción 231: acción social,2016,constantes,False,clavijo_i,1,dpeso,0.4803836012368681,verificado
 C · Subfunción 231: acción social,2017,constantes,False,clavijo_i,2,dpeso,0.09628301686014584,verificado
 C · Subfunción 231: acción social,2018,constantes,False,clavijo_i,3,dpeso,0.4649798561187284,verificado
@@ -1270,6 +1380,7 @@ C · Subfunción 231: acción social,2023,constantes,True,torres,4,dpeso,0.15411
 C · Subfunción 231: acción social,2024,constantes,False,clavijo_ii,1,dpeso,-0.3831602941144725,verificado
 C · Subfunción 231: acción social,2025,constantes,False,clavijo_ii,2,dpeso,0.34711242078629123,verificado
 C · Subfunción 231: acción social,2026,constantes,False,clavijo_ii,3,dpeso,0.07830474571236667,estimacion
+C · Subfunción 231: acción social,2027,constantes,True,clavijo_ii,4,dpeso,1.1916033087977151,estimacion
 C · Subfunción 231: acción social,2016,corrientes,False,clavijo_i,1,dpeso,0.4803836012368681,verificado
 C · Subfunción 231: acción social,2017,corrientes,False,clavijo_i,2,dpeso,0.09628301686014584,verificado
 C · Subfunción 231: acción social,2018,corrientes,False,clavijo_i,3,dpeso,0.4649798561187275,verificado
@@ -1281,6 +1392,7 @@ C · Subfunción 231: acción social,2023,corrientes,True,torres,4,dpeso,0.15411
 C · Subfunción 231: acción social,2024,corrientes,False,clavijo_ii,1,dpeso,-0.3831602941144734,verificado
 C · Subfunción 231: acción social,2025,corrientes,False,clavijo_ii,2,dpeso,0.34711242078629123,verificado
 C · Subfunción 231: acción social,2026,corrientes,False,clavijo_ii,3,dpeso,0.07830474571236579,verificado
+C · Subfunción 231: acción social,2027,corrientes,True,clavijo_ii,4,dpeso,1.1916033087977151,verificado
 C · Dependencia y mayores,2016,constantes,False,clavijo_i,1,dpeso,0.12133596413921932,verificado
 C · Dependencia y mayores,2017,constantes,False,clavijo_i,2,dpeso,0.12198917119719543,verificado
 C · Dependencia y mayores,2018,constantes,False,clavijo_i,3,dpeso,0.4399070002170755,verificado
@@ -1292,6 +1404,7 @@ C · Dependencia y mayores,2023,constantes,True,torres,4,dpeso,-0.03844907571114
 C · Dependencia y mayores,2024,constantes,False,clavijo_ii,1,dpeso,0.10375759351400049,verificado
 C · Dependencia y mayores,2025,constantes,False,clavijo_ii,2,dpeso,0.3187053865597993,verificado
 C · Dependencia y mayores,2026,constantes,False,clavijo_ii,3,dpeso,0.30169890209956085,estimacion
+C · Dependencia y mayores,2027,constantes,True,clavijo_ii,4,dpeso,1.192055172089776,estimacion
 C · Dependencia y mayores,2016,corrientes,False,clavijo_i,1,dpeso,0.12133596413921954,verificado
 C · Dependencia y mayores,2017,corrientes,False,clavijo_i,2,dpeso,0.12198917119719543,verificado
 C · Dependencia y mayores,2018,corrientes,False,clavijo_i,3,dpeso,0.4399070002170755,verificado
@@ -1303,6 +1416,7 @@ C · Dependencia y mayores,2023,corrientes,True,torres,4,dpeso,-0.03844907571114
 C · Dependencia y mayores,2024,corrientes,False,clavijo_ii,1,dpeso,0.10375759351400005,verificado
 C · Dependencia y mayores,2025,corrientes,False,clavijo_ii,2,dpeso,0.3187053865597993,verificado
 C · Dependencia y mayores,2026,corrientes,False,clavijo_ii,3,dpeso,0.3016989020995613,verificado
+C · Dependencia y mayores,2027,corrientes,True,clavijo_ii,4,dpeso,1.192055172089776,verificado
 C · Discapacidad,2016,constantes,False,clavijo_i,1,dpeso,-6.971134035838045e-05,verificado
 C · Discapacidad,2017,constantes,False,clavijo_i,2,dpeso,-0.01613438213246099,verificado
 C · Discapacidad,2018,constantes,False,clavijo_i,3,dpeso,-0.02480191280368993,verificado
@@ -1314,6 +1428,7 @@ C · Discapacidad,2023,constantes,True,torres,4,dpeso,-0.07181068769879739,verif
 C · Discapacidad,2024,constantes,False,clavijo_ii,1,dpeso,-0.07854656044227126,verificado
 C · Discapacidad,2025,constantes,False,clavijo_ii,2,dpeso,-0.0022279714474989776,verificado
 C · Discapacidad,2026,constantes,False,clavijo_ii,3,dpeso,-0.008740905776735475,estimacion
+C · Discapacidad,2027,constantes,True,clavijo_ii,4,dpeso,-0.028234132248485144,estimacion
 C · Discapacidad,2016,corrientes,False,clavijo_i,1,dpeso,-6.971134035838045e-05,verificado
 C · Discapacidad,2017,corrientes,False,clavijo_i,2,dpeso,-0.01613438213246088,verificado
 C · Discapacidad,2018,corrientes,False,clavijo_i,3,dpeso,-0.02480191280368982,verificado
@@ -1325,6 +1440,7 @@ C · Discapacidad,2023,corrientes,True,torres,4,dpeso,-0.0718106876987975,verifi
 C · Discapacidad,2024,corrientes,False,clavijo_ii,1,dpeso,-0.07854656044227115,verificado
 C · Discapacidad,2025,corrientes,False,clavijo_ii,2,dpeso,-0.0022279714474990886,verificado
 C · Discapacidad,2026,corrientes,False,clavijo_ii,3,dpeso,-0.008740905776735475,verificado
+C · Discapacidad,2027,corrientes,True,clavijo_ii,4,dpeso,-0.028234132248485144,verificado
 C · Inclusión y prestaciones,2016,constantes,False,clavijo_i,1,dpeso,0.27723124915335684,verificado
 C · Inclusión y prestaciones,2017,constantes,False,clavijo_i,2,dpeso,0.05567973744357646,verificado
 C · Inclusión y prestaciones,2018,constantes,False,clavijo_i,3,dpeso,-0.028386355976257494,verificado
@@ -1336,6 +1452,7 @@ C · Inclusión y prestaciones,2023,constantes,True,torres,4,dpeso,0.05123589553
 C · Inclusión y prestaciones,2024,constantes,False,clavijo_ii,1,dpeso,-0.02858031082582435,verificado
 C · Inclusión y prestaciones,2025,constantes,False,clavijo_ii,2,dpeso,0.13496600579429752,verificado
 C · Inclusión y prestaciones,2026,constantes,False,clavijo_ii,3,dpeso,-0.00617048060747627,estimacion
+C · Inclusión y prestaciones,2027,constantes,True,clavijo_ii,4,dpeso,-0.03158291939748592,estimacion
 C · Inclusión y prestaciones,2016,corrientes,False,clavijo_i,1,dpeso,0.27723124915335684,verificado
 C · Inclusión y prestaciones,2017,corrientes,False,clavijo_i,2,dpeso,0.05567973744357668,verificado
 C · Inclusión y prestaciones,2018,corrientes,False,clavijo_i,3,dpeso,-0.028386355976257716,verificado
@@ -1347,6 +1464,7 @@ C · Inclusión y prestaciones,2023,corrientes,True,torres,4,dpeso,0.05123589553
 C · Inclusión y prestaciones,2024,corrientes,False,clavijo_ii,1,dpeso,-0.02858031082582435,verificado
 C · Inclusión y prestaciones,2025,corrientes,False,clavijo_ii,2,dpeso,0.13496600579429752,verificado
 C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,dpeso,-0.00617048060747627,verificado
+C · Inclusión y prestaciones,2027,corrientes,True,clavijo_ii,4,dpeso,-0.03158291939748592,verificado
 "C · Infancia, familia y menores",2016,constantes,False,clavijo_i,1,dpeso,0.039199141709719276,verificado
 "C · Infancia, familia y menores",2017,constantes,False,clavijo_i,2,dpeso,-0.05866357474512773,verificado
 "C · Infancia, familia y menores",2018,constantes,False,clavijo_i,3,dpeso,-0.03966792428713073,verificado
@@ -1358,6 +1476,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,dpeso,-0.00617
 "C · Infancia, familia y menores",2024,constantes,False,clavijo_ii,1,dpeso,-0.19672072779511263,verificado
 "C · Infancia, familia y menores",2025,constantes,False,clavijo_ii,2,dpeso,-0.12903235437252614,verificado
 "C · Infancia, familia y menores",2026,constantes,False,clavijo_ii,3,dpeso,-0.05652463793259177,estimacion
+"C · Infancia, familia y menores",2027,constantes,True,clavijo_ii,4,dpeso,0.10691435456158416,estimacion
 "C · Infancia, familia y menores",2016,corrientes,False,clavijo_i,1,dpeso,0.03919914170971972,verificado
 "C · Infancia, familia y menores",2017,corrientes,False,clavijo_i,2,dpeso,-0.058663574745127844,verificado
 "C · Infancia, familia y menores",2018,corrientes,False,clavijo_i,3,dpeso,-0.03966792428713106,verificado
@@ -1369,6 +1488,7 @@ C · Inclusión y prestaciones,2026,corrientes,False,clavijo_ii,3,dpeso,-0.00617
 "C · Infancia, familia y menores",2024,corrientes,False,clavijo_ii,1,dpeso,-0.1967207277951124,verificado
 "C · Infancia, familia y menores",2025,corrientes,False,clavijo_ii,2,dpeso,-0.12903235437252614,verificado
 "C · Infancia, familia y menores",2026,corrientes,False,clavijo_ii,3,dpeso,-0.05652463793259177,verificado
+"C · Infancia, familia y menores",2027,corrientes,True,clavijo_ii,4,dpeso,0.10691435456158438,verificado
 C · Planificación y coordinación,2016,constantes,False,clavijo_i,1,dpeso,0.04268695757493046,verificado
 C · Planificación y coordinación,2017,constantes,False,clavijo_i,2,dpeso,-0.006587934903037662,verificado
 C · Planificación y coordinación,2018,constantes,False,clavijo_i,3,dpeso,0.11792904896873097,verificado
@@ -1380,6 +1500,7 @@ C · Planificación y coordinación,2023,constantes,True,torres,4,dpeso,0.034986
 C · Planificación y coordinación,2024,constantes,False,clavijo_ii,1,dpeso,-0.1830702885652652,verificado
 C · Planificación y coordinación,2025,constantes,False,clavijo_ii,2,dpeso,0.024701354252219643,verificado
 C · Planificación y coordinación,2026,constantes,False,clavijo_ii,3,dpeso,-0.15195813207039166,estimacion
+C · Planificación y coordinación,2027,constantes,True,clavijo_ii,4,dpeso,-0.04754916620767369,estimacion
 C · Planificación y coordinación,2016,corrientes,False,clavijo_i,1,dpeso,0.042686957574930406,verificado
 C · Planificación y coordinación,2017,corrientes,False,clavijo_i,2,dpeso,-0.006587934903037607,verificado
 C · Planificación y coordinación,2018,corrientes,False,clavijo_i,3,dpeso,0.11792904896873097,verificado
@@ -1391,3 +1512,4 @@ C · Planificación y coordinación,2023,corrientes,True,torres,4,dpeso,0.034986
 C · Planificación y coordinación,2024,corrientes,False,clavijo_ii,1,dpeso,-0.18307028856526508,verificado
 C · Planificación y coordinación,2025,corrientes,False,clavijo_ii,2,dpeso,0.024701354252219643,verificado
 C · Planificación y coordinación,2026,corrientes,False,clavijo_ii,3,dpeso,-0.15195813207039155,verificado
+C · Planificación y coordinación,2027,corrientes,True,clavijo_ii,4,dpeso,-0.04754916620767369,verificado

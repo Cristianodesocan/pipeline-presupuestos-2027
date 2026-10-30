@@ -1,12 +1,12 @@
 # Revisión del crosswalk · ente
 
-Generado 2026-10-29T10:03:06+00:00 por `crosswalks.py`.
+Generado 2026-10-30T13:07:13+00:00 por `crosswalks.py`.
 
 ## Resumen
 
 | Estado | Tipo | Enlaces |
 |---|---|---|
-| auto | identico | 165 |
+| auto | identico | 180 |
 | auto | renombrado | 1 |
 | pendiente | recodificado | 1 |
 | sin_enlace | extinguido | 1 |

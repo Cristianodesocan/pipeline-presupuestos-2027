@@ -6,7 +6,8 @@ deflactor:
   # Años sin IPC medio anual completo: 2026 usa la media de los meses publicados;
   # 2027 aplica esta tasa sobre 2026. Sustituir por la previsión del cuadro
   # macroeconómico del Proyecto 2027 (Tomo 4) cuando se publique.
-  tasa_prevision: {2027: null}   # null = repetir la tasa media 2026/2025
+  # 2027: inflación media anual de Canarias, escenario central (Tomo 4 Proyecto 2027, cuadro 33, p. 86)
+  tasa_prevision: {2027: 0.031}   # null = repetir la tasa media 2026/2025
 poblacion:
   serie_ine: ECP115498        # Canarias. Total. Todas las edades (ECP, INE tabla 56940), a 1 de enero
 pib:
@@ -38,4 +39,6 @@ validacion:
   continuidad_var: 0.40       # |var. interanual| > 40 % …
   continuidad_peso: 0.005     # … con peso ≥ 0,5 % → aviso
   cobertura_minima: 0.90
-  techo_gasto_no_financiero: {}   # {2027: importe €} cuando se cargue el límite aprobado
+  # Límite de gasto no financiero presupuestario 2027: 12.912.662,81 miles € (Acuerdo de Gobierno,
+  # AG_Limite-de-Gasto-NO-Financiero-PPTOS-2027.pdf, cuadro 3, p. 10; firmado el 29-07-2026)
+  techo_gasto_no_financiero: {2027: 12912662810}

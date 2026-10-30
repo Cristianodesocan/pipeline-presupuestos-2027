@@ -1,12 +1,12 @@
 # Revisión del crosswalk · funcion
 
-Generado 2026-10-29T10:03:06+00:00 por `crosswalks.py`.
+Generado 2026-10-30T13:07:12+00:00 por `crosswalks.py`.
 
 ## Resumen
 
 | Estado | Tipo | Enlaces |
 |---|---|---|
-| auto | identico | 231 |
+| auto | identico | 252 |
 
 ## Enlaces pendientes de revisión (0)
 

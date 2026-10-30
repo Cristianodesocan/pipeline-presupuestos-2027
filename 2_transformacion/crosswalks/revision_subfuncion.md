@@ -1,12 +1,12 @@
 # Revisión del crosswalk · subfuncion
 
-Generado 2026-10-29T10:03:06+00:00 por `crosswalks.py`.
+Generado 2026-10-30T13:07:12+00:00 por `crosswalks.py`.
 
 ## Resumen
 
 | Estado | Tipo | Enlaces |
 |---|---|---|
-| auto | identico | 574 |
+| auto | identico | 626 |
 | sin_enlace | extinguido | 2 |
 | sin_enlace | nuevo | 1 |
 | sin_enlace | nuevo_sin_origen | 1 |
