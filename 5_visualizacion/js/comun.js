@@ -54,12 +54,14 @@ export const codigoFuncion = (id) => {
 export const sinCodigo = (t) => (t || "").replace(/\s*\([^()]*\)\s*$/, "");
 
 export async function cargarDatos() {
-  const [treemap, series, meta, capitulos] = await Promise.all([
+  const [treemap, series, meta, capitulos, aniosInfo] = await Promise.all([
     d3.csv("data/viz_treemap.csv", tipar(NUM_TREEMAP)),
     d3.csv("data/viz_series.csv", tipar(NUM_SERIES)),
     d3.csv("data/viz_meta.csv", tipar(["inicio", "fin"])),
     d3.csv("data/viz_capitulos.csv", tipar(NUM_CAPS)).catch(() => []),   // opcional: sin él no hay donut
+    d3.csv("data/viz_anios.csv", tipar(["anio", "deflactor", "poblacion", "pib_nominal"])).catch(() => []),
   ]);
+  const infoAnio = new Map(aniosInfo.map((d) => [d.anio, d]));
   const vistaEstructura = [...new Set(treemap.map((d) => d.vista))].find((v) => v && v.startsWith("estructura_")) || "estructura";
   const anios = [...new Set(series.map((d) => d.anio))].sort((a, b) => a - b);
   const ventanas = meta.filter((d) => d.tipo === "ventana").sort((a, b) => a.inicio - b.inicio);
@@ -69,8 +71,11 @@ export async function cargarDatos() {
 
   // nombres de sección por año y código (vista orgánica) y de la estructura del último año; nombres de función
   const nombreSeccionAnio = new Map(), nombreSeccionUlt = new Map(), nombreFuncion = new Map();
+  const nombreEnte = new Map(), nombreSubfuncion = new Map();
   for (const d of treemap) {
     if (d.precios !== "corrientes") continue;
+    if (d.dimension === "ente" && d.id_estable !== "__total__") nombreEnte.set(d.id_estable, d.etiqueta);
+    if (d.dimension === "subfuncion" && d.id_estable !== "__total__") nombreSubfuncion.set((/^SF(\d{3})/.exec(d.id_estable) || [])[1], d.etiqueta);
     if (d.dimension === "seccion") {
       const c = codigoSeccion(d.id_estable);
       if (!c) continue;
@@ -81,6 +86,9 @@ export async function cargarDatos() {
 
   // capítulos: índice por dimensión|vista|año|id; los programas se agregan desde los pares (sección, programa)
   const caps = new Map(), seccionesPrograma = new Map();
+  // pares (sección, programa) y programas de cada ente, por año: los usa «Sigue el dinero»
+  const pares = d3.group(capitulos.filter((d) => d.dimension === "programa"), (d) => d.anio);
+  const entesPrograma = d3.group(capitulos.filter((d) => d.dimension === "ente" && d.vista === "programa"), (d) => d.anio);
   const sumar = (k, d, factor = 1) => {
     let o = caps.get(k);
     if (!o) { o = { deflactor: d.deflactor }; for (const c of [...CAPITULOS, CAPITULO_9]) o[c.n] = 0; caps.set(k, o); }
@@ -99,7 +107,7 @@ export async function cargarDatos() {
         if (ya) ya.importe += imp; else l.push({ seccion: d.seccion, importe: imp });
         seccionesPrograma.set(k, l);
       }
-    } else sumar(`${d.dimension}|${d.vista}|${d.anio}|${d.id_estable}`, d);
+    } else if (!(d.dimension === "ente" && d.vista === "programa")) sumar(`${d.dimension}|${d.vista}|${d.anio}|${d.id_estable}`, d);
   }
   for (const l of seccionesPrograma.values()) l.sort((a, b) => b.importe - a.importe || d3.ascending(a.seccion, b.seccion));
 
@@ -126,6 +134,17 @@ export async function cargarDatos() {
     },
     nombreSeccion: (codigo, anio) => nombreSeccionAnio.get(`${anio}|${codigo}`) || nombreSeccionUlt.get(codigo) || codigo,
     nombreFuncion: (codigo) => nombreFuncion.get(codigo) || codigo,
+    nombreEnte: (id) => nombreEnte.get(id) || id,
+    nombreSubfuncion: (codigo) => nombreSubfuncion.get(codigo) || codigo,
+    /** Filas (sección, programa) del año: {id_estable, id_grupo, seccion, programa, cap_1…cap_9, deflactor}. */
+    paresDe: (anio) => pares.get(anio) || [],
+    /** Programas de cada ente en el año: {id_estable (ente), programa, cap_1…cap_9, deflactor}. */
+    entesProgramaDe: (anio) => entesPrograma.get(anio) || [],
+    poblacion: (anio) => (infoAnio.get(anio) || {}).poblacion || null,
+    poblacionEstimada: (anio) => (infoAnio.get(anio) || {}).poblacion_estatus === "estimacion",
+    pib: (anio) => (infoAnio.get(anio) || {}).pib_nominal || null,
+    ultimoPib: d3.max(aniosInfo.filter((d) => d.pib_nominal), (d) => d.anio),
+    ultimaLey: d3.max(series.filter((d) => d.fase === "ley"), (d) => d.anio),
   };
 }
 

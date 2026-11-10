@@ -1,19 +1,28 @@
 /* Orquestación: filtros (una fila, encima de todo) con ayuda emergente, pestañas, estado en la URL, buscadores,
-   donut de capítulos enlazado al treemap, tablas, CSV y tema. */
+   donut de capítulos enlazado al treemap (con «Sigue el dinero» y la composición año a año), ranking de cambios,
+   recorrido guiado, tablas, CSV y tema. */
 /* global d3 */
 import { crearBuscador } from "./buscador.js";
 import {
   cargarDatos, codigoFuncion, codigoSeccion, configDimension, descargarCSV, fmt, mostrarAyuda, ocultarTooltip,
   paleta, pintarTabla, sinCodigo, tono, varAbs, VARIAS,
 } from "./comun.js";
-import { pintarDonut, sumarCapitulos } from "./donut.js";
-import { escribirEstado, leerEstado } from "./estado.js";
-import { candidatas, filasSeries, MAX_SERIES, pintarLineas } from "./lineas.js";
+import { pintarComposicion, pintarDonut, sumarCapitulos } from "./donut.js";
+import { escribirEstado, estadoBase, leerEstado } from "./estado.js";
+import { calcularFlujo, pintarFlujo } from "./flujo.js";
+import { candidatas, filasSeries, FORMATO_MEDIDA, MAX_SERIES, pintarLineas } from "./lineas.js";
+import { calcularRanking, pintarRanking } from "./ranking.js";
+import { construirPasos, pintarRecorrido } from "./recorrido.js";
 import { filasDetalle, filasTreemap, filasVisibles, pintarTreemap, rutaHasta, zoomEfectivo } from "./treemap.js";
 
 const $ = (id) => document.getElementById(id);
 const estado = leerEstado();
-let datos, cfg, seriesPintadas = [], senalado = null;
+let datos, cfg, seriesPintadas = [], senalado = null, modoComp = "eur", pasos = [];
+const mayuscula = (t) => t[0].toUpperCase() + t.slice(1);
+const desplazarA = (id) => requestAnimationFrame(() => {
+  const el = $(id);
+  if (el) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+});
 
 /* ---------- tema (preferencia del sistema o elección guardada) */
 function aplicarTema(t) {
@@ -281,8 +290,43 @@ function pintarCapitulos() {
   }
   const { caps, faltan } = sumarCapitulos(datos, cfg, estado, filas);
   const { cuota4 } = pintarDonut({ contenedor: $("donut"), nota: $("nota-donut"), caps, faltan, n: filas.length });
-  avisoTransferencias(cuota4, objeto);
+  // sigue el dinero: transferencias → entes que gastan en las mismas subfunciones
+  const flujo = calcularFlujo(datos, cfg, estado, filas);
+  const verFlujo = !!(flujo && flujo.transf >= 1e6 && flujo.entes.length);
+  $("bloque-flujo").hidden = !verFlujo;
+  if (verFlujo) {
+    pintarFlujo({ contenedor: $("flujo"), flujo, caps, nombre: mayuscula(nombre), datos, alIrAEnte: irAEnte });
+    $("nota-flujo").textContent = "Enlace por subfunción: el Tomo 3 no publica a quién va cada transferencia. Se muestran los entes con "
+      + "presupuesto propio que gastan en las mismas subfunciones; tienen además otros ingresos (Estado, fondos europeos, tasas), "
+      + "por eso sus importes no coinciden con lo transferido. Clic en un ente para verlo completo."
+      + (flujo.otrosEntes > 0.5e6 ? ` Otros entes de esas subfunciones suman ${fmt.meur(flujo.otrosEntes)}.` : "");
+  }
+  avisoTransferencias(verFlujo ? 0 : cuota4, objeto);
+  pintarComposicionAnual(objeto);
 }
+
+function irAEnte(id) {
+  Object.assign(estado, { dim: "entes", zoom: [], sel: null, foco: id || null });
+  senalado = null; actualizar(); desplazarA("card-capitulos");
+}
+
+/** Composición por capítulos en cada año: de la partida señalada o fijada, o de lo visible con los mismos filtros. */
+function pintarComposicionAnual(objeto) {
+  const vista = cfg.vistas ? estado.vista : cfg.vistaFija;
+  const serie = datos.anios.map((a) => {
+    if (objeto) return { anio: a, caps: datos.capitulos(cfg.capDim(objeto), vista, a, objeto.id_estable, estado.precios) };
+    const filas = filasVisibles(datos, cfg, { ...estado, anio: String(a) });
+    return { anio: a, caps: filas.length ? sumarCapitulos(datos, cfg, estado, filas).caps : null };
+  });
+  pintarComposicion({ contenedor: $("composicion"), serie, anioSel: +estado.anio, modo: modoComp, fases: datos.fases,
+    alElegirAnio: (a) => { estado.anio = String(a); senalado = null; actualizar(); } });
+  $("nota-composicion").textContent = `${preciosTxt()[0].toUpperCase()}${preciosTxt().slice(1)} · caps. 1-8 · * Proyecto · `
+    + (objeto ? "misma partida en cada año (huecos: años sin ella)" : "suma de lo visible en cada año, con los mismos filtros")
+    + " · clic en una columna para ver ese año.";
+}
+document.querySelectorAll('input[name="comp"]').forEach((i) => i.addEventListener("change", (e) => {
+  modoComp = e.target.value; pintarCapitulos();
+}));
 
 /** Si más de la mitad es transferencia corriente (cap. 4), el gasto final lo hace otro: lo más frecuente, un organismo
     autónomo como el Servicio Canario de la Salud. Se explica y se ofrece ir a la dimensión Entes. */
@@ -302,8 +346,7 @@ function avisoTransferencias(cuota4, objeto) {
     + " El reparto final de los organismos con presupuesto propio se ve en la dimensión Entes.";
   const b = Object.assign(document.createElement("button"), { type: "button", className: "btn", textContent: "Ver en Entes →" });
   b.addEventListener("click", () => {
-    Object.assign(estado, { dim: "entes", zoom: [], sel: null, foco: ente || null });
-    senalado = null; actualizar(); $("card-capitulos").scrollIntoView({ behavior: "smooth", block: "start" });
+    irAEnte(ente);
   });
   aviso.append(t, b);
 }
@@ -315,20 +358,81 @@ function pintarEvolucion() {
   const validos = new Set(cands.map((c) => c.id));
   if (!estado.sel || !estado.sel.some((id) => id && validos.has(id))) estado.sel = cands.slice(0, 6).map((c) => c.id);
   estado.sel = estado.sel.map((id) => (id && validos.has(id) ? id : null));
-  const medidaTxt = { importe: "en euros", var_pct: "variación % interanual" }[estado.medida];
+  const fm = FORMATO_MEDIDA[estado.medida];
   $("titulo-lineas").textContent = `Evolución de ${cfg.artLineas} ${cfg.unidadLineas}${cfg.vistas ? ` · vista ${vistaNombre()}` : ""}`;
-  $("sub-lineas").textContent = `${medidaTxt[0].toUpperCase()}${medidaTxt.slice(1)} · ${preciosTxt()}`;
+  $("sub-lineas").textContent = `${mayuscula(fm.texto)} · `
+    + (estado.medida === "pct_pib" ? `euros corrientes sobre PIB nominal (INE), publicado hasta ${datos.ultimoPib}`
+      : preciosTxt() + (estado.medida === "por_habitante"
+        ? ` · población del INE${datos.poblacionEstimada(datos.ultimo) ? ` (${datos.ultimo}, estimada)` : ""}` : ""));
   seriesPintadas = pintarLineas({ contenedor: $("lineas"), leyenda: $("leyenda-evo"), datos, cfg, estado, idsSociales: soc, seleccion: estado.sel });
   pintarSelector(cands, new Set(seriesPintadas.filter((s) => s.familia).map((s) => s.id)));
-  const unidad = estado.medida === "importe" ? (v) => fmt.meur(v).replace(" M€", "") : fmt.var;
+  const unidad = estado.medida === "importe" ? (v) => fmt.meur(v).replace(" M€", "") : fm.valor;
   const cols = [{ titulo: "Partida", valor: (s) => s.etiqueta },
     ...datos.anios.map((a) => ({ titulo: String(a), valor: (s) => (s.valores.find((p) => p.anio === a) || {}).v, fmt: unidad, numero: true }))];
   pintarTabla($("tabla-evo"), cols, seriesPintadas);
   const largas = filasSeries(datos, cfg, estado, soc).filter((d) => estado.sel.includes(d.id_estable));
   $("csv-evo").onclick = () => descargarCSV(`evolucion_${estado.dim}_${estado.precios}.csv`,
-    ["id_estable", "etiqueta", "anio", "fase", "importe", "var_abs", "var_pct", "ventana", "comparabilidad"]
-      .map((k) => ({ titulo: k, valor: (d) => d[k] })), largas);
+    [...["id_estable", "etiqueta", "anio", "fase", "importe", "var_abs", "var_pct", "ventana", "comparabilidad"]
+      .map((k) => ({ titulo: k, valor: (d) => d[k] })),
+    { titulo: "euros_por_habitante", valor: (d) => (d.importe != null && datos.poblacion(d.anio) ? d.importe / datos.poblacion(d.anio) : null) }],
+    largas);
+  pintarCambios(soc);
 }
+
+/* ---------- ranking «¿qué ha cambiado?» entre dos años */
+function pintarCambios(soc) {
+  const anios = datos.anios;
+  let desde = +estado.desde || datos.ventanaActual.base, hasta = +estado.hasta || datos.ultimo;
+  if (!anios.includes(desde)) desde = anios[0];
+  if (!anios.includes(hasta)) hasta = datos.ultimo;
+  if (desde > hasta) [desde, hasta] = [hasta, desde];
+  for (const [id, valor] of [["rank-desde", desde], ["rank-hasta", hasta]]) {
+    $(id).replaceChildren(...anios.map((a) => Object.assign(document.createElement("option"),
+      { value: a, textContent: `${a}${datos.fases.get(a) === "proyecto" ? " (P)" : ""}`, selected: a === valor })));
+  }
+  const res = desde === hasta ? { suben: [], bajan: [], excluidas: 0, n: 0 } : calcularRanking(datos, cfg, estado, soc, desde, hasta);
+  $("titulo-ranking").textContent = `¿Qué ha cambiado entre ${desde} y ${hasta}${datos.fases.get(hasta) === "proyecto" ? " (Proyecto)" : ""}?`;
+  $("sub-ranking").textContent = `${mayuscula(cfg.unidadLineas)} que más suben y más bajan, en ${preciosTxt()}`
+    + `${cfg.vistas ? ` · vista ${vistaNombre()}` : ""}${cfg.social && estado.social === "1" ? " · solo gasto social" : ""}`;
+  pintarRanking({ contenedor: $("ranking"), res, desde, hasta, enLineas: new Set((estado.sel || []).filter(Boolean)),
+    alElegir: (id) => {
+      if (!estado.sel.includes(id)) {
+        const libre = estado.sel.indexOf(null);
+        if (libre >= 0) estado.sel[libre] = id;
+        else if (estado.sel.length < MAX_SERIES) estado.sel.push(id);
+        else estado.sel[MAX_SERIES - 1] = id;             // lleno: sustituye la última
+        actualizar();
+      }
+      desplazarA("card-lineas");
+    } });
+  $("pie-ranking").textContent = `${res.n} partidas comparables en los dos años.`
+    + (res.excluidas ? ` ${res.excluidas} quedan fuera por no tener dato comparable en uno de ellos (altas, bajas o cambios de código)`
+      + (cfg.nombre === "programas" && estado.vista !== "familia" ? "; la vista Familia recupera parte de ellas." : ".") : "")
+    + " Clic en una barra para añadirla al gráfico 3. Fuente: Tomo 3. Elaboración propia, ODESOCAN.";
+}
+for (const id of ["rank-desde", "rank-hasta"]) {
+  $(id).addEventListener("change", (e) => { estado[id === "rank-desde" ? "desde" : "hasta"] = e.target.value; pintar(); });
+}
+
+/* ---------- recorrido guiado: cada clave fija una vista (compartible con #paso=N) y la cuenta en dos frases */
+function mostrarRecorrido() {
+  const i = estado.paso ? +estado.paso - 1 : -1;
+  const panel = $("recorrido");
+  panel.hidden = i < 0 || !pasos[i];
+  document.body.classList.toggle("con-recorrido", !panel.hidden);
+  if (!panel.hidden) pintarRecorrido({ contenedor: panel, pasos, i, alIr: irAPaso,
+    alCerrar: () => { estado.paso = ""; mostrarRecorrido(); escribirEstado(estado); $("abrir-recorrido").focus(); } });
+}
+function irAPaso(i) {
+  if (!pasos.length) return;
+  i = Math.max(0, Math.min(pasos.length - 1, i));
+  Object.assign(estado, estadoBase(), pasos[i].estado, { paso: String(i + 1) });
+  senalado = null;
+  actualizar();
+  mostrarRecorrido();
+  desplazarA(pasos[i].destino);
+}
+$("abrir-recorrido").addEventListener("click", () => irAPaso(estado.paso ? +estado.paso - 1 : 0));
 
 /** Secciones de un programa en el año más reciente en que tiene datos (para agrupar el buscador de Evolución). */
 function seccionesRecientes(vista, id) {
@@ -393,7 +497,10 @@ function pintar() {
 }
 function actualizar() { prepararControles(); pintar(); }
 // un enlace compartido o «Atrás» que cambie el #estado se aplica sin recargar (replaceState no dispara este evento)
-addEventListener("hashchange", () => { Object.assign(estado, leerEstado()); senalado = null; if (datos) actualizar(); });
+addEventListener("hashchange", () => {
+  Object.assign(estado, leerEstado()); senalado = null;
+  if (datos) { actualizar(); mostrarRecorrido(); }
+});
 
 let temporizador, anchoPrevio = 0;
 new ResizeObserver(([e]) => {
@@ -409,7 +516,11 @@ cargarDatos().then((d) => {
   $("rango-anios").textContent = `${d.anios[0]}-${ult}`;
   $("badge-fase").textContent = `Serie oficial ${d.anios[0]}-${ult} · ${ult} en fase de ${d.fases.get(ult) === "proyecto" ? "Proyecto" : "Ley"}`;
   if (d.ultimaCarga) $("pie-carga").textContent = `Datos actualizados el ${d.ultimaCarga.slice(0, 10).split("-").reverse().join("/")}`;
-  actualizar();
+  pasos = construirPasos(d);
+  $("abrir-recorrido").hidden = !pasos.length;
+  $("abrir-recorrido").textContent = `▶ Recorrido guiado: ${pasos.length} claves del presupuesto`;
+  if (estado.paso && pasos[+estado.paso - 1]) irAPaso(+estado.paso - 1);   // enlace compartido a una clave
+  else actualizar();
 }).catch((e) => {
   $("treemap").replaceChildren(Object.assign(document.createElement("p"), { className: "cargando",
     textContent: "No se pudieron cargar los datos. Abre la página desde un servidor (p. ej. python3 -m http.server) y comprueba data/*.csv." }));
