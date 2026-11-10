@@ -23,7 +23,8 @@ BD_LOCAL = RAIZ / "3_carga" / "local" / "presupuestos.duckdb"
 ORDEN = {"v_viz_treemap": ["dimension", "vista", "precios", "anio", "id_estable"],
          "v_viz_series": ["dimension", "vista", "precios", "id_estable", "anio"],
          "v_viz_meta": ["tipo", "id"],
-         "v_viz_capitulos": ["dimension", "vista", "anio", "id_estable", "seccion"]}
+         "v_viz_capitulos": ["dimension", "vista", "anio", "id_estable", "seccion", "programa"],
+         "v_viz_anios": ["anio"]}
 
 
 def leer_vistas(fuente: str, confirmar: bool) -> dict[str, pd.DataFrame]:

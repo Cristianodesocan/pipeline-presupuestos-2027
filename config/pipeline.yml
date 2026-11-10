@@ -83,7 +83,7 @@ fases:
     entradas: ["3_carga/exportar_viz.py", "3_carga/vistas_viz.sql", "4_analisis/salidas/ana_*.parquet",
                "2_transformacion/staging/*.parquet"]
     salidas: ["5_visualizacion/data/viz_treemap.csv", "5_visualizacion/data/viz_series.csv", "5_visualizacion/data/viz_meta.csv",
-              "5_visualizacion/data/viz_capitulos.csv"]
+              "5_visualizacion/data/viz_capitulos.csv", "5_visualizacion/data/viz_anios.csv"]
     tareas:
       - {script: 3_carga/exportar_viz.py, destino: local}
       - {script: 3_carga/exportar_viz.py, args: [--fuente, supabase], destino: supabase}

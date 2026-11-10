@@ -1,0 +1,15 @@
+anio,deflactor,ipc_estatus,poblacion,poblacion_estatus,pib_nominal,pib_estatus,ventana
+2014,1.2450622945648926,verificado,2098155,verificado,,,
+2015,1.2550605043247258,verificado,2101319,verificado,39636569000.0,verificado,base
+2016,1.2580143308679768,verificado,2103436,verificado,40979670000.0,verificado,clavijo_i
+2017,1.235803462100514,verificado,2115233,verificado,43035839000.0,verificado,clavijo_i
+2018,1.217028444973626,verificado,2131581,verificado,44609266000.0,verificado,clavijo_i
+2019,1.2130387403816216,verificado,2153316,verificado,45766832000.0,verificado,clavijo_i
+2020,1.2064664537255152,verificado,2176240,verificado,37587399000.0,verificado,torres
+2021,1.1802646151061942,verificado,2178924,verificado,41407275000.0,verificado,torres
+2022,1.0974538178100144,verificado,2185607,verificado,48908196000.0,verificado,torres
+2023,1.0492784467893854,verificado,2213016,verificado,53990089000.0,verificado,torres
+2024,1.021006337040718,verificado,2238754,verificado,58144618000.0,verificado,clavijo_ii
+2025,1.0,verificado,2258866,verificado,,,clavijo_ii
+2026,0.9724523390700772,estimacion,2276245,verificado,,,clavijo_ii
+2027,0.9432127440058944,estimacion,2293758,estimacion,,,clavijo_ii
