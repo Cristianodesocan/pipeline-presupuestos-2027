@@ -88,6 +88,45 @@ def test_vistas_pivotan_ana_metricas(bd):
     assert s.iloc[0].indice_2015 == 184.8
 
 
+def test_vista_capitulos_pivota_y_reparte(bd):
+    """v_viz_capitulos: un programa en dos secciones, su reparto a la estructura y la función de la subfunción."""
+    def fila(tabla, dimension, codigo, unidad, padre, capitulo, importe, id_estable=None, familia=None, id_padre=None):
+        return {"anio": 2026, "anio_presupuesto": 2026, "fase": "ley", "serie_oficial": True, "dimension": dimension,
+                "tabla": tabla, "codigo": codigo, "codigo_unidad": unidad, "codigo_padre": padre, "capitulo": capitulo,
+                "version_importe": "inicial", "perimetro": "cac_cap_1_9", "importe_corriente": importe,
+                "deflactor": 0.97, "id_estable": id_estable, "familia_id": familia, "id_padre": id_padre}
+    filas = [fila("secc_prog_cap", "seccion_programa", "14|312A", "312A", "14", c, v, "P312A_2015", "FAM-P312A_2015", "S14_2015")
+             for c, v in (("1", 100.0), ("2", 50.0), ("TOTAL", 150.0))]
+    filas += [fila("secc_prog_cap", "seccion_programa", "08|312A", "312A", "08", "6", 10.0, "P312A_2015", "FAM-P312A_2015", "S08_2024")]
+    filas += [fila("subfunciones_cap", "subfuncion", "312", "312", None, c, v, "SF312_2015") for c, v in (("1", 7.0), ("9", 3.0))]
+    filas += [fila("entes_prog_cap", "ente_programa", "SCS|312A", "312A", "SCS", "4", 5.0, id_padre="ESCS_2015")]
+    fp = pd.DataFrame(filas).reindex(columns=list(TABLAS["fact_presupuesto"]["columnas"]))
+    sincronizar(bd, "duckdb", "fact_presupuesto", fp, "r1", AHORA)
+    det = pd.DataFrame([{"vista": "estructura_2027", "anio": 2026, "seccion_origen": "08", "programa": "312A",
+                         "seccion_destino": "14", "peso_reparto": 0.5},
+                        {"vista": "estructura_2027", "anio": 2026, "seccion_origen": "08", "programa": "312A",
+                         "seccion_destino": "15", "peso_reparto": 0.5}])
+    sincronizar(bd, "duckdb", "fact_seccion_estructura_detalle",
+                det.reindex(columns=list(TABLAS["fact_seccion_estructura_detalle"]["columnas"])), "r1", AHORA)
+    am = pd.DataFrame([{"dimension": "subfuncion", "vista": "individual", "id_estable": "SF312_2015", "padre_id": "F31_2015",
+                        "anio": 2026, "fase": "ley", "precios": "corrientes", "ventana": "anual", "metrica": "importe",
+                        "valor": 7.0, "incluye_mrr": "si"}]).reindex(columns=list(TABLAS["ana_metricas"]["columnas"]))
+    sincronizar(bd, "duckdb", "ana_metricas", am, "r1", AHORA)
+    v = bd.execute(f"SELECT * FROM {ESQUEMA}.v_viz_capitulos").df().set_index(["dimension", "vista", "id_estable", "seccion"],
+                                                                             drop=False)
+    pares = v.loc["programa"]
+    assert sorted(pares.seccion) == ["08", "14"]
+    p14 = pares[pares.seccion == "14"].iloc[0]
+    assert (p14.cap_1, p14.cap_2, p14.id_grupo, p14.deflactor) == (100.0, 50.0, "FAM-P312A_2015", 0.97)
+    estr = v[v.vista == "estructura_2027"].set_index("id_estable")
+    assert estr.loc["15", "cap_6"] == 5.0 and estr.loc["14", "cap_6"] == 5.0 and estr.loc["14", "cap_1"] == 0.0
+    sub = v[v.dimension == "subfuncion"].iloc[0]
+    assert (sub.id_grupo, sub.cap_1, sub.cap_9) == ("F31_2015", 7.0, 3.0)
+    fun = v[v.dimension == "funcion"].iloc[0]
+    assert (fun.id_estable, fun.cap_1) == ("F31_2015", 7.0)
+    assert v[v.dimension == "ente"].iloc[0][["id_estable", "cap_4"]].tolist() == ["ESCS_2015", 5.0]
+
+
 @pytest.mark.skipif(not (STG_T / "fact_presupuesto.parquet").exists(), reason="sin staging de transformación")
 def test_carga_completa_cuadra(bd):
     res = cargar(bd, "duckdb", "test", "base")

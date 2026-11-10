@@ -34,7 +34,8 @@ fases:
                "config/correcciones_manuales.csv", "2_transformacion/crosswalks/*_validado.csv",
                "2_transformacion/externos/*.csv", "1_extraccion/staging/stg_tomo3/*.parquet"]
     salidas: ["2_transformacion/staging/fact_presupuesto.parquet", "2_transformacion/staging/dim_*.parquet",
-              "2_transformacion/staging/fact_seccion_estructura.parquet"]
+              "2_transformacion/staging/fact_seccion_estructura.parquet",
+              "2_transformacion/staging/fact_seccion_estructura_detalle.parquet"]
     tareas:
       - {script: 2_transformacion/externos.py}
       - {script: 2_transformacion/normalizar.py}
@@ -81,7 +82,8 @@ fases:
     cache: true
     entradas: ["3_carga/exportar_viz.py", "3_carga/vistas_viz.sql", "4_analisis/salidas/ana_*.parquet",
                "2_transformacion/staging/*.parquet"]
-    salidas: ["5_visualizacion/data/viz_treemap.csv", "5_visualizacion/data/viz_series.csv", "5_visualizacion/data/viz_meta.csv"]
+    salidas: ["5_visualizacion/data/viz_treemap.csv", "5_visualizacion/data/viz_series.csv", "5_visualizacion/data/viz_meta.csv",
+              "5_visualizacion/data/viz_capitulos.csv"]
     tareas:
       - {script: 3_carga/exportar_viz.py, destino: local}
       - {script: 3_carga/exportar_viz.py, args: [--fuente, supabase], destino: supabase}

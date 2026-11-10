@@ -15,7 +15,7 @@ import pandas as pd
 from modelo_bd import CARGA, ESQUEMA, TABLAS, ddl, preparar
 
 VIEWS_SQL = (CARGA / "vistas_viz.sql").read_text(encoding="utf-8")
-VISTAS = ["v_viz_treemap", "v_viz_series", "v_viz_meta"]
+VISTAS = ["v_viz_treemap", "v_viz_series", "v_viz_meta", "v_viz_capitulos"]
 
 
 def sentencias(sql: str) -> list[str]:
