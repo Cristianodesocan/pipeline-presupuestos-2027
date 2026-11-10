@@ -1,6 +1,8 @@
 # Ventanas de gobierno (diseno_pipeline_presupuestos_2027.md §2.2 y decisión 3 de §12).
 # Cada gobierno queda asociado a los presupuestos que APROBÓ: el del año t se elabora en otoño de t-1.
-# ⚠ Pendiente de verificar antes de publicar (presidencias, coaliciones y fechas).
+# Verificado el 10/11/2026 (auditoria/informe_auditoria.md): Clavijo cesó a los consejeros del PSOE el 23/12/2016; Torres
+# presidió del 16/07/2019 al 14/07/2023 (PSOE-NC-Podemos-ASG); Clavijo volvió el 14/07/2023 con un gobierno CC-PP
+# (la investidura sumó además ASG y AHI).
 
 ventanas:
   - id: base

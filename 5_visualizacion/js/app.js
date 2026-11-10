@@ -290,6 +290,13 @@ function pintarCapitulos() {
   }
   const { caps, faltan } = sumarCapitulos(datos, cfg, estado, filas);
   const { cuota4 } = pintarDonut({ contenedor: $("donut"), nota: $("nota-donut"), caps, faltan, n: filas.length });
+  // si el desglose por capítulos no suma exactamente el importe de la tabla resumen, se dice (pasa en el propio Tomo:
+  // SCS 2021, tablas 3.1 y 3.2); el treemap usa la tabla resumen y el donut, la de capítulos
+  const sumaCaps = [1, 2, 3, 4, 6, 7, 8].reduce((s, k) => s + (caps[k] || 0), 0), importe = d3.sum(filas, (d) => d.importe);
+  if (!faltan && sumaCaps > 0 && Math.abs(sumaCaps - importe) > 1000) {
+    $("nota-donut").textContent += ` El desglose por capítulos del Tomo suma ${fmt.meur(sumaCaps)}, ${fmt.meurSigno(sumaCaps - importe)} `
+      + `frente al importe de su tabla resumen (${fmt.meur(importe)}): la diferencia está en el propio documento oficial.`;
+  }
   // sigue el dinero: transferencias → entes que gastan en las mismas subfunciones
   const flujo = calcularFlujo(datos, cfg, estado, filas);
   const verFlujo = !!(flujo && flujo.transf >= 1e6 && flujo.entes.length);

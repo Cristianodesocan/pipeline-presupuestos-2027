@@ -279,6 +279,26 @@ Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejec
 
 **Limitación conocida:** en la vista orgánica de secciones, las series de varias consejerías empiezan en 2024. Es así hasta que se revisen los enlaces pendientes del crosswalk de secciones. La vista estructura no tiene ese corte.
 
+## Auditoría de datos
+
+`auditoria/` comprueba que lo que muestra la web es correcto, en cuatro niveles independientes. El resultado está en
+`auditoria/informe_auditoria.md`: 54 comprobaciones sobre unas 170.000 cifras, sin errores y con 6 avisos explicados.
+
+1. **Fuente.** Cada importe, peso, variación y capítulo se compara con el Tomo 3 oficial de cada año. Los PDF se leen con
+   `auditoria/fuente_pdf.py`, un lector escrito aparte del extractor del pipeline.
+2. **Coherencia.** Totales entre dimensiones, pesos, precios constantes, capítulos, ventanas y fases. El IPC y la población se
+   contrastan con la API del INE.
+3. **Cálculos de la web.** Variación en euros, por habitante, % del PIB, donut, ranking, «Sigue el dinero» y recorrido.
+4. **Pantalla.** Un navegador automático lee tablas, tooltips, donut, ranking, recorrido y CSV descargado, y compara cada cifra.
+
+```bash
+.venv/bin/python auditoria/auditar_datos.py   # niveles 1-3 (~2 min; necesita los PDF en 1_extraccion/raw)
+node auditoria/auditar_web.cjs                 # nivel 4 (Playwright)
+.venv/bin/python auditoria/informe.py          # regenera el informe
+```
+
+El nivel 2 corre también con los tests (`tests/test_auditoria.py`): una carga que rompa algún invariante falla antes de publicarse.
+
 ## Cuando salga el Proyecto 2027
 
 1. Ejecuta `00_maestro.py --pasos extraccion --anio 2027`: sale con código 2 y deja `config/fuentes_propuestas.yml`. Revísalo y copia la entrada a `config/fuentes.yml`. Después ejecuta `00_maestro.py --paralelo`, que equivale a los pasos 2 y 4.

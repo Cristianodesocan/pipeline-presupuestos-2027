@@ -16,3 +16,4 @@ config/fuentes_propuestas.yml
 4_analisis/salidas/*.parquet
 logs/maestro/
 4_analisis/salidas/*/ana_*.csv
+auditoria/resultados_*.json
