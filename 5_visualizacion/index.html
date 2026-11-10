@@ -32,44 +32,49 @@
 
   <main>
     <div class="tabs" role="tablist" aria-label="Vistas">
-      <button role="tab" id="tab-peso" aria-controls="panel-peso" aria-selected="true">Peso</button>
-      <button role="tab" id="tab-evolucion" aria-controls="panel-evolucion" aria-selected="false">Evolución</button>
+      <button class="tab" role="tab" id="tab-peso" aria-controls="panel-peso" aria-selected="true" type="button">
+        <span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="12" height="20" rx="2"/><rect x="16" y="2" width="6" height="11" rx="2"/><rect x="16" y="15" width="6" height="7" rx="2"/></svg></span>
+        <span class="tab-txt"><span class="tab-t">Peso</span><span class="tab-d">¿A qué se destina el dinero en un año?</span></span>
+      </button>
+      <button class="tab" role="tab" id="tab-evolucion" aria-controls="panel-evolucion" aria-selected="false" type="button">
+        <span class="tab-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l6-6 4 4 8-9"/><path d="M15 7h6v6"/></svg></span>
+        <span class="tab-txt"><span class="tab-t">Evolución</span><span class="tab-d">¿Cómo ha cambiado el gasto desde 2015?</span></span>
+      </button>
     </div>
 
-    <!-- Una sola fila de filtros, encima de todo lo que filtran -->
+    <!-- Una sola fila de filtros, encima de todo lo que filtran. Cada filtro y opción lleva su ayuda (data-ayuda). -->
     <form class="filtros" id="filtros" onsubmit="return false" aria-label="Filtros">
-      <div class="campo"><span>Dimensión</span>
+      <div class="campo"><span class="campo-t" tabindex="0" data-ayuda="Elige con qué criterio se reparte el gasto: para qué se gasta (funciones), quién lo gasta (secciones), en qué actuación concreta (programas) o qué organismo con presupuesto propio (entes).">Dimensión <i class="info" aria-hidden="true">i</i></span>
         <div class="seg" role="radiogroup" aria-label="Dimensión">
-          <label><input type="radio" name="dim" value="funciones" checked>Funciones</label>
-          <label><input type="radio" name="dim" value="secciones">Secciones</label>
-          <label><input type="radio" name="dim" value="programas">Programas</label>
-          <label><input type="radio" name="dim" value="entes">Entes</label>
+          <label data-ayuda="Para qué se gasta: sanidad, educación, servicios sociales, empleo, vivienda… Agrupa el gasto por la política pública a la que sirve, la gestione quien la gestione."><input type="radio" name="dim" value="funciones" checked>Funciones</label>
+          <label data-ayuda="Quién lo gasta: cada consejería o sección presupuestaria (por ejemplo, 14 Sanidad). Muestra cuánto dinero gestiona cada departamento del Gobierno."><input type="radio" name="dim" value="secciones">Secciones</label>
+          <label data-ayuda="El nivel más detallado: cada programa de gasto (por ejemplo, 312F Atención especializada). Se colorean por la sección que los gestiona y se pueden buscar por sección."><input type="radio" name="dim" value="programas">Programas</label>
+          <label data-ayuda="Organismos con presupuesto propio, como el Servicio Canario de la Salud o el Servicio Canario de Empleo. No se suman al resto: se financian con transferencias de la Administración general."><input type="radio" name="dim" value="entes">Entes</label>
         </div>
       </div>
-      <div class="campo" id="campo-vista"><span>Vista</span>
+      <div class="campo" id="campo-vista"><span class="campo-t" tabindex="0" data-ayuda="Cómo se agrupan las partidas a lo largo del tiempo. Cambia de qué forma se comparan unos años con otros.">Vista <i class="info" aria-hidden="true">i</i></span>
         <div class="seg" role="radiogroup" aria-label="Vista" id="seg-vista"></div>
       </div>
-      <div class="campo" id="campo-anio"><span>Año</span><select id="anio" aria-label="Año"></select></div>
-      <div class="campo"><span>Precios</span>
+      <div class="campo" id="campo-anio"><span class="campo-t" tabindex="0" data-ayuda="Presupuesto que se muestra. «Proyecto» indica que todavía no lo ha aprobado el Parlamento y puede cambiar.">Año <i class="info" aria-hidden="true">i</i></span><select id="anio" aria-label="Año"></select></div>
+      <div class="campo"><span class="campo-t" tabindex="0" data-ayuda="Cómo se expresan los euros: tal como figuran en cada presupuesto o descontando la inflación para comparar años.">Precios <i class="info" aria-hidden="true">i</i></span>
         <div class="seg" role="radiogroup" aria-label="Precios">
-          <label><input type="radio" name="precios" value="corrientes" checked>Corrientes</label>
-          <label><input type="radio" name="precios" value="constantes">Constantes 2025</label>
+          <label data-ayuda="Euros de cada año, tal como figuran en el presupuesto. No descuentan la subida de los precios."><input type="radio" name="precios" value="corrientes" checked>Corrientes</label>
+          <label data-ayuda="Euros ajustados con el IPC de Canarias al valor de 2025. Permiten comparar años sin el efecto de la inflación."><input type="radio" name="precios" value="constantes">Constantes 2025</label>
         </div>
       </div>
-      <div class="campo" id="campo-color"><span>Color</span>
+      <div class="campo" id="campo-color"><span class="campo-t" tabindex="0" data-ayuda="Qué indica el color de cada rectángulo del gráfico: a qué grupo pertenece o cuánto ha cambiado su peso.">Color <i class="info" aria-hidden="true">i</i></span>
         <div class="seg" role="radiogroup" aria-label="Color del treemap">
-          <label><input type="radio" name="color" value="categoria" checked>Categoría</label>
-          <label><input type="radio" name="color" value="delta">Δ peso gobierno actual</label>
+          <label id="ayuda-color-cat" data-ayuda="Cada rectángulo toma el color de su categoría (consulta la leyenda bajo el gráfico)."><input type="radio" name="color" value="categoria" checked>Categoría</label>
+          <label id="ayuda-color-delta" data-ayuda="Colorea según cuánto peso ha ganado (verde azulado) o perdido (rojo) cada partida en el presupuesto desde el último año del gobierno anterior."><input type="radio" name="color" value="delta">Δ peso gobierno actual</label>
         </div>
       </div>
-      <div class="campo" id="campo-medida" hidden><span>Medida</span>
+      <div class="campo" id="campo-medida" hidden><span class="campo-t" tabindex="0" data-ayuda="Qué se dibuja en el eje vertical de las líneas.">Medida <i class="info" aria-hidden="true">i</i></span>
         <div class="seg" role="radiogroup" aria-label="Medida">
-          <label><input type="radio" name="medida" value="importe" checked>Euros</label>
-          <label><input type="radio" name="medida" value="var_pct">Var. % interanual</label>
-          <label><input type="radio" name="medida" value="indice_2015">Índice 2015 = 100</label>
+          <label data-ayuda="Importe de cada año en millones de euros: muestra el tamaño de cada partida."><input type="radio" name="medida" value="importe" checked>Euros</label>
+          <label data-ayuda="Cuánto sube o baja cada partida respecto al año anterior, en porcentaje: muestra el ritmo de cambio."><input type="radio" name="medida" value="var_pct">Var. % interanual</label>
         </div>
       </div>
-      <label class="check" id="campo-social"><input type="checkbox" id="social"> Solo gasto social (conceptos CED)</label>
+      <label class="check" id="campo-social" data-ayuda="Muestra solo los programas que Canarias en Datos (CED) clasifica en un concepto de gasto: sanidad, educación, dependencia, discapacidad, vivienda, empleo, igualdad, entre otros."><input type="checkbox" id="social"> Solo gasto social (conceptos CED) <i class="info" aria-hidden="true">i</i></label>
     </form>
 
     <section id="panel-peso" role="tabpanel" aria-labelledby="tab-peso">
@@ -85,11 +90,29 @@
             <button class="btn" type="button" id="csv-peso">Descargar CSV</button>
           </div>
         </div>
+        <div class="barra-foco" id="barra-foco"></div>
         <nav class="migas" id="migas" aria-label="Nivel del treemap"></nav>
         <div class="lienzo" id="treemap"><div class="cargando">Cargando datos…</div></div>
         <div id="leyenda-peso"></div>
         <div class="tabla-wrap" id="tabla-peso" hidden></div>
         <figcaption id="pie-peso">Fuente: Tomo 3 «Resúmenes» de los Presupuestos Generales de la CAC. Elaboración propia, ODESOCAN.</figcaption>
+      </figure>
+
+      <figure class="chart-card" id="card-capitulos" style="margin-left:0;margin-right:0">
+        <div class="chart-head">
+          <div>
+            <span class="badge">Gráfico 2</span>
+            <h2 id="titulo-donut">¿En qué tipo de gasto? Capítulos</h2>
+            <p class="subtitulo" id="sub-donut"></p>
+            <div class="ficha" id="ficha-donut"></div>
+          </div>
+        </div>
+        <div class="capitulos" id="donut"></div>
+        <p class="nota-caps" id="nota-donut"></p>
+        <p class="aviso-caps" id="aviso-donut" hidden></p>
+        <figcaption>Pasa el ratón por un rectángulo del gráfico 1 para ver su reparto por capítulos; haz clic para fijarlo (o búscalo arriba).
+          Sin selección, el donut suma todo lo que se ve en el gráfico 1. Pasa el ratón por cada capítulo para saber qué incluye.
+          Fuente: Tomo 3, tablas por capítulos (2.11, 2.14, 2.16 y 3.2). Elaboración propia, ODESOCAN.</figcaption>
       </figure>
     </section>
 
@@ -97,7 +120,7 @@
       <figure class="chart-card" style="margin-left:0;margin-right:0">
         <div class="chart-head">
           <div>
-            <span class="badge">Gráfico 2</span>
+            <span class="badge">Gráfico 3</span>
             <h2 id="titulo-lineas">Evolución</h2>
             <p class="subtitulo" id="sub-lineas"></p>
           </div>
@@ -118,9 +141,12 @@
     <aside class="notas" id="notas">
       <b>Cómo leer estos datos</b>
       <ul>
+        <li><strong>Funciones</strong>: para qué se gasta (sanidad, educación, servicios sociales…); clic en una función para ver sus subfunciones.
+          <strong>Colores</strong>: cada sección y la función equivalente comparten color (Sanidad: sección 14 y función 31), y cada programa toma el de la sección que lo gestiona («varias secciones» si ninguna reúne el 75 % de su gasto).</li>
         <li><strong>Pesos</strong> sobre el total de la propia tabla: caps. 1-8 en funciones, secciones y programas; tabla «comparativo por entes»
           en entes, que <strong>no se suma</strong> a la Administración general (los organismos se financian con sus transferencias).</li>
         <li><strong>Gobierno actual</strong>: presupuestos 2024-2027 frente al último del gobierno anterior (2023). Si aún falta algún presupuesto de la legislatura, la ventana llega al último año disponible.</li>
+        <li><strong>Capítulos</strong> (gráfico 2): clasificación económica del gasto (personal, bienes y servicios, transferencias, inversiones…), caps. 1-8 como el gráfico 1. El cap. 9 (devolución de deuda) se indica aparte.</li>
         <li><strong>Euros constantes</strong> de 2025 con el IPC de Canarias (INE). Los años con IPC incompleto o previsto son estimaciones.</li>
         <li><strong>Secciones</strong>: la vista orgánica muestra cada consejería tal como se publicó; la vista estructura proyecta hacia atrás las consejerías actuales para comparar competencias.</li>
         <li>El gráfico describe cambios; no atribuye su causa. Factores a tener en cuenta: COVID, fondos MRR/REACT-EU, inflación y cambios de perímetro.</li>
