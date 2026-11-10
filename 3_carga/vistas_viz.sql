@@ -77,7 +77,10 @@ FROM {esquema}.carga_registro;
 --   seccion / organica          tabla 2.11
 --   seccion / estructura_<T>    pares de 2.16 repartidos como en retroproyectar_secciones.py
 --   funcion, subfuncion         tabla 2.14; la función de cada subfunción es la de ana_metricas (id_grupo)
---   ente                        tabla 3.2, suma de los programas de cada ente
+--   ente / individual           tabla 3.2, suma de los programas de cada ente
+--   ente / programa             tabla 3.2, cada programa de cada ente (programa = código del año)
+-- «programa» (código del año) va en los pares y en ente / programa: con su subfunción (3 primeras cifras) la web
+-- enlaza las transferencias (caps. 4 y 7) de una sección con el gasto de los entes en la misma subfunción.
 CREATE OR REPLACE VIEW {esquema}.v_viz_capitulos AS
 WITH cap AS (
   SELECT anio, fase, tabla, codigo_unidad, codigo_padre, id_estable, familia_id, id_padre, capitulo,
@@ -93,33 +96,39 @@ subfuncion_padre AS (
 ),
 filas AS (
   SELECT 'programa' AS dimension, 'seccion' AS vista, anio, fase, id_estable, familia_id AS id_grupo,
-         codigo_padre AS seccion, capitulo, importe_corriente, deflactor
+         codigo_padre AS seccion, codigo_unidad AS programa, capitulo, importe_corriente, deflactor
   FROM cap WHERE tabla = 'secc_prog_cap'
   UNION ALL
-  SELECT 'seccion', 'organica', anio, fase, id_estable, CAST(NULL AS TEXT), codigo_unidad, capitulo, importe_corriente, deflactor
+  SELECT 'seccion', 'organica', anio, fase, id_estable, CAST(NULL AS TEXT), codigo_unidad, CAST(NULL AS TEXT), capitulo,
+         importe_corriente, deflactor
   FROM cap WHERE tabla = 'secciones_cap'
   UNION ALL
-  SELECT 'seccion', e.vista, c.anio, c.fase, e.seccion_destino, CAST(NULL AS TEXT), e.seccion_destino, c.capitulo,
-         c.importe_corriente * e.peso_reparto, c.deflactor
+  SELECT 'seccion', e.vista, c.anio, c.fase, e.seccion_destino, CAST(NULL AS TEXT), e.seccion_destino, CAST(NULL AS TEXT),
+         c.capitulo, c.importe_corriente * e.peso_reparto, c.deflactor
   FROM cap c
   JOIN {esquema}.fact_seccion_estructura_detalle e
     ON e.anio = c.anio AND e.seccion_origen = c.codigo_padre AND e.programa = c.codigo_unidad
   WHERE c.tabla = 'secc_prog_cap'
   UNION ALL
-  SELECT 'subfuncion', 'individual', c.anio, c.fase, c.id_estable, p.padre_id, CAST(NULL AS TEXT), c.capitulo,
-         c.importe_corriente, c.deflactor
+  SELECT 'subfuncion', 'individual', c.anio, c.fase, c.id_estable, p.padre_id, CAST(NULL AS TEXT), CAST(NULL AS TEXT),
+         c.capitulo, c.importe_corriente, c.deflactor
   FROM cap c LEFT JOIN subfuncion_padre p ON p.id_estable = c.id_estable AND p.anio = c.anio
   WHERE c.tabla = 'subfunciones_cap'
   UNION ALL
-  SELECT 'funcion', 'individual', c.anio, c.fase, p.padre_id, CAST(NULL AS TEXT), CAST(NULL AS TEXT), c.capitulo,
-         c.importe_corriente, c.deflactor
+  SELECT 'funcion', 'individual', c.anio, c.fase, p.padre_id, CAST(NULL AS TEXT), CAST(NULL AS TEXT), CAST(NULL AS TEXT),
+         c.capitulo, c.importe_corriente, c.deflactor
   FROM cap c JOIN subfuncion_padre p ON p.id_estable = c.id_estable AND p.anio = c.anio
   WHERE c.tabla = 'subfunciones_cap'
   UNION ALL
-  SELECT 'ente', 'individual', anio, fase, id_padre, CAST(NULL AS TEXT), CAST(NULL AS TEXT), capitulo, importe_corriente, deflactor
+  SELECT 'ente', 'individual', anio, fase, id_padre, CAST(NULL AS TEXT), CAST(NULL AS TEXT), CAST(NULL AS TEXT), capitulo,
+         importe_corriente, deflactor
+  FROM cap WHERE tabla = 'entes_prog_cap'
+  UNION ALL
+  SELECT 'ente', 'programa', anio, fase, id_padre, CAST(NULL AS TEXT), CAST(NULL AS TEXT), codigo_unidad, capitulo,
+         importe_corriente, deflactor
   FROM cap WHERE tabla = 'entes_prog_cap'
 )
-SELECT dimension, vista, anio, fase, id_estable, id_grupo, seccion,
+SELECT dimension, vista, anio, fase, id_estable, id_grupo, seccion, programa,
        SUM(CASE WHEN capitulo = '1' THEN importe_corriente ELSE 0 END) AS cap_1,
        SUM(CASE WHEN capitulo = '2' THEN importe_corriente ELSE 0 END) AS cap_2,
        SUM(CASE WHEN capitulo = '3' THEN importe_corriente ELSE 0 END) AS cap_3,
@@ -131,5 +140,11 @@ SELECT dimension, vista, anio, fase, id_estable, id_grupo, seccion,
        MAX(deflactor) AS deflactor
 FROM filas
 WHERE id_estable IS NOT NULL
-GROUP BY dimension, vista, anio, fase, id_estable, id_grupo, seccion
+GROUP BY dimension, vista, anio, fase, id_estable, id_grupo, seccion, programa
 HAVING SUM(ABS(importe_corriente)) > 0;
+
+-- Población, PIB nominal y deflactor por año (euros por habitante y % del PIB en la pestaña «Evolución»).
+-- Los *_estatus indican si el dato es verificado o una estimación; sin PIB publicado, pib_nominal queda vacío.
+CREATE OR REPLACE VIEW {esquema}.v_viz_anios AS
+SELECT anio, deflactor, ipc_estatus, poblacion, poblacion_estatus, pib_nominal, pib_estatus, ventana
+FROM {esquema}.dim_anio;

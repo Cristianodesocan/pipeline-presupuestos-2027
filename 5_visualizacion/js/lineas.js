@@ -1,5 +1,5 @@
 /* Pestaña «Evolución»: líneas con bandas de gobierno (§8.4 del diseño).
-   Una sola escala Y. Medidas: euros o variación % interanual. Huecos (line.defined) donde no hay
+   Una sola escala Y. Medidas: euros, euros por habitante, % del PIB o variación % interanual. Huecos (line.defined) donde no hay
    serie comparable; tramo discontinuo en los años en fase de Proyecto. Crosshair que se ajusta al año más cercano. */
 /* global d3 */
 import { anchoTexto, fmt, mostrarTooltip, ocultarTooltip, paleta } from "./comun.js";
@@ -30,17 +30,34 @@ export function candidatas(datos, cfg, estado, idsSociales) {
     .sort((a, b) => b.peso - a.peso);
 }
 
+/** Valor de una fila de la serie según la medida. Por habitante: importe / población del año (en los precios elegidos).
+    % del PIB: importe en euros corrientes / PIB nominal (sin PIB publicado, no hay valor). */
+export function valorMedida(d, medida, datos) {
+  if (!d) return null;
+  if (medida === "por_habitante") { const p = datos.poblacion(d.anio); return d.importe != null && p ? d.importe / p : null; }
+  if (medida === "pct_pib") { const pib = datos.pib(d.anio); return d.importe != null && pib ? (100 * d.importe) / pib : null; }
+  return d[medida];
+}
+export const FORMATO_MEDIDA = {
+  importe: { valor: (v) => fmt.meur(v), eje: (v) => fmt.meurEje(v), unidad: "M€", texto: "en euros" },
+  por_habitante: { valor: (v) => (v == null ? "—" : `${fmt.entero(v)} €`), eje: (v) => fmt.entero(v), unidad: "€/hab.", texto: "en euros por habitante" },
+  pct_pib: { valor: (v) => (v == null ? "—" : fmt.pct(v, 2)), eje: (v) => `${fmt.num(v)} %`, unidad: "% PIB", texto: "en % del PIB de Canarias" },
+  var_pct: { valor: (v) => fmt.var(v), eje: (v) => `${fmt.entero(v)} %`, unidad: "", texto: "en variación % interanual" },
+};
+
 export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSociales, seleccion }) {
   const pal = paleta();
-  const filas = filasSeries(datos, cfg, estado, idsSociales);
-  const anios = datos.anios;
   const medida = estado.medida;
+  // el % del PIB se calcula siempre con euros corrientes (el PIB es nominal), elija quien elija los precios
+  const filas = filasSeries(datos, cfg, medida === "pct_pib" ? { ...estado, precios: "corrientes" } : estado, idsSociales);
+  const anios = datos.anios;
+  const fm = FORMATO_MEDIDA[medida] || FORMATO_MEDIDA.importe;
   const series = seleccion.map((id, ranura) => {
     if (!id) return null;
     const puntos = new Map(filas.filter((d) => d.id_estable === id).map((d) => [d.anio, d]));
     const etiqueta = (puntos.values().next().value || {}).etiqueta || id;
     return { id, ranura, etiqueta, color: pal.series[ranura], valores: anios.map((a) => ({ anio: a, fila: puntos.get(a) || null,
-      v: puntos.get(a) ? puntos.get(a)[medida] : null, fase: datos.fases.get(a) })),
+      v: valorMedida(puntos.get(a), medida, datos), fase: datos.fases.get(a) })),
       familia: [...puntos.values()].some((d) => d.comparabilidad === "familia") };
   }).filter(Boolean);
 
@@ -57,17 +74,18 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
   const ancho = Math.max(300, contenedor.clientWidth);
   const estrecho = ancho < 640;
   const etiquetasFinales = !estrecho && series.length <= 4;
-  const m = { t: 30, r: etiquetasFinales ? 170 : 18, b: 30, l: medida === "importe" ? 64 : 48 };
+  const m = { t: 30, r: etiquetasFinales ? 170 : 18, b: 30, l: medida === "importe" || medida === "por_habitante" ? 64 : 52 };
   const alto = estrecho ? 320 : 420;
   const x = d3.scaleLinear([anios[0], anios[anios.length - 1]], [m.l, ancho - m.r]);
   const todos = series.flatMap((s) => s.valores.map((p) => p.v)).filter((v) => v != null);
   let dom = d3.extent(todos);
-  if (medida === "importe") dom = [0, dom[1]];
+  if (!todos.length) dom = [0, 1];
+  if (medida !== "var_pct") dom = [0, dom[1]];
   if (medida === "var_pct") dom = [Math.min(0, dom[0]), Math.max(0, dom[1])];
   const y = d3.scaleLinear(dom, [alto - m.b, m.t]).nice();
 
   const svg = d3.select(contenedor).append("svg").attr("viewBox", `0 0 ${ancho} ${alto}`).attr("role", "img")
-    .attr("aria-label", `Evolución ${medida === "importe" ? "en euros" : "de la variación interanual"} de ${series.length} partidas. Usa «Ver tabla» para leer los valores.`);
+    .attr("aria-label", `Evolución ${fm.texto} de ${series.length} partidas. Usa «Ver tabla» para leer los valores.`);
 
   // bandas de gobierno
   const bandas = svg.append("g");
@@ -87,14 +105,14 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
       .style("font", fuente).style("letter-spacing", ".08em").text(texto);
   }
   // rejilla y ejes (líneas finas, sólidas, recesivas)
-  const fmtEje = medida === "importe" ? fmt.meurEje : (v) => `${fmt.entero(v)} %`;
+  const fmtEje = fm.eje;
   const gy = svg.append("g").attr("transform", `translate(${m.l},0)`)
     .call(d3.axisLeft(y).ticks(estrecho ? 5 : 6).tickSize(-(ancho - m.l - m.r)).tickFormat(fmtEje));
   gy.select(".domain").remove();
   gy.selectAll("line").attr("stroke", pal.grid);
   gy.selectAll("text").attr("fill", pal.muted).style("font", "400 11px Inter").style("font-variant-numeric", "tabular-nums");
-  if (medida === "importe") svg.append("text").attr("x", m.l - 8).attr("y", m.t - 22 < 0 ? 10 : 12).attr("text-anchor", "end")
-    .attr("fill", pal.muted).style("font", "400 11px Inter").text("M€");
+  if (fm.unidad) svg.append("text").attr("x", m.l - 8).attr("y", m.t - 22 < 0 ? 10 : 12).attr("text-anchor", "end")
+    .attr("fill", pal.muted).style("font", "400 11px Inter").text(fm.unidad);
   const ref = medida === "var_pct" ? 0 : null;
   if (ref != null) svg.append("line").attr("x1", m.l).attr("x2", ancho - m.r).attr("y1", y(ref)).attr("y2", y(ref))
     .attr("stroke", pal.muted).attr("stroke-width", 1);
@@ -128,7 +146,7 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
   // crosshair + tooltip con todas las series del año
   const guia = svg.append("line").attr("y1", m.t - 18).attr("y2", alto - m.b).attr("stroke", pal.muted).attr("stroke-width", 1).style("display", "none");
   const marcas = svg.append("g");
-  const unidadV = medida === "importe" ? fmt.meur : fmt.var;
+  const unidadV = fm.valor;
   svg.append("rect").attr("x", m.l).attr("y", m.t - 18).attr("width", ancho - m.l - m.r).attr("height", alto - m.b - m.t + 18)
     .attr("fill", "transparent").style("cursor", "crosshair")
     .on("pointermove", (e) => {
@@ -140,11 +158,13 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
       marcas.selectAll("circle").data(enAnio.filter((o) => o.p.v != null)).join("circle").attr("cx", x(anio))
         .attr("cy", (o) => y(o.p.v)).attr("r", 4.5).attr("fill", (o) => o.s.color).attr("stroke", pal.surface).attr("stroke-width", 2);
       const filasTt = enAnio.sort((a, b) => (b.p.v ?? -Infinity) - (a.p.v ?? -Infinity))
-        .map((o) => [corta(o.s.etiqueta, 34), o.p.v == null ? "no comparable" : unidadV(o.p.v), o.s.color]);
+        .map((o) => [corta(o.s.etiqueta, 34), o.p.v == null ? (medida === "pct_pib" && !datos.pib(anio) ? "sin PIB" : "no comparable")
+          : unidadV(o.p.v), o.s.color]);
       const fase = datos.fases.get(anio);
       const vent = (enAnio[0] && enAnio[0].p.fila && enAnio[0].p.fila.ventana) || "";
       mostrarTooltip(e, `${anio}${fase === "proyecto" ? " · Proyecto" : ""}`, filasTt,
-        `${ETIQUETA_VENTANA[vent] || vent}${estado.precios === "constantes" ? " · euros constantes 2025" : ""}`);
+        `${ETIQUETA_VENTANA[vent] || vent}${estado.precios === "constantes" && medida !== "pct_pib" ? " · euros constantes 2025" : ""}`
+        + (medida === "por_habitante" && datos.poblacionEstimada(anio) ? " · población estimada" : ""));
     })
     .on("pointerleave", () => { guia.style("display", "none"); marcas.selectAll("*").remove(); ocultarTooltip(); });
   return series;

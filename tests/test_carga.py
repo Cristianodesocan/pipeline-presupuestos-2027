@@ -117,14 +117,28 @@ def test_vista_capitulos_pivota_y_reparte(bd):
     pares = v.loc["programa"]
     assert sorted(pares.seccion) == ["08", "14"]
     p14 = pares[pares.seccion == "14"].iloc[0]
-    assert (p14.cap_1, p14.cap_2, p14.id_grupo, p14.deflactor) == (100.0, 50.0, "FAM-P312A_2015", 0.97)
+    assert (p14.cap_1, p14.cap_2, p14.id_grupo, p14.programa, p14.deflactor) == (100.0, 50.0, "FAM-P312A_2015", "312A", 0.97)
     estr = v[v.vista == "estructura_2027"].set_index("id_estable")
     assert estr.loc["15", "cap_6"] == 5.0 and estr.loc["14", "cap_6"] == 5.0 and estr.loc["14", "cap_1"] == 0.0
     sub = v[v.dimension == "subfuncion"].iloc[0]
     assert (sub.id_grupo, sub.cap_1, sub.cap_9) == ("F31_2015", 7.0, 3.0)
     fun = v[v.dimension == "funcion"].iloc[0]
     assert (fun.id_estable, fun.cap_1) == ("F31_2015", 7.0)
-    assert v[v.dimension == "ente"].iloc[0][["id_estable", "cap_4"]].tolist() == ["ESCS_2015", 5.0]
+    ente = v[(v.dimension == "ente") & (v.vista == "individual")].iloc[0]
+    assert (ente.id_estable, ente.cap_4, pd.isna(ente.programa)) == ("ESCS_2015", 5.0, True)
+    ep = v[(v.dimension == "ente") & (v.vista == "programa")].iloc[0]
+    assert (ep.id_estable, ep.programa, ep.cap_4) == ("ESCS_2015", "312A", 5.0)
+
+
+def test_vista_anios_expone_poblacion_y_pib(bd):
+    da = pd.DataFrame([{"anio": 2024, "deflactor": 1.02, "poblacion": 2_238_754, "poblacion_estatus": "verificado",
+                        "pib_nominal": 5.8e10, "pib_estatus": "verificado"},
+                       {"anio": 2027, "deflactor": 0.94, "poblacion": 2_293_758, "poblacion_estatus": "estimacion"}])
+    sincronizar(bd, "duckdb", "dim_anio", da.reindex(columns=list(TABLAS["dim_anio"]["columnas"])), "r1", AHORA)
+    a = bd.execute(f"SELECT * FROM {ESQUEMA}.v_viz_anios ORDER BY anio").df()
+    assert a.anio.tolist() == [2024, 2027]
+    assert a.iloc[0].pib_nominal == 5.8e10 and pd.isna(a.iloc[1].pib_nominal)
+    assert a.iloc[1].poblacion_estatus == "estimacion"
 
 
 @pytest.mark.skipif(not (STG_T / "fact_presupuesto.parquet").exists(), reason="sin staging de transformación")

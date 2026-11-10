@@ -218,6 +218,41 @@ figcaption { font-size: .78rem; color: var(--text-muted); margin-top: 8px; }
 .ficha b { font-variant-numeric: tabular-nums; color: var(--text-strong); }
 .ficha .pos { color: var(--pos-text); font-weight: 700; } .ficha .neg { color: var(--neg-text); font-weight: 700; }
 .nota-caps { font-size: .78rem; color: var(--text-muted); margin: 8px 0 0; }
+.sub-bloque { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
+.sub-bloque h3 { margin: 0 0 8px; font-size: 1rem; color: var(--text-strong); }
+.sub-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; margin-bottom: 6px; }
+.sub-head h3 { margin: 0; }
+.seg.mini label { padding: 4px 10px; font-size: 12px; }
+.mini-campo { display: inline-flex; align-items: center; gap: 6px; font: 600 12px "Space Grotesk"; color: var(--text-muted); }
+.mini-campo select { padding: 4px 8px; }
+
+/* ---------- recorrido guiado: barra flotante abajo, para leer la clave mientras se mira el gráfico */
+.hero-acciones { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-top: 14px; }
+.hero-acciones .hero-badge { margin-top: 0; }
+.hero-recorrido { background: var(--teal); color: #0D1B2A; border: 0; border-radius: 99px; padding: 7px 16px; font: 700 13px "Space Grotesk";
+                  cursor: pointer; box-shadow: 0 4px 16px rgba(0, 200, 180, .3); }
+.hero-recorrido:hover { transform: translateY(-1px); }
+.recorrido { position: fixed; z-index: 15; left: 50%; bottom: 14px; transform: translateX(-50%); width: min(780px, calc(100% - 24px));
+             background: var(--surface); color: var(--text); border: 1px solid var(--border-card); border-left: 5px solid var(--teal);
+             border-radius: 16px; box-shadow: 0 10px 40px rgba(13, 27, 42, .28); padding: 12px 16px 12px; }
+.recorrido h3 { margin: 4px 0 2px; font-size: 1.08rem; color: var(--text-strong); line-height: 1.25; }
+.recorrido p { margin: 0 0 8px; font-size: .9rem; line-height: 1.45; }
+.rec-cab { display: flex; align-items: center; gap: 12px; }
+.rec-num { font: 700 10.5px "Space Grotesk"; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.rec-puntos { display: inline-flex; gap: 6px; }
+.rec-puntos button { width: 10px; height: 10px; padding: 0; border-radius: 50%; border: 1.5px solid var(--accent); background: transparent; cursor: pointer; }
+.rec-puntos button.activo { background: var(--accent); }
+.rec-cerrar { margin-left: auto; border: 0; background: none; color: var(--text-muted); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 4px; }
+.rec-nav { display: flex; justify-content: flex-end; gap: 8px; }
+.btn.primario { background: var(--accent); color: var(--surface); }
+.btn:disabled { opacity: .4; cursor: default; transform: none; }
+body.con-recorrido main { padding-bottom: 230px; }
+@media (max-width: 640px) {
+  .recorrido { bottom: 8px; padding: 10px 12px; }
+  .recorrido h3 { font-size: .98rem; }
+  .recorrido p { font-size: .83rem; }
+  .hero-recorrido { width: 100%; }
+}
 .aviso-caps { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 10px 0 0; padding: 10px 12px; font-size: .85rem;
               border-radius: 12px; background: var(--accent-bg); color: var(--text); }
 .aviso-caps .btn { flex: none; }

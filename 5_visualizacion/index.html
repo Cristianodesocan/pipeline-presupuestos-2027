@@ -25,7 +25,10 @@
       <h1>Presupuestos de Canarias: <em>a qué se destina</em> el gasto y cómo cambia con cada gobierno</h1>
       <p>Presupuesto inicial de la Comunidad Autónoma (Tomo 3 «Resúmenes»), serie oficial <span id="rango-anios">2015-2026</span>,
          por funciones, secciones, programas y entes, en euros corrientes y constantes de 2025.</p>
-      <span class="hero-badge" id="badge-fase">Análisis · Serie oficial</span>
+      <div class="hero-acciones">
+        <span class="hero-badge" id="badge-fase">Análisis · Serie oficial</span>
+        <button class="hero-recorrido" id="abrir-recorrido" type="button">▶ Recorrido guiado: 5 claves del presupuesto</button>
+      </div>
     </div>
     <button class="tema" id="tema" type="button" aria-label="Cambiar entre modo claro y oscuro">Modo oscuro</button>
   </header>
@@ -71,6 +74,8 @@
       <div class="campo" id="campo-medida" hidden><span class="campo-t" tabindex="0" data-ayuda="Qué se dibuja en el eje vertical de las líneas.">Medida <i class="info" aria-hidden="true">i</i></span>
         <div class="seg" role="radiogroup" aria-label="Medida">
           <label data-ayuda="Importe de cada año en millones de euros: muestra el tamaño de cada partida."><input type="radio" name="medida" value="importe" checked>Euros</label>
+          <label data-ayuda="Importe dividido entre la población de Canarias de cada año: cuánto toca a cada habitante. Con «Constantes 2025» descuenta también la inflación."><input type="radio" name="medida" value="por_habitante">€ por habitante</label>
+          <label data-ayuda="Importe en euros corrientes como porcentaje del PIB de Canarias de ese año: el esfuerzo de gasto respecto al tamaño de la economía. Solo hay PIB publicado hasta 2024."><input type="radio" name="medida" value="pct_pib">% del PIB</label>
           <label data-ayuda="Cuánto sube o baja cada partida respecto al año anterior, en porcentaje: muestra el ritmo de cambio."><input type="radio" name="medida" value="var_pct">Var. % interanual</label>
         </div>
       </div>
@@ -110,6 +115,22 @@
         <div class="capitulos" id="donut"></div>
         <p class="nota-caps" id="nota-donut"></p>
         <p class="aviso-caps" id="aviso-donut" hidden></p>
+        <div class="sub-bloque" id="bloque-flujo" hidden>
+          <h3>Sigue el dinero: ¿quién gasta lo que se transfiere?</h3>
+          <div class="lienzo" id="flujo"></div>
+          <p class="nota-caps" id="nota-flujo"></p>
+        </div>
+        <div class="sub-bloque" id="bloque-composicion">
+          <div class="sub-head">
+            <h3 id="titulo-composicion">¿Cómo ha cambiado su composición?</h3>
+            <div class="seg mini" role="radiogroup" aria-label="Unidad de la composición">
+              <label><input type="radio" name="comp" value="eur" checked>M€</label>
+              <label><input type="radio" name="comp" value="pct">% del total</label>
+            </div>
+          </div>
+          <div class="lienzo" id="composicion"></div>
+          <p class="nota-caps" id="nota-composicion"></p>
+        </div>
         <figcaption>Pasa el ratón por un rectángulo del gráfico 1 para ver su reparto por capítulos; haz clic para fijarlo (o búscalo arriba).
           Sin selección, el donut suma todo lo que se ve en el gráfico 1. Pasa el ratón por cada capítulo para saber qué incluye.
           Fuente: Tomo 3, tablas por capítulos (2.11, 2.14, 2.16 y 3.2). Elaboración propia, ODESOCAN.</figcaption>
@@ -117,7 +138,7 @@
     </section>
 
     <section id="panel-evolucion" role="tabpanel" aria-labelledby="tab-evolucion" hidden>
-      <figure class="chart-card" style="margin-left:0;margin-right:0">
+      <figure class="chart-card" id="card-lineas" style="margin-left:0;margin-right:0">
         <div class="chart-head">
           <div>
             <span class="badge">Gráfico 3</span>
@@ -134,7 +155,23 @@
         <div class="lienzo" id="lineas"></div>
         <div class="tabla-wrap" id="tabla-evo" hidden></div>
         <figcaption>Fondo: ventanas de gobierno (cada gobierno, con los presupuestos que aprobó). Tramo discontinuo: año en fase de Proyecto.
-          Un hueco en la línea indica que la partida no es comparable ese año. Fuente: Tomo 3. Elaboración propia, ODESOCAN.</figcaption>
+          Un hueco en la línea indica que la partida no es comparable ese año. Fuente: Tomo 3; población y PIB, INE. Elaboración propia, ODESOCAN.</figcaption>
+      </figure>
+
+      <figure class="chart-card" id="card-ranking" style="margin-left:0;margin-right:0">
+        <div class="chart-head">
+          <div>
+            <span class="badge">Gráfico 4</span>
+            <h2 id="titulo-ranking">¿Qué ha cambiado?</h2>
+            <p class="subtitulo" id="sub-ranking"></p>
+          </div>
+          <div class="acciones">
+            <label class="mini-campo">Desde <select id="rank-desde" aria-label="Año inicial de la comparación"></select></label>
+            <label class="mini-campo">Hasta <select id="rank-hasta" aria-label="Año final de la comparación"></select></label>
+          </div>
+        </div>
+        <div class="lienzo" id="ranking"></div>
+        <figcaption id="pie-ranking"></figcaption>
       </figure>
     </section>
 
@@ -147,6 +184,10 @@
           en entes, que <strong>no se suma</strong> a la Administración general (los organismos se financian con sus transferencias).</li>
         <li><strong>Gobierno actual</strong>: presupuestos 2024-2027 frente al último del gobierno anterior (2023). Si aún falta algún presupuesto de la legislatura, la ventana llega al último año disponible.</li>
         <li><strong>Capítulos</strong> (gráfico 2): clasificación económica del gasto (personal, bienes y servicios, transferencias, inversiones…), caps. 1-8 como el gráfico 1. El cap. 9 (devolución de deuda) se indica aparte.</li>
+        <li><strong>Sigue el dinero</strong>: el Tomo 3 no publica a quién va cada transferencia (caps. 4 y 7); el gráfico la enlaza con los entes
+          que gastan en la misma subfunción (Sanidad → Servicio Canario de la Salud). Es un enlace orientativo: los entes tienen además otros ingresos.</li>
+        <li><strong>Por habitante y % del PIB</strong>: población y PIB nominal de Canarias del INE. El % del PIB usa siempre euros corrientes;
+          el PIB publicado llega a 2024 y la población del último año es una estimación.</li>
         <li><strong>Euros constantes</strong> de 2025 con el IPC de Canarias (INE). Los años con IPC incompleto o previsto son estimaciones.</li>
         <li><strong>Secciones</strong>: la vista orgánica muestra cada consejería tal como se publicó; la vista estructura proyecta hacia atrás las consejerías actuales para comparar competencias.</li>
         <li>El gráfico describe cambios; no atribuye su causa. Factores a tener en cuenta: COVID, fondos MRR/REACT-EU, inflación y cambios de perímetro.</li>
@@ -159,6 +200,7 @@
     <a href="mailto:info@odesocan.org">info@odesocan.org</a> · <span id="pie-carga"></span>
   </div></footer>
 
+  <aside class="recorrido" id="recorrido" aria-label="Recorrido guiado" aria-live="polite" hidden></aside>
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
   <script type="module" src="js/app.js"></script>
   <script>

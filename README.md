@@ -9,7 +9,7 @@ Pipeline de análisis de los Presupuestos de Canarias 2015-2027. Diseño: `../..
   - La cobertura de programas comparables es del 96,9 % del importe de 2026.
 - ✅ **3 · Carga**: la carga local en DuckDB y CSV está hecha. La de Supabase está **probada contra un PostgreSQL local de prueba; producción todavía no se ha cargado**.
 - ✅ **4 · Análisis**: los cuatro scripts (funciones, secciones, programas, entes) escriben `ana_metricas` (141.723 filas), los insights y las tablas APA. Los CSV de la web ya tienen datos.
-- ✅ **5 · Visualización**: web D3 en `5_visualizacion/` con dos pestañas, Peso (treemap + donut de capítulos) y Evolución (líneas). Lee los `viz_*.csv`.
+- ✅ **5 · Visualización**: web D3 en `5_visualizacion/` con dos pestañas: Peso (treemap, donut de capítulos, «Sigue el dinero» y composición por año) y Evolución (líneas y ranking de cambios), más un recorrido guiado de 5 claves. Lee los `viz_*.csv`.
 - ✅ **Maestro** `00_maestro.py`: ejecuta todo el pipeline siguiendo el DAG de `config/pipeline.yml`. Tiene caché por fase, se detiene si falla una puerta de calidad (*fail-fast*) y guarda un log estructurado. La serie completa tarda unos 50 s, casi todo en las comprobaciones web.
 
 ## Puesta en marcha
@@ -157,7 +157,8 @@ Los enlaces `auto` se usan salvo que se rechacen. Los que están en revisión si
   - `viz_meta.csv` sale idéntico desde las dos fuentes.
 
   El test `test_postgres_rls_solo_vistas` se ejecuta si `PG_TEST_URL` apunta a un PostgreSQL de prueba en localhost.
-- **`v_viz_capitulos`** (→ `viz_capitulos.csv`): presupuesto inicial por capítulos 1-9 de cada sección (orgánica y estructura), función, subfunción, ente y par (sección, programa), en euros corrientes con su deflactor. Sale de las tablas 2.11, 2.14, 2.16 y 3.2 del Tomo. La suma de los caps. 1-8 cuadra con el importe del treemap en todas las partidas; la única diferencia es el SCS en 2021 (0,55 M€, un 0,02 %), que viene de las propias tablas 3.1 y 3.2.
+- **`v_viz_capitulos`** (→ `viz_capitulos.csv`): presupuesto inicial por capítulos 1-9 de cada sección (orgánica y estructura), función, subfunción, ente, programa de cada ente y par (sección, programa), en euros corrientes con su deflactor. Los pares y los programas de los entes llevan el código de programa del año, que la web usa para enlazar transferencias y entes por subfunción.
+- **`v_viz_anios`** (→ `viz_anios.csv`): población, PIB nominal, deflactor y su estatus (verificado o estimación) por año, para las medidas por habitante y % del PIB. Sale de las tablas 2.11, 2.14, 2.16 y 3.2 del Tomo. La suma de los caps. 1-8 cuadra con el importe del treemap en todas las partidas; la única diferencia es el SCS en 2021 (0,55 M€, un 0,02 %), que viene de las propias tablas 3.1 y 3.2.
 - **Convenciones de `ana_metricas`.** Las vistas de la web dependen de ellas (`ventana`, `incluye_mrr`, `ruta_jerarquia`), que están al principio de `vistas_viz.sql`.
 - **DuckDB 2.0.0 reemplaza cada tabla completa.** El anti-join (`NOT EXISTS`/`EXCEPT`) contra una tabla con clave primaria daba resultados erróneos dentro de una transacción de escritura: la primera carga de `ana_metricas` quedó vacía sin error. Las altas y bajas se cuentan ahora en pandas y se comprueba que se escriben todas las filas. PostgreSQL mantiene el *upsert*.
 
@@ -240,6 +241,7 @@ Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejec
 - `js/estado.js`: el estado en la URL.
 - `js/treemap.js`, `js/donut.js` y `js/lineas.js`: los gráficos.
 - `js/buscador.js`: buscador con lista agrupada (combobox accesible), común a las dos pestañas.
+- `js/flujo.js` («Sigue el dinero»), `js/ranking.js` (¿qué ha cambiado?) y `js/recorrido.js` (recorrido guiado).
 - `js/app.js`: filtros, tablas, CSV y tema.
 - D3 7.9.0 fijo, desde cdnjs.
 
@@ -256,13 +258,17 @@ Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejec
   - **Color por ámbito de política:** cada sección tiene su color y la función equivalente comparte el mismo (Sanidad: sección 14 y función 31). Cada programa toma el de su sección; si ninguna reúne el 75 % de su gasto, va en gris («varias secciones»). Paleta ampliada de 21 colores validada con `validate_palette.js` en los dos modos (pares contiguos). También se puede colorear por **Δ peso del gobierno actual** (escala divergente rojo · gris · teal centrada en 0).
   - **Tooltip:** importe, pesos, variación interanual en euros y en %, y cambio en la ventana. Las subidas van en verde con ▲ y las bajadas en rojo con ▼.
   - **Buscador:** encuentra cualquier partida y la fija. Los programas se agrupan por sección (en orden numérico) y, dentro de cada una, van en orden alfabético; un programa compartido aparece en cada sección.
+  - **Sigue el dinero:** bajo el donut, qué parte se gasta directamente y qué parte se transfiere (caps. 4 y 7), y qué entes con presupuesto propio gastan en las mismas subfunciones (enlace por subfunción, porque el Tomo no publica el destinatario de cada transferencia). Clic en un ente para verlo.
+  - **Composición año a año:** columnas apiladas por capítulo (M€ o % del total) de la partida fijada o de lo visible; clic en una columna para ver ese año.
   - **Capítulos (donut):** reparto por capítulos 1-8 de lo que se señala (ratón), se fija (clic o buscador) o, sin selección, de todo lo visible. Cada capítulo explica en una frase qué incluye. Si más de la mitad es transferencia corriente (p. ej., Sanidad → Servicio Canario de la Salud), un aviso lo explica y lleva a la dimensión Entes. El cap. 9 se indica aparte.
 - **Evolución.**
-  - **Medidas:** euros o variación % interanual.
+  - **Medidas:** euros, euros por habitante (población del INE), % del PIB de Canarias (euros corrientes / PIB nominal, publicado hasta 2024) o variación % interanual.
+  - **¿Qué ha cambiado?** Las 10 partidas que más suben y las 10 que más bajan en euros entre dos años (por defecto, de la base del gobierno actual al último presupuesto). Clic en una barra para añadirla a las líneas.
   - **Partidas:** hasta 7, elegidas con el buscador (los programas, agrupados por sección). Cada una conserva su color al quitar otras.
   - **Contexto político:** bandas por ventana de gobierno, con la actual destacada.
   - **Honestidad de la serie:** huecos donde la serie no es comparable; tramo discontinuo si el año está en fase de Proyecto.
   - **Tooltip:** una cruceta con todas las series del año.
+- **Recorrido guiado.** Botón en la cabecera: 5 claves (Sanidad y Educación; la Consejería que transfiere; el personal del SCS; qué ha cambiado con el gobierno actual; el gasto por habitante sin inflación). Cada clave fija una vista y la cuenta en dos frases con cifras calculadas de los datos; `#paso=N` comparte una clave concreta.
 - **Accesibilidad.**
   - Vista de tabla en las dos pestañas y descarga del CSV filtrado.
   - Celdas del treemap navegables con el teclado.
