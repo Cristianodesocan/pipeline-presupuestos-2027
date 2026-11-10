@@ -62,6 +62,7 @@ def main() -> int:
                           "programa": r.codigo_unidad, "familia_id": r.familia_id, "metodo": metodo,
                           "peso_reparto": peso, "importe_corriente": r.importe_corriente * peso})
     det = pd.DataFrame(filas)
+    det["vista"] = f"estructura_{T}"     # el detalle se carga: v_viz_capitulos reparte los capítulos con él
     nombres = of[(of.dimension == "seccion") & (of.tabla == "secciones") & (of.anio_presupuesto == T)]
     nombres = nombres.drop_duplicates("codigo").set_index("codigo").denominacion_raw
     out = det.groupby(["anio", "seccion_destino", "metodo"], as_index=False).agg(

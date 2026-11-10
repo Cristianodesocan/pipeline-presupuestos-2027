@@ -9,7 +9,7 @@ Pipeline de análisis de los Presupuestos de Canarias 2015-2027. Diseño: `../..
   - La cobertura de programas comparables es del 96,9 % del importe de 2026.
 - ✅ **3 · Carga**: la carga local en DuckDB y CSV está hecha. La de Supabase está **probada contra un PostgreSQL local de prueba; producción todavía no se ha cargado**.
 - ✅ **4 · Análisis**: los cuatro scripts (funciones, secciones, programas, entes) escriben `ana_metricas` (141.723 filas), los insights y las tablas APA. Los CSV de la web ya tienen datos.
-- ✅ **5 · Visualización**: web D3 en `5_visualizacion/` con dos pestañas, Peso (treemap) y Evolución (líneas). Lee los `viz_*.csv`.
+- ✅ **5 · Visualización**: web D3 en `5_visualizacion/` con dos pestañas, Peso (treemap + donut de capítulos) y Evolución (líneas). Lee los `viz_*.csv`.
 - ✅ **Maestro** `00_maestro.py`: ejecuta todo el pipeline siguiendo el DAG de `config/pipeline.yml`. Tiene caché por fase, se detiene si falla una puerta de calidad (*fail-fast*) y guarda un log estructurado. La serie completa tarda unos 50 s, casi todo en las comprobaciones web.
 
 ## Puesta en marcha
@@ -113,6 +113,7 @@ Los pasos se ejecutan en este orden, siempre desde la raíz:
 | `dim_{seccion,funcion,subfuncion,programa,ente}.parquet` | Vigencia, `denominacion_std`, `familia_id`, `comparabilidad` (continua · familia · parcial · subfuncion · pendiente) y `concepto_ced` |
 | `dim_anio.parquet` | IPC, deflactor, población, PIB y ventana de gobierno (`config/legislaturas.yml`) |
 | `fact_seccion_estructura.parquet` | Secciones de cada año en la estructura de consejerías del último año (método de asignación por fila) |
+| `fact_seccion_estructura_detalle.parquet` | El reparto de cada par (sección, programa) a la estructura del último año (`peso_reparto`). Se carga en la base: con él, `v_viz_capitulos` reparte también los capítulos |
 | `fondos_extraordinarios.{parquet,csv}` | Servicios MRR / REACT-EU de la tabla 2.2 |
 | `xwalk_<dim>.parquet` | Enlaces efectivos y su estado (`auto`, `validado`, `pendiente`, `rechazado`, `sin_enlace`) |
 
@@ -156,6 +157,7 @@ Los enlaces `auto` se usan salvo que se rechacen. Los que están en revisión si
   - `viz_meta.csv` sale idéntico desde las dos fuentes.
 
   El test `test_postgres_rls_solo_vistas` se ejecuta si `PG_TEST_URL` apunta a un PostgreSQL de prueba en localhost.
+- **`v_viz_capitulos`** (→ `viz_capitulos.csv`): presupuesto inicial por capítulos 1-9 de cada sección (orgánica y estructura), función, subfunción, ente y par (sección, programa), en euros corrientes con su deflactor. Sale de las tablas 2.11, 2.14, 2.16 y 3.2 del Tomo. La suma de los caps. 1-8 cuadra con el importe del treemap en todas las partidas; la única diferencia es el SCS en 2021 (0,55 M€, un 0,02 %), que viene de las propias tablas 3.1 y 3.2.
 - **Convenciones de `ana_metricas`.** Las vistas de la web dependen de ellas (`ventana`, `incluye_mrr`, `ruta_jerarquia`), que están al principio de `vistas_viz.sql`.
 - **DuckDB 2.0.0 reemplaza cada tabla completa.** El anti-join (`NOT EXISTS`/`EXCEPT`) contra una tabla con clave primaria daba resultados erróneos dentro de una transacción de escritura: la primera carga de `ana_metricas` quedó vacía sin error. Las altas y bajas se cuentan ahora en pandas y se comprueba que se escriben todas las filas. PostgreSQL mantiene el *upsert*.
 
@@ -236,24 +238,28 @@ Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejec
 - `index.html` y `css/odesocan.css`, con la identidad ODESOCAN (Space Grotesk/Inter, paleta teal/navy, modo claro y oscuro).
 - `js/comun.js`: datos, formato es-ES, paleta y tooltip.
 - `js/estado.js`: el estado en la URL.
-- `js/treemap.js` y `js/lineas.js`: los dos gráficos.
+- `js/treemap.js`, `js/donut.js` y `js/lineas.js`: los gráficos.
+- `js/buscador.js`: buscador con lista agrupada (combobox accesible), común a las dos pestañas.
 - `js/app.js`: filtros, tablas, CSV y tema.
 - D3 7.9.0 fijo, desde cdnjs.
 
 **Funcionalidades:**
-- **Filtros.** Van en una sola fila encima de los gráficos:
+- **Pestañas** grandes, con icono y la pregunta que responde cada una; la activa va rellena y señala su contenido.
+- **Filtros.** Van en una sola fila encima de los gráficos. Cada filtro y cada opción explican en una o dos frases qué son y qué hacen al pasar el ratón o llegar con el teclado:
   - dimensión (funciones · secciones · programas · entes);
   - vista (secciones: orgánica / estructura del último año; programas: programa / familia);
   - año, precios (corrientes / constantes 2025) y filtro de gasto social (programas, conceptos CED).
   - El estado se guarda en la URL (`#dim=programas&anio=2026…`) para compartir vistas concretas.
 - **Peso.**
-  - **Jerarquía:** área → función → subfunción; grupo → sección; función → subfunción → programa; tipo → ente.
-  - **Ampliar:** clic en la cabecera de un grupo; las migas de pan permiten volver.
-  - **Color:** por categoría, o por **Δ peso del gobierno actual** (escala divergente rojo · gris · teal centrada en 0).
-  - **Tooltip:** importe, pesos, variación interanual y cambio en la ventana.
+  - **Jerarquía:** función (Sanidad, Educación, Servicios sociales…) → subfunción; grupo → sección; función → subfunción → programa; tipo → ente.
+  - **Ampliar:** clic en una función o en la cabecera de un grupo; las migas de pan permiten volver.
+  - **Color por ámbito de política:** cada sección tiene su color y la función equivalente comparte el mismo (Sanidad: sección 14 y función 31). Cada programa toma el de su sección; si ninguna reúne el 75 % de su gasto, va en gris («varias secciones»). Paleta ampliada de 21 colores validada con `validate_palette.js` en los dos modos (pares contiguos). También se puede colorear por **Δ peso del gobierno actual** (escala divergente rojo · gris · teal centrada en 0).
+  - **Tooltip:** importe, pesos, variación interanual en euros y en %, y cambio en la ventana. Las subidas van en verde con ▲ y las bajadas en rojo con ▼.
+  - **Buscador:** encuentra cualquier partida y la fija. Los programas se agrupan por sección (en orden numérico) y, dentro de cada una, van en orden alfabético; un programa compartido aparece en cada sección.
+  - **Capítulos (donut):** reparto por capítulos 1-8 de lo que se señala (ratón), se fija (clic o buscador) o, sin selección, de todo lo visible. Cada capítulo explica en una frase qué incluye. Si más de la mitad es transferencia corriente (p. ej., Sanidad → Servicio Canario de la Salud), un aviso lo explica y lleva a la dimensión Entes. El cap. 9 se indica aparte.
 - **Evolución.**
-  - **Medidas:** euros, variación % interanual o índice 2015 = 100.
-  - **Partidas:** hasta 7, elegidas con el buscador. Cada una conserva su color al quitar otras.
+  - **Medidas:** euros o variación % interanual.
+  - **Partidas:** hasta 7, elegidas con el buscador (los programas, agrupados por sección). Cada una conserva su color al quitar otras.
   - **Contexto político:** bandas por ventana de gobierno, con la actual destacada.
   - **Honestidad de la serie:** huecos donde la serie no es comparable; tramo discontinuo si el año está en fase de Proyecto.
   - **Tooltip:** una cruceta con todas las series del año.

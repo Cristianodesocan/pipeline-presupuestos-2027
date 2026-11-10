@@ -1,5 +1,5 @@
 /* Pestaña «Evolución»: líneas con bandas de gobierno (§8.4 del diseño).
-   Una sola escala Y. Medidas: euros, variación % interanual o índice 2015 = 100. Huecos (line.defined) donde no hay
+   Una sola escala Y. Medidas: euros o variación % interanual. Huecos (line.defined) donde no hay
    serie comparable; tramo discontinuo en los años en fase de Proyecto. Crosshair que se ajusta al año más cercano. */
 /* global d3 */
 import { anchoTexto, fmt, mostrarTooltip, ocultarTooltip, paleta } from "./comun.js";
@@ -64,11 +64,10 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
   let dom = d3.extent(todos);
   if (medida === "importe") dom = [0, dom[1]];
   if (medida === "var_pct") dom = [Math.min(0, dom[0]), Math.max(0, dom[1])];
-  if (medida === "indice_2015") dom = [Math.min(100, dom[0]), Math.max(100, dom[1])];
   const y = d3.scaleLinear(dom, [alto - m.b, m.t]).nice();
 
   const svg = d3.select(contenedor).append("svg").attr("viewBox", `0 0 ${ancho} ${alto}`).attr("role", "img")
-    .attr("aria-label", `Evolución ${medida === "importe" ? "en euros" : medida === "var_pct" ? "de la variación interanual" : "del índice 2015 = 100"} de ${series.length} partidas. Usa «Ver tabla» para leer los valores.`);
+    .attr("aria-label", `Evolución ${medida === "importe" ? "en euros" : "de la variación interanual"} de ${series.length} partidas. Usa «Ver tabla» para leer los valores.`);
 
   // bandas de gobierno
   const bandas = svg.append("g");
@@ -88,7 +87,7 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
       .style("font", fuente).style("letter-spacing", ".08em").text(texto);
   }
   // rejilla y ejes (líneas finas, sólidas, recesivas)
-  const fmtEje = medida === "importe" ? fmt.meurEje : medida === "var_pct" ? (v) => `${fmt.entero(v)} %` : fmt.entero;
+  const fmtEje = medida === "importe" ? fmt.meurEje : (v) => `${fmt.entero(v)} %`;
   const gy = svg.append("g").attr("transform", `translate(${m.l},0)`)
     .call(d3.axisLeft(y).ticks(estrecho ? 5 : 6).tickSize(-(ancho - m.l - m.r)).tickFormat(fmtEje));
   gy.select(".domain").remove();
@@ -96,7 +95,7 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
   gy.selectAll("text").attr("fill", pal.muted).style("font", "400 11px Inter").style("font-variant-numeric", "tabular-nums");
   if (medida === "importe") svg.append("text").attr("x", m.l - 8).attr("y", m.t - 22 < 0 ? 10 : 12).attr("text-anchor", "end")
     .attr("fill", pal.muted).style("font", "400 11px Inter").text("M€");
-  const ref = medida === "var_pct" ? 0 : medida === "indice_2015" ? 100 : null;
+  const ref = medida === "var_pct" ? 0 : null;
   if (ref != null) svg.append("line").attr("x1", m.l).attr("x2", ancho - m.r).attr("y1", y(ref)).attr("y2", y(ref))
     .attr("stroke", pal.muted).attr("stroke-width", 1);
   const paso = estrecho ? 2 : 1;
@@ -129,7 +128,7 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
   // crosshair + tooltip con todas las series del año
   const guia = svg.append("line").attr("y1", m.t - 18).attr("y2", alto - m.b).attr("stroke", pal.muted).attr("stroke-width", 1).style("display", "none");
   const marcas = svg.append("g");
-  const unidadV = medida === "importe" ? fmt.meur : medida === "var_pct" ? fmt.var : fmt.num;
+  const unidadV = medida === "importe" ? fmt.meur : fmt.var;
   svg.append("rect").attr("x", m.l).attr("y", m.t - 18).attr("width", ancho - m.l - m.r).attr("height", alto - m.b - m.t + 18)
     .attr("fill", "transparent").style("cursor", "crosshair")
     .on("pointermove", (e) => {

@@ -68,3 +68,68 @@ UNION ALL
 SELECT 'carga', 'ultima_carga', CAST(NULL AS BIGINT), CAST(NULL AS BIGINT),
        'Fecha de la última carga', CAST(MAX(cargado_en) AS TEXT)
 FROM {esquema}.carga_registro;
+
+-- Desglose por capítulos (clasificación económica) del donut de la pestaña «Peso».
+-- Presupuesto inicial de la serie oficial en euros corrientes; constantes = corrientes × deflactor del año.
+-- La web suma los caps. 1-8 (mismo perímetro que el treemap) y muestra el cap. 9 aparte.
+--   programa / seccion          un par (sección, programa) de la tabla 2.16: la web agrega por programa (id_estable)
+--                               o por familia (id_grupo) y colorea cada programa por su sección
+--   seccion / organica          tabla 2.11
+--   seccion / estructura_<T>    pares de 2.16 repartidos como en retroproyectar_secciones.py
+--   funcion, subfuncion         tabla 2.14; la función de cada subfunción es la de ana_metricas (id_grupo)
+--   ente                        tabla 3.2, suma de los programas de cada ente
+CREATE OR REPLACE VIEW {esquema}.v_viz_capitulos AS
+WITH cap AS (
+  SELECT anio, fase, tabla, codigo_unidad, codigo_padre, id_estable, familia_id, id_padre, capitulo,
+         importe_corriente, deflactor
+  FROM {esquema}.fact_presupuesto
+  WHERE serie_oficial AND version_importe = 'inicial' AND capitulo <> 'TOTAL'
+    AND tabla IN ('secc_prog_cap', 'secciones_cap', 'subfunciones_cap', 'entes_prog_cap')
+),
+subfuncion_padre AS (
+  SELECT DISTINCT id_estable, anio, padre_id
+  FROM {esquema}.ana_metricas
+  WHERE dimension = 'subfuncion' AND ventana = 'anual' AND metrica = 'importe' AND incluye_mrr = 'si'
+),
+filas AS (
+  SELECT 'programa' AS dimension, 'seccion' AS vista, anio, fase, id_estable, familia_id AS id_grupo,
+         codigo_padre AS seccion, capitulo, importe_corriente, deflactor
+  FROM cap WHERE tabla = 'secc_prog_cap'
+  UNION ALL
+  SELECT 'seccion', 'organica', anio, fase, id_estable, CAST(NULL AS TEXT), codigo_unidad, capitulo, importe_corriente, deflactor
+  FROM cap WHERE tabla = 'secciones_cap'
+  UNION ALL
+  SELECT 'seccion', e.vista, c.anio, c.fase, e.seccion_destino, CAST(NULL AS TEXT), e.seccion_destino, c.capitulo,
+         c.importe_corriente * e.peso_reparto, c.deflactor
+  FROM cap c
+  JOIN {esquema}.fact_seccion_estructura_detalle e
+    ON e.anio = c.anio AND e.seccion_origen = c.codigo_padre AND e.programa = c.codigo_unidad
+  WHERE c.tabla = 'secc_prog_cap'
+  UNION ALL
+  SELECT 'subfuncion', 'individual', c.anio, c.fase, c.id_estable, p.padre_id, CAST(NULL AS TEXT), c.capitulo,
+         c.importe_corriente, c.deflactor
+  FROM cap c LEFT JOIN subfuncion_padre p ON p.id_estable = c.id_estable AND p.anio = c.anio
+  WHERE c.tabla = 'subfunciones_cap'
+  UNION ALL
+  SELECT 'funcion', 'individual', c.anio, c.fase, p.padre_id, CAST(NULL AS TEXT), CAST(NULL AS TEXT), c.capitulo,
+         c.importe_corriente, c.deflactor
+  FROM cap c JOIN subfuncion_padre p ON p.id_estable = c.id_estable AND p.anio = c.anio
+  WHERE c.tabla = 'subfunciones_cap'
+  UNION ALL
+  SELECT 'ente', 'individual', anio, fase, id_padre, CAST(NULL AS TEXT), CAST(NULL AS TEXT), capitulo, importe_corriente, deflactor
+  FROM cap WHERE tabla = 'entes_prog_cap'
+)
+SELECT dimension, vista, anio, fase, id_estable, id_grupo, seccion,
+       SUM(CASE WHEN capitulo = '1' THEN importe_corriente ELSE 0 END) AS cap_1,
+       SUM(CASE WHEN capitulo = '2' THEN importe_corriente ELSE 0 END) AS cap_2,
+       SUM(CASE WHEN capitulo = '3' THEN importe_corriente ELSE 0 END) AS cap_3,
+       SUM(CASE WHEN capitulo = '4' THEN importe_corriente ELSE 0 END) AS cap_4,
+       SUM(CASE WHEN capitulo = '6' THEN importe_corriente ELSE 0 END) AS cap_6,
+       SUM(CASE WHEN capitulo = '7' THEN importe_corriente ELSE 0 END) AS cap_7,
+       SUM(CASE WHEN capitulo = '8' THEN importe_corriente ELSE 0 END) AS cap_8,
+       SUM(CASE WHEN capitulo = '9' THEN importe_corriente ELSE 0 END) AS cap_9,
+       MAX(deflactor) AS deflactor
+FROM filas
+WHERE id_estable IS NOT NULL
+GROUP BY dimension, vista, anio, fase, id_estable, id_grupo, seccion
+HAVING SUM(ABS(importe_corriente)) > 0;

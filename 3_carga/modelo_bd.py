@@ -48,6 +48,12 @@ TABLAS = {
         "origen": "fact_seccion_estructura", "clave": ["vista", "anio", "seccion_destino", "metodo"],
         "columnas": {"vista": "txt", "anio": "int", "seccion_destino": "txt", "denominacion_destino": "txt",
                      "metodo": "txt", "n_pares": "int", "importe_corriente": "num", "importe_constante": "num"}},
+    # Reparto de cada par (sección, programa) a la estructura del último año: lo usa v_viz_capitulos.
+    "fact_seccion_estructura_detalle": {
+        "origen": "fact_seccion_estructura_detalle",
+        "clave": ["vista", "anio", "seccion_origen", "programa", "seccion_destino"],
+        "columnas": {"vista": "txt", "anio": "int", "seccion_origen": "txt", "programa": "txt", "seccion_destino": "txt",
+                     "familia_id": "txt", "metodo": "txt", "peso_reparto": "num", "importe_corriente": "num"}},
     "xwalk": {
         "origen": [f"xwalk_{d}" for d in ("seccion", "funcion", "subfuncion", "programa", "ente")],
         "clave": ["dimension", "anio_origen", "codigo_origen", "anio_destino", "codigo_destino", "tipo_enlace"],
