@@ -1,5 +1,6 @@
 /* Estado de la vista en la URL (#tab=peso&dim=programas&anio=2026&precios=constantes&foco=P312F_2015…)
-   para compartir vistas concretas. */
+   para compartir vistas concretas. Incrustada, el estado se comunica también a la página (su enlace lo conserva). */
+import { comunicarEstado } from "./incrustar.js";
 
 const POR_DEFECTO = { tab: "peso", dim: "funciones", vista: "", anio: "", precios: "corrientes", color: "categoria",
   medida: "importe", social: "0", zoom: "", sel: "", foco: "", desde: "", hasta: "", paso: "" };
@@ -40,4 +41,5 @@ export function escribirEstado(e) {
   }
   const h = p.toString();
   history.replaceState(null, "", h ? `#${h}` : location.pathname + location.search);
+  comunicarEstado(h);
 }

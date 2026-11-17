@@ -1,6 +1,6 @@
 /* Orquestación: filtros (una fila, encima de todo) con ayuda emergente, pestañas, estado en la URL, buscadores,
    donut de capítulos enlazado al treemap (con «Sigue el dinero» y la composición año a año), ranking de cambios,
-   recorrido guiado, tablas, CSV y tema. */
+   recorrido guiado, tablas, CSV, filtros plegables en móvil y modo incrustado (bloque Divi). */
 /* global d3 */
 import { crearBuscador } from "./buscador.js";
 import {
@@ -9,6 +9,7 @@ import {
 } from "./comun.js";
 import { pintarComposicion, pintarDonut, sumarCapitulos } from "./donut.js";
 import { escribirEstado, estadoBase, leerEstado } from "./estado.js";
+import { desplazarElemento, iniciarIncrustacion } from "./incrustar.js";
 import { calcularFlujo, pintarFlujo } from "./flujo.js";
 import { candidatas, filasSeries, FORMATO_MEDIDA, MAX_SERIES, pintarLineas } from "./lineas.js";
 import { calcularRanking, pintarRanking } from "./ranking.js";
@@ -19,27 +20,22 @@ const $ = (id) => document.getElementById(id);
 const estado = leerEstado();
 let datos, cfg, seriesPintadas = [], senalado = null, modoComp = "eur", pasos = [];
 const mayuscula = (t) => t[0].toUpperCase() + t.slice(1);
-const desplazarA = (id) => requestAnimationFrame(() => {
-  const el = $(id);
-  if (el) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-});
+const desplazarA = (id) => requestAnimationFrame(() => desplazarElemento($(id)));
+iniciarIncrustacion();
 
-/* ---------- tema (preferencia del sistema o elección guardada) */
-function aplicarTema(t) {
-  if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme;
-  const oscuro = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  $("tema").textContent = oscuro ? "Modo claro" : "Modo oscuro";
-}
-try { aplicarTema(localStorage.getItem("tema-presupuestos")); } catch { aplicarTema(null); }
-$("tema").addEventListener("click", () => {
-  const oscuro = document.documentElement.dataset.theme
-    ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  const nuevo = oscuro ? "light" : "dark";
-  try { localStorage.setItem("tema-presupuestos", nuevo); } catch { /* sin almacenamiento: solo esta sesión */ }
-  aplicarTema(nuevo);
-  pintar();
+/* ---------- filtros plegables (solo se ve el botón en móvil): el botón resume la selección actual */
+$("filtros-boton").addEventListener("click", () => {
+  const abrir = $("filtros").classList.toggle("plegado") === false;
+  $("filtros-boton").setAttribute("aria-expanded", abrir);
 });
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { aplicarTema(document.documentElement.dataset.theme); pintar(); });
+function resumirFiltros() {
+  const visible = (el) => !el.closest("[hidden]");
+  const partes = [...$("filtros").querySelectorAll('input[type="radio"]:checked')].filter(visible)
+    .map((i) => textoPropio(i.closest("label")));
+  if (visible($("anio")) && $("anio").selectedOptions[0]) partes.splice(1, 0, $("anio").selectedOptions[0].textContent);
+  if ($("social").checked && visible($("social"))) partes.push("Solo gasto social");
+  $("filtros-resumen").textContent = partes.join(" · ");
+}
 
 /* ---------- ayudas de los filtros: 1-2 frases al pasar el ratón o al llegar con el teclado */
 const AYUDA_VISTA = {
@@ -103,6 +99,7 @@ function prepararControles() {
     $(id).setAttribute("aria-selected", activa); $(id).tabIndex = activa ? 0 : -1;
   }
   $("panel-peso").hidden = !peso; $("panel-evolucion").hidden = peso;
+  resumirFiltros();
 }
 
 $("filtros").addEventListener("change", (e) => {

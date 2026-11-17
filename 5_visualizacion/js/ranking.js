@@ -41,32 +41,40 @@ export function pintarRanking({ contenedor, res, desde, hasta, enLineas, alElegi
     contenedor.append(p); return;
   }
   const ancho = Math.max(300, contenedor.clientWidth), estrecho = ancho < 640;
-  const colNombre = Math.min(estrecho ? ancho * 0.42 : 330, ancho * 0.42), colValor = estrecho ? 70 : 150;
-  const x0 = colNombre + 8, x1 = ancho - colValor - 8, centro = (x0 + x1) / 2;
+  // escritorio: nombre a la izquierda, barra divergente en el centro y cifra a la derecha (una fila por partida);
+  // móvil (vertical): el nombre ocupa su propia línea, a todo lo ancho, y debajo van la barra y la cifra
+  const colNombre = estrecho ? 0 : Math.min(330, ancho * 0.42), colValor = estrecho ? 92 : 170;
+  const x0 = estrecho ? 0 : colNombre + 8, x1 = ancho - colValor - 8, centro = (x0 + x1) / 2;
   const max = d3.max([...res.suben, ...res.bajan], (d) => Math.abs(d.dif));
   const k = (x1 - x0) / 2 / max;
-  const fila = 26, cab = 26;
+  const fila = estrecho ? 52 : 32, cab = 32, hBarra = 16;
+  const yBarra = estrecho ? 26 : (fila - hBarra) / 2, yTexto = estrecho ? 17 : fila / 2 + 5;
   const bloques = [["Más suben", res.suben], ["Más bajan", res.bajan]].filter(([, l]) => l.length);
   const alto = d3.sum(bloques, ([, l]) => cab + l.length * fila) + 6;
   const svg = d3.select(contenedor).append("svg").attr("viewBox", `0 0 ${ancho} ${alto}`).attr("role", "img")
     .attr("aria-label", `Partidas que más suben y más bajan entre ${desde} y ${hasta}. Usa «Ver tabla» del gráfico 3 para las series.`);
-  svg.append("line").attr("x1", centro).attr("x2", centro).attr("y1", 0).attr("y2", alto).attr("stroke", pal.muted);
+  // eje del cero: línea continua en escritorio; en móvil, un tramo por fila para no tachar los nombres
+  if (!estrecho) svg.append("line").attr("x1", centro).attr("x2", centro).attr("y1", 0).attr("y2", alto).attr("stroke", pal.muted);
   let y = 0;
   for (const [titulo, lista] of bloques) {
-    svg.append("text").attr("x", 0).attr("y", y + 17).attr("fill", pal.muted).style("font", "700 10.5px 'Space Grotesk'")
+    svg.append("text").attr("x", 0).attr("y", y + 20).attr("fill", pal.muted).style("font", "700 12px 'Space Grotesk'")
       .style("letter-spacing", ".1em").text(titulo.toUpperCase());
     y += cab;
     const g = svg.append("g").selectAll("g").data(lista).join("g").attr("transform", (d, i) => `translate(0,${y + i * fila})`)
       .style("cursor", "pointer").attr("tabindex", 0).attr("role", "button")
       .attr("aria-label", (d) => `${d.etiqueta}: ${fmt.meurSigno(d.dif)} (${fmt.var(d.pct)}). ${enLineas.has(d.id) ? "Ya está en el gráfico de líneas." : "Intro para añadirla al gráfico de líneas."}`);
     g.append("rect").attr("x", 0).attr("y", 0).attr("width", ancho).attr("height", fila).attr("fill", "transparent");
-    g.append("text").attr("x", colNombre).attr("y", fila / 2 + 4).attr("text-anchor", "end").attr("fill", pal.text)
-      .style("font", (d) => `${enLineas.has(d.id) ? 700 : 400} 12px Inter`).text((d) => corta(d.etiqueta, colNombre, "400 12px Inter"));
-    g.append("rect").attr("x", (d) => (d.dif > 0 ? centro : centro + d.dif * k)).attr("y", (fila - 14) / 2)
-      .attr("width", (d) => Math.max(1, Math.abs(d.dif) * k)).attr("height", 14).attr("rx", 3)
+    if (estrecho) g.append("line").attr("x1", centro).attr("x2", centro).attr("y1", yBarra - 4).attr("y2", yBarra + hBarra + 4)
+      .attr("stroke", pal.muted);
+    const fuenteNombre = (d) => `${enLineas.has(d.id) ? 700 : 400} 14px Inter`;
+    g.append("text").attr("x", estrecho ? 0 : colNombre).attr("y", yTexto).attr("text-anchor", estrecho ? "start" : "end")
+      .attr("fill", pal.text).style("font", fuenteNombre)
+      .text((d) => corta(d.etiqueta, estrecho ? ancho : colNombre, fuenteNombre(d)));
+    g.append("rect").attr("x", (d) => (d.dif > 0 ? centro : centro + d.dif * k)).attr("y", yBarra)
+      .attr("width", (d) => Math.max(1, Math.abs(d.dif) * k)).attr("height", hBarra).attr("rx", 3)
       .attr("fill", (d) => (d.dif > 0 ? verde : rojo));
-    g.append("text").attr("x", ancho).attr("y", fila / 2 + 4).attr("text-anchor", "end")
-      .attr("fill", (d) => (d.dif > 0 ? verde : rojo)).style("font", "600 12px Inter").style("font-variant-numeric", "tabular-nums")
+    g.append("text").attr("x", ancho).attr("y", yBarra + hBarra / 2 + 5).attr("text-anchor", "end")
+      .attr("fill", (d) => (d.dif > 0 ? verde : rojo)).style("font", "600 14px Inter").style("font-variant-numeric", "tabular-nums")
       .text((d) => (estrecho ? fmt.meurSigno(d.dif) : `${fmt.meurSigno(d.dif)} · ${fmt.var(d.pct)}`));
     g.on("pointerenter focus", (e, d) => mostrarTooltip(e, d.etiqueta, [[`${desde}`, fmt.meur(d.v0)], [`${hasta}`, fmt.meur(d.v1)],
       ["Diferencia", fmt.meurSigno(d.dif), null, tono(d.dif)], ["Variación", fmt.var(d.pct), null, tono(d.pct)]],

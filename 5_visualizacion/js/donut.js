@@ -41,9 +41,9 @@ export function pintarDonut({ contenedor, nota, caps, faltan, n }) {
   const sectores = svg.append("g").selectAll("path").data(arcos.filter((a) => a.value > 0)).join("path")
     .attr("d", arco).attr("fill", (a) => a.data.color).attr("stroke", pal.surface).attr("stroke-width", 2);
   svg.append("text").attr("text-anchor", "middle").attr("y", -4).attr("fill", pal.strong)
-    .style("font", "700 22px 'Space Grotesk'").text(fmt.meur(total));
-  svg.append("text").attr("text-anchor", "middle").attr("y", 18).attr("fill", pal.muted)
-    .style("font", "400 12px Inter").text("capítulos 1-8");
+    .style("font", "700 24px 'Space Grotesk'").text(fmt.meur(total));
+  svg.append("text").attr("text-anchor", "middle").attr("y", 20).attr("fill", pal.muted)
+    .style("font", "400 14px Inter").text("capítulos 1-8");
 
   const lista = document.createElement("ul"); lista.className = "lista-caps";
   const items = partes.map((p) => {
@@ -103,8 +103,8 @@ export function pintarComposicion({ contenedor, serie, anioSel, modo, fases, alE
   }
   const pct = modo === "pct";
   const ancho = Math.max(300, contenedor.clientWidth), estrecho = ancho < 640;
-  const alto = estrecho ? 230 : 270;
-  const m = { t: 26, r: 8, b: 30, l: pct ? 44 : 58 };
+  const alto = estrecho ? 270 : 290;
+  const m = { t: 28, r: 8, b: 44, l: pct ? 50 : 64 };
   const x = d3.scaleBand(filas.map((f) => f.anio), [m.l, ancho - m.r]).paddingInner(0.35).paddingOuter(0.15);
   const bw = Math.min(24, x.bandwidth());
   const y = d3.scaleLinear([0, pct ? 100 : d3.max(filas, (f) => f.total)], [alto - m.b, m.t]).nice();
@@ -114,16 +114,16 @@ export function pintarComposicion({ contenedor, serie, anioSel, modo, fases, alE
     .call(d3.axisLeft(y).ticks(estrecho ? 4 : 5).tickSize(-(ancho - m.l - m.r)).tickFormat(pct ? (v) => `${v} %` : fmt.meurEje));
   gy.select(".domain").remove();
   gy.selectAll("line").attr("stroke", pal.grid);
-  gy.selectAll("text").attr("fill", pal.muted).style("font", "400 11px Inter").style("font-variant-numeric", "tabular-nums");
+  gy.selectAll("text").attr("fill", pal.muted).style("font", "400 13px Inter").style("font-variant-numeric", "tabular-nums");
   if (!pct) svg.append("text").attr("x", m.l - 8).attr("y", 10).attr("text-anchor", "end").attr("fill", pal.muted)
-    .style("font", "400 11px Inter").text("M€");
+    .style("font", "400 13px Inter").text("M€");
   const paso = estrecho ? 2 : 1, ult = filas[filas.length - 1].anio;
   const gx = svg.append("g").attr("transform", `translate(0,${alto - m.b})`)
     .call(d3.axisBottom(x).tickValues(filas.map((f) => f.anio).filter((a) => (ult - a) % paso === 0))
       .tickFormat((a) => `${a}${fases.get(a) === "proyecto" ? "*" : ""}`).tickSize(0).tickPadding(8));
   gx.select(".domain").attr("stroke", pal.muted);
   gx.selectAll("text").attr("fill", (a) => (a === anioSel ? pal.strong : pal.muted))
-    .style("font", (a) => (a === anioSel ? "700 11px Inter" : "400 11px Inter"));
+    .style("font", (a) => (a === anioSel ? "700 13px Inter" : "400 13px Inter"));
 
   const columnas = svg.append("g").selectAll("g").data(filas).join("g")
     .attr("transform", (f) => `translate(${x(f.anio) + (x.bandwidth() - bw) / 2},0)`);
@@ -137,7 +137,7 @@ export function pintarComposicion({ contenedor, serie, anioSel, modo, fases, alE
         .attr("fill", pal.series[i]).attr("stroke", pal.surface).attr("stroke-width", 1);
       acc += h;
     });
-    if (f.anio === anioSel) g.append("path").attr("d", `M${bw / 2 - 5},${alto - m.b + 22} l5,-6 l5,6 z`).attr("fill", pal.strong);
+    if (f.anio === anioSel) g.append("path").attr("d", `M${bw / 2 - 5},${alto - m.b + 36} l5,-6 l5,6 z`).attr("fill", pal.strong);
   });
   // capa de lectura: toda la franja del año es zona activa (más grande que la columna)
   svg.append("g").selectAll("rect").data(filas).join("rect")

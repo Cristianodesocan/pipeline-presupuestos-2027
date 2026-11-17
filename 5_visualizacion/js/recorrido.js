@@ -9,6 +9,9 @@ const fila = (datos, dim, vista, anio, pred) => datos.treemap.find((d) => d.dime
   && d.precios === "corrientes" && d.id_estable !== "__total__" && pred(d));
 const pctCap = (caps, n) => { const t = d3.sum(CAPITULOS, (c) => caps[c.n] || 0); return t ? (100 * (caps[n] || 0)) / t : null; };
 
+/** Pantalla estrecha o sin ratón: los textos hablan de tocar, no de pasar el ratón (el gráfico 1 es una lista). */
+const tactil = () => window.innerWidth < 640 || matchMedia("(hover: none)").matches;
+
 export function construirPasos(datos) {
   const ley = datos.ultimaLey, primero = datos.anios[0], { base, fin } = datos.ventanaActual;
   const finTxt = `${fin}${datos.fases.get(fin) === "proyecto" ? " (Proyecto)" : ""}`;
@@ -23,7 +26,7 @@ export function construirPasos(datos) {
       texto: `En ${ley}, Sanidad (${fmt.pct(san.peso_total_pct)}) y Educación (${fmt.pct(edu.peso_total_pct)}) suman el ${fmt.pct(suma)} `
         + `del gasto de la Comunidad (capítulos 1-8)`
         + (tra && soc ? `; les siguen las transferencias a otras administraciones (${fmt.pct(tra.peso_total_pct)}) y los servicios sociales (${fmt.pct(soc.peso_total_pct)}).` : ".")
-        + " Pasa el ratón por cada rectángulo para ver su detalle.",
+        + (tactil() ? " Toca cada fila para ver su reparto por capítulos." : " Pasa el ratón por cada rectángulo para ver su detalle."),
       estado: { tab: "peso", dim: "funciones", anio: String(ley) }, destino: "panel-peso" });
   }
   // 2. la Consejería de Sanidad transfiere: sigue el dinero
@@ -53,7 +56,7 @@ export function construirPasos(datos) {
     pasos.push({ titulo: "¿Qué ha cambiado con el gobierno actual?",
       texto: `Entre ${base} y ${finTxt}, lo que más crece en euros es ${s.etiqueta} (${fmt.meurSigno(s.dif)}, ${fmt.var(s.pct)})`
         + (b ? ` y lo que más baja, ${b.etiqueta} (${fmt.meurSigno(b.dif)}).` : "; ninguna función baja.")
-        + " Haz clic en una barra para añadirla al gráfico de líneas.",
+        + ` ${tactil() ? "Toca" : "Haz clic en"} una barra para añadirla al gráfico de líneas.`,
       estado: { tab: "evolucion", dim: "funciones", desde: String(base), hasta: String(fin) }, destino: "card-ranking" });
   }
   // 5. por habitante y sin inflación

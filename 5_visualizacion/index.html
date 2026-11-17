@@ -3,6 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <script>
+    // Incrustada en la web (iframe del bloque Divi) o con ?incrustada: sin fondo ni pie, y la altura la ajusta la página.
+    try { if (window.self !== window.top || /[?&]incrustada\b/.test(location.search)) document.documentElement.classList.add("incrustada"); }
+    catch (e) { document.documentElement.classList.add("incrustada"); }
+  </script>
   <title>Presupuestos de Canarias 2015-2027</title>
   <meta name="description" content="Peso y evolución del gasto de la Comunidad Autónoma de Canarias por funciones, secciones, programas y entes. ODESOCAN.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +21,7 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="marca">
-        <!-- Símbolo oficial en negativo (mitad oscura en blanco): la cabecera es azul marino en los dos modos -->
-        <img class="marca-logo" src="img/odesocan-simbolo-negativo.svg" width="36" height="32" alt="">
+        <img class="marca-logo" src="img/odesocan-simbolo.svg" width="38" height="34" alt="">
         Odesocan · Observatorio de Derechos Sociales de Canarias
       </div>
       <h1>Presupuestos de Canarias: <em>a qué se destina</em> el gasto y cómo cambia con cada gobierno</h1>
@@ -27,7 +32,6 @@
         <button class="hero-recorrido" id="abrir-recorrido" type="button">▶ Recorrido guiado: 5 claves del presupuesto</button>
       </div>
     </div>
-    <button class="tema" id="tema" type="button" aria-label="Cambiar entre modo claro y oscuro">Modo oscuro</button>
   </header>
 
   <main>
@@ -43,7 +47,11 @@
     </div>
 
     <!-- Una sola fila de filtros, encima de todo lo que filtran. Cada filtro y opción lleva su ayuda (data-ayuda). -->
-    <form class="filtros" id="filtros" onsubmit="return false" aria-label="Filtros">
+    <!-- En móvil los filtros se pliegan tras este botón, que resume la selección -->
+    <button class="filtros-boton" id="filtros-boton" type="button" aria-expanded="false" aria-controls="filtros">
+      Filtros <span class="resumen" id="filtros-resumen"></span><span class="flecha" aria-hidden="true"></span>
+    </button>
+    <form class="filtros plegado" id="filtros" onsubmit="return false" aria-label="Filtros">
       <div class="campo"><span class="campo-t" tabindex="0" data-ayuda="Elige con qué criterio se reparte el gasto: para qué se gasta (funciones), quién lo gasta (secciones), en qué actuación concreta (programas) o qué organismo con presupuesto propio (entes).">Dimensión <i class="info" aria-hidden="true">i</i></span>
         <div class="seg" role="radiogroup" aria-label="Dimensión">
           <label data-ayuda="Para qué se gasta: sanidad, educación, servicios sociales, empleo, vivienda… Agrupa el gasto por la política pública a la que sirve, la gestione quien la gestione."><input type="radio" name="dim" value="funciones" checked>Funciones</label>

@@ -3,7 +3,7 @@
    El Tomo 3 no publica el destinatario de cada transferencia: el enlace es por subfunción (3 primeras cifras del
    programa) y se dice así en el gráfico. Barras a la misma escala en euros; capítulos con los colores del donut. */
 /* global d3 */
-import { CAPITULOS, codigoFuncion, codigoSeccion, fmt, mostrarTooltip, moverTooltip, ocultarTooltip, paleta, tintaSobre } from "./comun.js";
+import { anchoTexto, CAPITULOS, codigoFuncion, codigoSeccion, fmt, mostrarTooltip, moverTooltip, ocultarTooltip, paleta, tintaSobre } from "./comun.js";
 
 const DIRECTOS = [1, 2, 3, 6, 8], TRANSFERENCIAS = [4, 7];
 const caps18 = (d, f) => Object.fromEntries(CAPITULOS.map((c) => [c.n, (d[`cap_${c.n}`] || 0) * f]));
@@ -73,15 +73,20 @@ export function pintarFlujo({ contenedor, flujo, caps, nombre, datos, alIrAEnte 
   const total = d3.sum(CAPITULOS, (c) => Math.max(0, caps[c.n] || 0));
   const color = new Map(CAPITULOS.map((c, i) => [c.n, pal.series[i]]));
   const ancho = Math.max(300, contenedor.clientWidth), estrecho = ancho < 640;
-  const m = { l: 0, r: 0 }, H = 18, fila = 46;
+  const m = { l: 0, r: 0 }, H = 20, fila = 54;
   const maximo = d3.max([total, ...flujo.entes.map((o) => o.gasto), flujo.otros]);
   const k = (ancho - m.l - m.r) / maximo;
-  const alto = fila + 40 + flujo.entes.length * fila + (flujo.otros > 0.5e6 ? fila : 0) + 4;
+  const alto = fila + 44 + flujo.entes.length * fila + (flujo.otros > 0.5e6 ? fila : 0) + 4;
   const svg = d3.select(contenedor).append("svg").attr("viewBox", `0 0 ${ancho} ${alto}`).attr("role", "img")
     .attr("aria-label", `${nombre}: ${fmt.meur(total)}, de los que ${fmt.meur(flujo.transf)} son transferencias. `
       + flujo.entes.map((o) => `${datos.nombreEnte(o.id)} gasta ${fmt.meur(o.gasto)} en las mismas subfunciones`).join("; ") + ".");
-  const etiqueta = (y, texto, peso = 600) => svg.append("text").attr("x", 0).attr("y", y).attr("fill", pal.text)
-    .style("font", `${peso} 12.5px Inter`).text(texto);
+  // rótulo de una línea: si no cabe en el ancho (móvil), se recorta con «…» (el tooltip lleva el texto completo)
+  const etiqueta = (y, texto, peso = 600) => {
+    const fuente = `${peso} 14px Inter`;
+    let t = texto;
+    while (t.length > 4 && anchoTexto(t, fuente) > ancho) t = t.slice(0, -2).trimEnd() + "…";
+    return svg.append("text").attr("x", 0).attr("y", y).attr("fill", pal.text).style("font", fuente).text(t);
+  };
   const barra = (y, orden, valores, alPasar, base) => {
     let x = m.l;
     const g = svg.append("g");
@@ -92,9 +97,9 @@ export function pintarFlujo({ contenedor, flujo, caps, nombre, datos, alIrAEnte 
         .attr("stroke", pal.surface).attr("stroke-width", 1);
       // rótulo dentro del segmento solo si cabe: «Cap. 1 · 55 %» o «55 %»
       const p = fmt.pct((100 * valores[n]) / base, 0), largo = `Cap. ${n} · ${p}`;
-      const txt = w >= largo.length * 6.4 + 10 ? largo : w >= p.length * 6.4 + 8 ? p : null;
+      const txt = w >= anchoTexto(largo, "600 13px Inter") + 10 ? largo : w >= anchoTexto(p, "600 13px Inter") + 8 ? p : null;
       if (txt) g.append("text").attr("x", x + 5).attr("y", y + H / 2 + 4).attr("fill", tintaSobre(color.get(n)))
-        .style("font", "600 11px Inter").style("pointer-events", "none").text(txt);
+        .style("font", "600 13px Inter").style("pointer-events", "none").text(txt);
       x += w;
     }
     if (alPasar) g.style("cursor", "pointer").on("pointerenter", alPasar).on("pointermove", moverTooltip).on("pointerleave", ocultarTooltip);
@@ -105,32 +110,32 @@ export function pintarFlujo({ contenedor, flujo, caps, nombre, datos, alIrAEnte 
 
   // 1. lo seleccionado: primero lo que gasta directamente, después lo que transfiere
   const directo = d3.sum(DIRECTOS, (n) => caps[n] || 0), transfiere = d3.sum(TRANSFERENCIAS, (n) => caps[n] || 0);
-  etiqueta(13, estrecho ? `${nombre} · ${fmt.meur(total)}` : `${nombre} · ${fmt.meur(total)}: gasta directamente ${fmt.meur(directo)} `
+  etiqueta(15, estrecho ? `${nombre} · ${fmt.meur(total)}` : `${nombre} · ${fmt.meur(total)}: gasta directamente ${fmt.meur(directo)} `
     + `y transfiere ${fmt.meur(transfiere)} (${fmt.pct((100 * transfiere) / total)})`);
-  barra(20, [...DIRECTOS, ...TRANSFERENCIAS], caps, (e) => mostrarTooltip(e, nombre, filasCaps(caps, total)), total);
+  barra(22, [...DIRECTOS, ...TRANSFERENCIAS], caps, (e) => mostrarTooltip(e, nombre, filasCaps(caps, total)), total);
   const tx0 = m.l + directo * k, tx1 = tx0 + transfiere * k;
-  svg.append("path").attr("d", `M${tx0},${20 + H + 4} v4 H${tx1} v-4`).attr("fill", "none").attr("stroke", pal.muted);
+  svg.append("path").attr("d", `M${tx0},${22 + H + 4} v4 H${tx1} v-4`).attr("fill", "none").attr("stroke", pal.muted);
   // 2. conector: de las transferencias a los entes que gastan en las mismas subfunciones
-  const y2 = fila + 40;
+  const y2 = fila + 44;
   if (flujo.entes.length) {
     const ex1 = m.l + d3.max(flujo.entes, (o) => o.gasto) * k;
-    svg.insert("path", ":first-child").attr("d", `M${tx0},${20 + H + 8} L${tx1},${20 + H + 8} L${ex1},${y2 - 6} L${m.l},${y2 - 6} Z`)
+    svg.insert("path", ":first-child").attr("d", `M${tx0},${22 + H + 8} L${tx1},${22 + H + 8} L${ex1},${y2 - 6} L${m.l},${y2 - 6} Z`)
       .attr("fill", pal.band).attr("stroke", "none");
-    svg.append("text").attr("x", Math.max(4, Math.min(ancho - 4, (tx0 + tx1) / 2))).attr("y", 20 + H + 22)
-      .attr("text-anchor", (tx0 + tx1) / 2 > ancho * 0.6 ? "end" : "middle").attr("fill", pal.muted).style("font", "400 11.5px Inter")
-      .text("Entes que gastan en las mismas subfunciones ↓");
+    svg.append("text").attr("x", estrecho ? 0 : Math.max(4, Math.min(ancho - 4, (tx0 + tx1) / 2))).attr("y", 22 + H + 24)
+      .attr("text-anchor", estrecho ? "start" : (tx0 + tx1) / 2 > ancho * 0.6 ? "end" : "middle").attr("fill", pal.muted).style("font", "400 13px Inter")
+      .text(estrecho ? "Entes que gastan en lo mismo ↓" : "Entes que gastan en las mismas subfunciones ↓");
   }
   flujo.entes.forEach((o, i) => {
     const y = y2 + i * fila;
     const sfs = [...o.sfs.keys()].sort();
     const sfTxt = sfs.length === 1 ? `subfunción ${sfs[0]} ${datos.nombreSubfuncion(sfs[0])}` : `subfunciones ${sfs.join(", ")}`;
-    etiqueta(y + 13, `${datos.nombreEnte(o.id)} · ${fmt.meur(o.gasto)}${estrecho ? "" : ` en la ${sfTxt}`}`);
-    barra(y + 20, CAPITULOS.map((c) => c.n), o.caps, (e) => mostrarTooltip(e, `${datos.nombreEnte(o.id)} · ${sfTxt}`,
+    etiqueta(y + 15, `${datos.nombreEnte(o.id)} · ${fmt.meur(o.gasto)}${estrecho ? "" : ` en la ${sfTxt}`}`);
+    barra(y + 22, CAPITULOS.map((c) => c.n), o.caps, (e) => mostrarTooltip(e, `${datos.nombreEnte(o.id)} · ${sfTxt}`,
       filasCaps(o.caps, o.gasto), "clic: ver el ente completo"), o.gasto).on("click", () => { ocultarTooltip(); alIrAEnte(o.id); });
   });
   if (flujo.otros > 0.5e6) {
     const y = y2 + flujo.entes.length * fila;
-    etiqueta(y + 13, `Otros destinatarios (cabildos, ayuntamientos, familias, empresas…) · ${fmt.meur(flujo.otros)}`, 400);
-    svg.append("rect").attr("x", m.l).attr("y", y + 20).attr("width", flujo.otros * k).attr("height", H).attr("fill", pal.otro);
+    etiqueta(y + 15, `Otros destinatarios${estrecho ? "" : " (cabildos, ayuntamientos, familias, empresas…)"} · ${fmt.meur(flujo.otros)}`, 400);
+    svg.append("rect").attr("x", m.l).attr("y", y + 22).attr("width", flujo.otros * k).attr("height", H).attr("fill", pal.otro);
   }
 }

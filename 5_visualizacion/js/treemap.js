@@ -5,7 +5,7 @@
 /* global d3 */
 import { anchoTexto, fmt, mostrarTooltip, moverTooltip, ocultarTooltip, paleta, tintaSobre, tono, varAbs, VARIAS } from "./comun.js";
 
-const ALTO_CABECERA = 20;
+const ALTO_CABECERA = 24;
 
 function filasBase(datos, cfg, estado, dim) {
   const vista = cfg.vistas ? estado.vista : cfg.vistaFija;
@@ -113,8 +113,23 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
     leyenda.replaceChildren();
     return;
   }
+  const activar = (n) => (ampliaHoja ? alZoom([...zoom, n.data.etiqueta]) : alFijar(n.data.id_estable));
+
+  // móvil (vertical): en un treemap estrecho la mayoría de celdas no tiene sitio para su nombre; se dibuja la misma
+  // información como lista de barras ordenada, con nombre y peso en cada fila y los mismos toques (ampliar o fijar)
+  if (contenedor.clientWidth < 640) {
+    pintarListaMovil({ contenedor, filas, escala, cfg, estado, zoom, nivel: nivelesRestantes[0], ampliaHoja, pal,
+      alGrupo: (g) => alZoom([...zoom, g]), alHoja: (d) => activar({ data: d }) });
+    const visiblesCat = new Set(filas.map(cfg.categoria));
+    // la leyenda solo hace falta si el color no es ya el nombre de la fila (programas por sección, entes por tipo, Δ peso)
+    if (escala.tipo === "delta" || nivelesRestantes.length || cfg.nombre === "programas" || cfg.nombre === "entes") {
+      pintarLeyenda(leyenda, escala, datos, visiblesCat, cfg);
+    } else { leyenda.replaceChildren(); leyenda.className = ""; }
+    return;
+  }
+
   const ancho = Math.max(280, contenedor.clientWidth);
-  const alto = Math.round(ancho < 640 ? ancho * 1.25 : Math.min(560, Math.max(360, ancho * 0.46)));
+  const alto = Math.round(Math.min(580, Math.max(380, ancho * 0.48)));
 
   // se muestra un nivel de grupos (con cabecera clicable) y todas las hojas que contiene
   const agrupar = nivelesRestantes.length ? d3.group(filas, (d) => d[nivelesRestantes[0]] ?? "—") : null;
@@ -138,10 +153,10 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
       const w = n.x1 - n.x0 - 8;
       // mismo denominador que las celdas (total de la tabla), aunque haya filtro o zoom
       const texto = `${n.data.grupo} · ${fmt.pct(d3.sum(n.leaves(), (h) => h.data.peso_total_pct))}`;
-      const t = d3.select(this).append("text").attr("x", n.x0 + 4).attr("y", n.y0 + 13).attr("fill", pal.text)
-        .style("font", "600 11.5px Inter");
-      const corto = recortar(n.data.grupo, w, "600 11.5px Inter");
-      if (corto) t.text(anchoTexto(texto, "600 11.5px Inter") <= w ? texto : corto);
+      const t = d3.select(this).append("text").attr("x", n.x0 + 4).attr("y", n.y0 + 16).attr("fill", pal.text)
+        .style("font", "600 13px Inter");
+      const corto = recortar(n.data.grupo, w, "600 13px Inter");
+      if (corto) t.text(anchoTexto(texto, "600 13px Inter") <= w ? texto : corto);
     });
     grupos.style("cursor", "pointer").attr("tabindex", 0).attr("role", "button")
       .attr("aria-label", (n) => `Ampliar ${n.data.grupo}`)
@@ -160,11 +175,11 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
   hojas.each(function (n) {
     const w = n.x1 - n.x0, h = n.y1 - n.y0, d = n.data, g = d3.select(this);
     const tinta = tintaSobre(escala.color(d));
-    if (w < 46 || h < 30) return;                                  // no cabe: se queda en tooltip y tabla
-    const nombre = recortar(d.etiqueta, w - 12, "600 12px Inter");
+    if (w < 52 || h < 32) return;                                  // no cabe: se queda en tooltip y tabla
+    const nombre = recortar(d.etiqueta, w - 12, "600 14px Inter");
     if (!nombre) return;
-    g.append("text").attr("x", 6).attr("y", 17).attr("fill", tinta).style("font", "600 12px Inter").text(nombre);
-    if (h >= 46) g.append("text").attr("x", 6).attr("y", 33).attr("fill", tinta).style("font", "400 11.5px Inter")
+    g.append("text").attr("x", 6).attr("y", 19).attr("fill", tinta).style("font", "600 14px Inter").text(nombre);
+    if (h >= 50) g.append("text").attr("x", 6).attr("y", 37).attr("fill", tinta).style("font", "400 13px Inter")
       .style("opacity", 0.9).text(fmt.pct(d.peso_total_pct, 1));
   });
   // contorno de la partida fijada: anillo de superficie + trazo fuerte, encima de todo
@@ -177,7 +192,6 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
       .attr("rx", 4).attr("fill", "none").attr("stroke", pal.strong).attr("stroke-width", 2.5);
   }
 
-  const activar = (n) => (ampliaHoja ? alZoom([...zoom, n.data.etiqueta]) : alFijar(n.data.id_estable));
   hojas.on("pointerenter focus", function (e, n) {
     d3.select(this).select("rect").attr("stroke", pal.strong).attr("stroke-width", 2);
     const d = n.data;
@@ -227,4 +241,70 @@ function pintarLeyenda(cont, escala, datos, visibles, cfg) {
   const n = document.createElement("span");
   n.textContent = `· Cambio de peso ${datos.ventanaActual.base}→${datos.ventanaActual.fin} (gobierno actual); gris = sin dato comparable`;
   cont.append(a, barra, b, n);
+}
+
+/* ---------- versión móvil: lista de barras (misma área = importe, ahora como longitud) */
+const PRIMERAS = 15;
+let listaAbierta = "";   // clave de la lista que el usuario ha desplegado entera (se pliega al cambiar de vista)
+
+function pintarListaMovil({ contenedor, filas, escala, cfg, estado, zoom, nivel, ampliaHoja, pal, alGrupo, alHoja }) {
+  const clave = [estado.dim, estado.vista, estado.anio, estado.precios, estado.social, ...zoom].join("|");
+  let items;
+  if (nivel) {   // quedan grupos por debajo: una fila por grupo; tocarla amplía
+    items = [...d3.group(filas, (d) => d[nivel] ?? "—")].map(([g, l]) => {
+      const colores = new Set(l.map((d) => escala.color(d)));
+      return { nombre: g, importe: d3.sum(l, (d) => d.importe), peso: d3.sum(l, (d) => d.peso_total_pct),
+        color: colores.size === 1 ? [...colores][0] : pal.otro, n: l.length, alTocar: () => alGrupo(g),
+        aria: `${g}: ${l.length} partidas. Toca para verlas.` };
+    });
+  } else {
+    items = filas.map((d) => ({ nombre: d.etiqueta, importe: d.importe, peso: d.peso_total_pct, color: escala.color(d), d,
+      foco: estado.foco === d.id_estable, alTocar: () => alHoja(d),
+      aria: `${d.etiqueta}: ${fmt.meur(d.importe)}, ${fmt.pct(d.peso_total_pct, 1)} del total. `
+        + (ampliaHoja ? "Toca para ver sus subfunciones." : "Toca para fijarla en el gráfico de capítulos.") }));
+  }
+  items.sort((a, b) => b.importe - a.importe);
+  const max = d3.max(items, (i) => i.importe) || 1;
+  const todas = listaAbierta === clave || items.length <= PRIMERAS + 3;
+
+  const pista = document.createElement("p"); pista.className = "lista-pista";
+  pista.textContent = nivel ? `Toca un grupo para ver sus partidas · ${items.length} grupos`
+    : ampliaHoja ? "Toca una función para ver sus subfunciones" : "Toca una partida para ver su reparto por capítulos";
+  const ol = document.createElement("ol"); ol.className = "lista-barras";
+  for (const it of todas ? items : items.slice(0, PRIMERAS)) {
+    const li = document.createElement("li");
+    const b = Object.assign(document.createElement("button"), { type: "button", className: `fila-barra${it.foco ? " foco" : ""}` });
+    b.setAttribute("aria-label", it.aria);
+    if (it.foco) b.setAttribute("aria-pressed", "true");
+    const nombre = Object.assign(document.createElement("span"), { className: "fb-nombre", textContent: it.nombre });
+    const valor = Object.assign(document.createElement("span"), { className: "fb-valor", textContent: fmt.pct(it.peso, 1) });
+    if (escala.tipo === "delta" && it.d && it.d.delta_peso_pp_clavijo_ii != null) {
+      const v = it.d.delta_peso_pp_clavijo_ii, delta = document.createElement("span");
+      delta.className = `fb-delta ${tono(v) || ""}`;
+      delta.textContent = `${v > 0 ? "▲" : v < 0 ? "▼" : "="} ${fmt.pp(v)}`;
+      valor.append(delta);
+    }
+    const pista2 = Object.assign(document.createElement("span"), { className: "fb-sub",
+      textContent: nivel ? `${it.n} partidas · ${fmt.meur(it.importe)}` : fmt.meur(it.importe) });
+    const barra = document.createElement("span"); barra.className = "fb-barra";
+    const relleno = document.createElement("i");
+    relleno.style.width = `${Math.max(1.5, (100 * it.importe) / max)}%`;
+    relleno.style.background = it.color;
+    barra.append(relleno);
+    b.append(nombre, valor, pista2, barra);
+    if (nivel || ampliaHoja) {
+      const ir = Object.assign(document.createElement("span"), { className: "fb-ir", textContent: "›" });
+      ir.setAttribute("aria-hidden", "true"); b.append(ir);
+    }
+    b.addEventListener("click", it.alTocar);
+    li.append(b); ol.append(li);
+  }
+  contenedor.append(pista, ol);
+  if (!todas) {
+    const mas = Object.assign(document.createElement("button"), { type: "button", className: "btn lista-mas",
+      textContent: `Ver las ${items.length - PRIMERAS} restantes (${fmt.pct(d3.sum(items.slice(PRIMERAS), (i) => i.peso), 1)} del total)` });
+    mas.addEventListener("click", () => { listaAbierta = clave; contenedor.replaceChildren();
+      pintarListaMovil({ contenedor, filas, escala, cfg, estado, zoom, nivel, ampliaHoja, pal, alGrupo, alHoja }); });
+    contenedor.append(mas);
+  }
 }
