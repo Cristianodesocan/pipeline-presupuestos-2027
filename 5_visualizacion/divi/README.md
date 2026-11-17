@@ -66,3 +66,9 @@ https://cristianodesocan.github.io/pipeline-presupuestos-2027/5_visualizacion/?i
   - los **filtros se pliegan** tras un botón que resume la selección («Funciones · 2027 (Proyecto) · Corrientes»);
   - el ranking pone el nombre de cada partida en su propia línea, sobre la barra;
   - el recorrido guiado aparece como una hoja inferior a todo lo ancho, y sus textos hablan de tocar, no de pasar el ratón.
+
+## Si tras una actualización la herramienta no carga
+
+Desde que los ficheros llevan versión (`versionar.py`) no debería pasar. Si se ve sin datos o con el aspecto anterior,
+el navegador conserva ficheros de la versión previa: recarga forzando (Ctrl+Mayús+R; en Mac, Cmd+Mayús+R) o espera
+10 minutos, que es lo que GitHub Pages deja guardarlos.

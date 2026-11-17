@@ -233,7 +233,9 @@ Cada script es independiente y lee de la carga local, o de Supabase con `--fuent
 .venv/bin/python 5_visualizacion/servir.py   # sirve en http://localhost:8027 y abre el navegador (Ctrl+C para parar)
 ```
 
-Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejecuta los módulos JS ni deja leer los CSV. Los datos son `5_visualizacion/data/viz_*.csv`: la exportación de las vistas `v_viz_*` (`3_carga/exportar_viz.py`). La web no necesita credenciales ni conexión con Supabase. Puede publicarse tal cual en GitHub Pages o integrarse en el Hub de Canarias en Datos.
+Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejecuta los módulos JS ni deja leer los CSV.
+
+**Tras tocar `css/` o `js/`, ejecuta `python 5_visualizacion/versionar.py`** antes del commit. Pone a cada fichero una versión (huella de su contenido) en `index.html`, para que el navegador no mezcle ficheros nuevos con otros de la versión anterior guardados en caché: GitHub Pages los deja guardar 10 minutos y, sin versión, la web puede quedarse sin datos o con el aspecto anterior. `tests/test_visualizacion.py` falla si se olvida. Los datos son `5_visualizacion/data/viz_*.csv`: la exportación de las vistas `v_viz_*` (`3_carga/exportar_viz.py`). La web no necesita credenciales ni conexión con Supabase. Puede publicarse tal cual en GitHub Pages o integrarse en el Hub de Canarias en Datos.
 
 **En la web de Odesocan (Divi):** se pega [`5_visualizacion/divi/bloque-divi.html`](5_visualizacion/divi/bloque-divi.html) en un módulo Código. Es un iframe que ajusta su altura al contenido, con fondo transparente y sin pie; los pasos y los ajustes de la fila están en [`5_visualizacion/divi/README.md`](5_visualizacion/divi/README.md). `?incrustada` en la URL muestra ese aspecto fuera del iframe.
 
