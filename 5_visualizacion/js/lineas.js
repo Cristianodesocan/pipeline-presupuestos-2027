@@ -74,8 +74,8 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
   const ancho = Math.max(300, contenedor.clientWidth);
   const estrecho = ancho < 640;
   const etiquetasFinales = !estrecho && series.length <= 4;
-  const m = { t: 30, r: etiquetasFinales ? 170 : 18, b: 30, l: medida === "importe" || medida === "por_habitante" ? 64 : 52 };
-  const alto = estrecho ? 320 : 420;
+  const m = { t: 32, r: etiquetasFinales ? 190 : 18, b: 34, l: medida === "importe" || medida === "por_habitante" ? 70 : 58 };
+  const alto = estrecho ? 380 : 440;
   const x = d3.scaleLinear([anios[0], anios[anios.length - 1]], [m.l, ancho - m.r]);
   const todos = series.flatMap((s) => s.valores.map((p) => p.v)).filter((v) => v != null);
   let dom = d3.extent(todos);
@@ -97,7 +97,7 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
     bandas.append("rect").attr("x", xa).attr("y", m.t - 18).attr("width", xb - xa).attr("height", alto - m.b - m.t + 18)
       .attr("fill", actual ? pal.bandActual : (datos.ventanas.indexOf(v) % 2 ? pal.band : "transparent"));
     // la etiqueta solo se pinta si cabe en su banda (larga → corta → ninguna)
-    const fuente = "700 10px 'Space Grotesk'";
+    const fuente = "700 12px 'Space Grotesk'";
     const opciones = [(ETIQUETA_VENTANA[v.id] || v.id) + (actual ? " · actual" : ""), ETIQUETA_VENTANA[v.id] || v.id, ETIQUETA_CORTA[v.id]]
       .filter(Boolean).map((t) => t.toUpperCase());
     const texto = opciones.find((t) => anchoTexto(t, fuente) * 1.12 + 6 <= xb - xa);
@@ -110,9 +110,9 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
     .call(d3.axisLeft(y).ticks(estrecho ? 5 : 6).tickSize(-(ancho - m.l - m.r)).tickFormat(fmtEje));
   gy.select(".domain").remove();
   gy.selectAll("line").attr("stroke", pal.grid);
-  gy.selectAll("text").attr("fill", pal.muted).style("font", "400 11px Inter").style("font-variant-numeric", "tabular-nums");
+  gy.selectAll("text").attr("fill", pal.muted).style("font", "400 13px Inter").style("font-variant-numeric", "tabular-nums");
   if (fm.unidad) svg.append("text").attr("x", m.l - 8).attr("y", m.t - 22 < 0 ? 10 : 12).attr("text-anchor", "end")
-    .attr("fill", pal.muted).style("font", "400 11px Inter").text(fm.unidad);
+    .attr("fill", pal.muted).style("font", "400 13px Inter").text(fm.unidad);
   const ref = medida === "var_pct" ? 0 : null;
   if (ref != null) svg.append("line").attr("x1", m.l).attr("x2", ancho - m.r).attr("y1", y(ref)).attr("y2", y(ref))
     .attr("stroke", pal.muted).attr("stroke-width", 1);
@@ -121,7 +121,7 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
     .call(d3.axisBottom(x).tickValues(anios.filter((a, i) => (anios.length - 1 - i) % paso === 0)).tickFormat(d3.format("d")).tickSize(4));
   gx.select(".domain").attr("stroke", pal.grid);
   gx.selectAll("line").attr("stroke", pal.grid);
-  gx.selectAll("text").attr("fill", pal.muted).style("font", "400 11px Inter");
+  gx.selectAll("text").attr("fill", pal.muted).style("font", "400 13px Inter");
 
   // líneas: tramo Ley continuo; tramo Proyecto discontinuo desde el último año en Ley
   const linea = d3.line().defined((p) => p.v != null).x((p) => x(p.anio)).y((p) => y(p.v)).curve(d3.curveMonotoneX);
@@ -138,7 +138,7 @@ export function pintarLineas({ contenedor, leyenda, datos, cfg, estado, idsSocia
       capa.append("circle").attr("cx", x(ult.anio)).attr("cy", y(ult.v)).attr("r", 4.5).attr("fill", s.color)
         .attr("stroke", pal.surface).attr("stroke-width", 2);
       if (etiquetasFinales) capa.append("text").attr("x", x(ult.anio) + 9).attr("y", y(ult.v) + 4).attr("fill", pal.text)
-        .style("font", "600 11.5px Inter").text(corta(s.etiqueta, 24));
+        .style("font", "600 13px Inter").text(corta(s.etiqueta, 24));
     }
   }
   if (etiquetasFinales) evitarSolapes(capa.selectAll("text").nodes());
@@ -176,5 +176,5 @@ function corta(t, n) { return t.length > n ? t.slice(0, n - 1).trimEnd() + "…"
     la leyenda y el tooltip llevan la identidad. */
 function evitarSolapes(nodos) {
   const ys = nodos.map((n) => +n.getAttribute("y")).sort((a, b) => a - b);
-  if (ys.some((v, i) => i > 0 && v - ys[i - 1] < 14)) nodos.forEach((n) => n.remove());
+  if (ys.some((v, i) => i > 0 && v - ys[i - 1] < 16)) nodos.forEach((n) => n.remove());
 }

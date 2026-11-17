@@ -1,0 +1,47 @@
+<!-- Odesocan · Presupuestos de Canarias 2015-2027 · bloque para un módulo «Código» de Divi (instrucciones: divi/README.md) -->
+<div class="ods-presupuestos" style="width:100%;max-width:1232px;margin:0 auto;">
+<iframe id="ods-presupuestos-marco" title="Presupuestos de Canarias 2015-2027: herramienta interactiva de Odesocan" src="https://cristianodesocan.github.io/pipeline-presupuestos-2027/5_visualizacion/?incrustada" style="display:block;width:100%;height:1800px;border:0;background:transparent;" scrolling="no"></iframe>
+<noscript><p>Esta herramienta necesita JavaScript. Puedes abrirla en <a href="https://cristianodesocan.github.io/pipeline-presupuestos-2027/5_visualizacion/">una página aparte</a>.</p></noscript>
+</div>
+<script>
+(function () {
+  /* Origen de la herramienta: solo se aceptan mensajes que vengan de ahí. */
+  var ORIGEN = "https://cristianodesocan.github.io";
+  /* Alto del menú fijo de la web, para que al desplazarse no tape el gráfico. */
+  var MENU_FIJO = 90;
+  var marco = document.getElementById("ods-presupuestos-marco");
+  if (!marco) { return; }
+  /* Un enlace a la página con #estado (p. ej. #tab=evolucion o #paso=2) abre la herramienta en esa vista. */
+  if (location.hash.replace("#", "")) { marco.src = marco.src.split("#")[0] + location.hash; }
+  var pendiente = false;
+  /* Le dice a la herramienta dónde acaba la ventana (en px desde arriba del iframe): ahí apoya el recorrido guiado. */
+  function enviarVista() {
+    if (pendiente) { return; }
+    pendiente = true;
+    requestAnimationFrame(function () {
+      pendiente = false;
+      if (!marco.contentWindow) { return; }
+      var r = marco.getBoundingClientRect();
+      marco.contentWindow.postMessage({ fuente: "odesocan-presupuestos-pagina", tipo: "vista", fin: window.innerHeight - r.top }, ORIGEN);
+    });
+  }
+  window.addEventListener("message", function (e) {
+    if (e.origin !== ORIGEN) { return; }
+    if (e.source !== marco.contentWindow) { return; }
+    var m = e.data;
+    if (!m) { return; }
+    if (m.fuente !== "odesocan-presupuestos") { return; }
+    if (m.tipo === "altura") { marco.style.height = Math.max(400, m.valor) + "px"; enviarVista(); }
+    if (m.tipo === "lista") { enviarVista(); }
+    if (m.tipo === "desplazar") {
+      window.scrollTo({ top: marco.getBoundingClientRect().top + window.pageYOffset + m.y - MENU_FIJO, behavior: "smooth" });
+    }
+    if (m.tipo === "estado") {
+      var nuevo = m.hash ? "#" + m.hash : "";
+      if (nuevo !== location.hash) { history.replaceState(null, "", location.pathname + location.search + nuevo); }
+    }
+  });
+  window.addEventListener("scroll", enviarVista, { passive: true });
+  window.addEventListener("resize", enviarVista);
+})();
+</script>

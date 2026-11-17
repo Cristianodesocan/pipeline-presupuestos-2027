@@ -235,14 +235,18 @@ Cada script es independiente y lee de la carga local, o de Supabase con `--fuent
 
 Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejecuta los módulos JS ni deja leer los CSV. Los datos son `5_visualizacion/data/viz_*.csv`: la exportación de las vistas `v_viz_*` (`3_carga/exportar_viz.py`). La web no necesita credenciales ni conexión con Supabase. Puede publicarse tal cual en GitHub Pages o integrarse en el Hub de Canarias en Datos.
 
+**En la web de Odesocan (Divi):** se pega [`5_visualizacion/divi/bloque-divi.html`](5_visualizacion/divi/bloque-divi.html) en un módulo Código. Es un iframe que ajusta su altura al contenido, con fondo transparente y sin pie; los pasos y los ajustes de la fila están en [`5_visualizacion/divi/README.md`](5_visualizacion/divi/README.md). `?incrustada` en la URL muestra ese aspecto fuera del iframe.
+
 **Estructura:**
-- `index.html` y `css/odesocan.css`, con la identidad ODESOCAN (Space Grotesk/Inter, paleta teal/navy, modo claro y oscuro).
+- `index.html` y `css/odesocan.css`, con la identidad ODESOCAN (Space Grotesk/Inter, paleta teal/navy, solo modo claro, cabecera clara con el logo oficial).
 - `js/comun.js`: datos, formato es-ES, paleta y tooltip.
 - `js/estado.js`: el estado en la URL.
 - `js/treemap.js`, `js/donut.js` y `js/lineas.js`: los gráficos.
 - `js/buscador.js`: buscador con lista agrupada (combobox accesible), común a las dos pestañas.
 - `js/flujo.js` («Sigue el dinero»), `js/ranking.js` (¿qué ha cambiado?) y `js/recorrido.js` (recorrido guiado).
-- `js/app.js`: filtros, tablas, CSV y tema.
+- `js/app.js`: filtros (plegables en móvil), tablas y CSV.
+- `js/incrustar.js`: modo incrustado (altura, zona visible y estado compartidos con la página de Divi por `postMessage`).
+- `divi/`: el bloque para Divi y sus instrucciones.
 - D3 7.9.0 fijo, desde cdnjs.
 
 **Funcionalidades:**
@@ -255,7 +259,7 @@ Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejec
 - **Peso.**
   - **Jerarquía:** función (Sanidad, Educación, Servicios sociales…) → subfunción; grupo → sección; función → subfunción → programa; tipo → ente.
   - **Ampliar:** clic en una función o en la cabecera de un grupo; las migas de pan permiten volver.
-  - **Color por ámbito de política:** cada sección tiene su color y la función equivalente comparte el mismo (Sanidad: sección 14 y función 31). Cada programa toma el de su sección; si ninguna reúne el 75 % de su gasto, va en gris («varias secciones»). Paleta ampliada de 21 colores validada con `validate_palette.js` en los dos modos (pares contiguos). También se puede colorear por **Δ peso del gobierno actual** (escala divergente rojo · gris · teal centrada en 0).
+  - **Color por ámbito de política:** cada sección tiene su color y la función equivalente comparte el mismo (Sanidad: sección 14 y función 31). Cada programa toma el de su sección; si ninguna reúne el 75 % de su gasto, va en gris («varias secciones»). Paleta ampliada de 21 colores validada con `validate_palette.js` (pares contiguos). También se puede colorear por **Δ peso del gobierno actual** (escala divergente rojo · gris · teal centrada en 0).
   - **Tooltip:** importe, pesos, variación interanual en euros y en %, y cambio en la ventana. Las subidas van en verde con ▲ y las bajadas en rojo con ▼.
   - **Buscador:** encuentra cualquier partida y la fija. Los programas se agrupan por sección (en orden numérico) y, dentro de cada una, van en orden alfabético; un programa compartido aparece en cada sección.
   - **Sigue el dinero:** bajo el donut, qué parte se gasta directamente y qué parte se transfiere (caps. 4 y 7), y qué entes con presupuesto propio gastan en las mismas subfunciones (enlace por subfunción, porque el Tomo no publica el destinatario de cada transferencia). Clic en un ente para verlo.
@@ -273,9 +277,10 @@ Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejec
   - Vista de tabla en las dos pestañas y descarga del CSV filtrado.
   - Celdas del treemap navegables con el teclado.
   - Las etiquetas solo se pintan si caben.
-  - Paleta categórica **validada** con `validate_palette.js` (contraste, daltonismo y visión normal) en los dos modos.
-  - Textos con contraste ≥ 4,5:1.
-  - Probado en escritorio y móvil (375 px, sin desplazamiento horizontal).
+  - Paleta categórica **validada** con `validate_palette.js` (contraste, daltonismo y visión normal).
+  - Textos con contraste ≥ 4,5:1; cuerpo de 16 px y textos secundarios, leyendas, tablas y rótulos de los gráficos de 13-15 px; controles de 40 px (44 px en móvil).
+  - **Versión móvil (< 640 px):** el treemap pasa a ser una lista de barras ordenada con nombre y peso en cada fila; los filtros se pliegan tras un botón que resume la selección; el ranking pone cada nombre sobre su barra; el recorrido guiado es una hoja inferior.
+  - Probado en escritorio y móvil (390 px, sin desplazamiento horizontal).
 
 **Limitación conocida:** en la vista orgánica de secciones, las series de varias consejerías empiezan en 2024. Es así hasta que se revisen los enlaces pendientes del crosswalk de secciones. La vista estructura no tiene ese corte.
 
