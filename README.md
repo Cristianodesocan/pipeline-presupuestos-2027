@@ -281,7 +281,7 @@ Hace falta un servidor: abierta con doble clic (`file://`), el navegador no ejec
   - Las etiquetas solo se pintan si caben.
   - Paleta categórica **validada** con `validate_palette.js` (contraste, daltonismo y visión normal).
   - Textos con contraste ≥ 4,5:1; cuerpo de 16 px y textos secundarios, leyendas, tablas y rótulos de los gráficos de 13-15 px; controles de 40 px (44 px en móvil).
-  - **Versión móvil (< 640 px):** el treemap pasa a ser una lista de barras ordenada con nombre y peso en cada fila; los filtros se pliegan tras un botón que resume la selección; el ranking pone cada nombre sobre su barra; el recorrido guiado es una hoja inferior.
+  - **Versión móvil (< 640 px):** el treemap pasa a ser una lista de barras ordenada con nombre y peso en cada fila (en secciones y entes, las partidas bajo el encabezado de su grupo; en programas, una fila por grupo); los filtros se pliegan tras un botón que resume la selección; el ranking pone cada nombre sobre su barra; el recorrido guiado es una hoja inferior.
   - Probado en escritorio y móvil (390 px, sin desplazamiento horizontal).
 
 **Limitación conocida:** en la vista orgánica de secciones, las series de varias consejerías empiezan en 2024. Es así hasta que se revisen los enlaces pendientes del crosswalk de secciones. La vista estructura no tiene ese corte.

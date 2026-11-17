@@ -62,7 +62,9 @@ https://cristianodesocan.github.io/pipeline-presupuestos-2027/5_visualizacion/?i
   (antes 10-12,5 px); controles de 40 px de alto (44 px en móvil).
 - **Versión móvil (< 640 px)**:
   - el treemap pasa a ser una **lista de barras** ordenada, con el nombre y el peso en cada fila (con los mismos toques:
-    ampliar una función o fijar una partida); se muestran las 15 primeras y el botón «Ver las N restantes»;
+    ampliar una función o fijar una partida); se muestran las 15 primeras y el botón «Ver las N restantes». En secciones
+    y entes las partidas van bajo el encabezado de su grupo (tocarlo muestra solo ese grupo); en programas, con 140
+    partidas, se ve una fila por grupo;
   - los **filtros se pliegan** tras un botón que resume la selección («Funciones · 2027 (Proyecto) · Corrientes»);
   - el ranking pone el nombre de cada partida en su propia línea, sobre la barra;
   - el recorrido guiado aparece como una hoja inferior a todo lo ancho, y sus textos hablan de tocar, no de pasar el ratón.
