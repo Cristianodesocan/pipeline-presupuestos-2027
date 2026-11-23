@@ -75,6 +75,23 @@ function escalaColor(filas, cfg, estado, pal) {
   return { tipo: "categoria", cats: resto, color: (d) => color.get(cfg.categoria(d)), colorDe: color, nombre: (c) => c };
 }
 
+/* Peso de un programa en su sección: importe / suma de TODOS los programas de esa sección (la misma con la que se
+   colorea y se filtra en la leyenda) en ese año, vista y precios. El denominador no depende de lo que se vea: ignora el
+   zoom, «Solo gasto social» y el filtro de sección, así que un mismo programa da siempre el mismo valor y los de una
+   sección suman 100 %. Los programas de «varias secciones» se miden sobre ese grupo. */
+const totalesSeccion = new Map();   // "dimensión|vista|año|precios" → Map(sección → importe)
+export function pesoEnSeccion(d, datos, cfg) {
+  if (!cfg.filtroCategoria || d.importe == null) return null;
+  const k = `${d.dimension}|${d.vista}|${d.anio}|${d.precios}`;
+  if (!totalesSeccion.has(k)) {
+    totalesSeccion.set(k, d3.rollup(datos.treemap.filter((x) => x.dimension === d.dimension && x.vista === d.vista
+      && x.anio === d.anio && x.precios === d.precios && x.id_estable !== "__total__" && x.importe > 0),
+    (l) => d3.sum(l, (x) => x.importe), cfg.categoria));
+  }
+  const total = totalesSeccion.get(k).get(cfg.categoria(d));
+  return total > 0 ? (100 * d.importe) / total : null;
+}
+
 /** Filas del tooltip de una partida (también las usa la ficha del donut). */
 export function filasDetalle(d, datos, cfg, estado) {
   const v = datos.ventanaActual;
@@ -82,17 +99,22 @@ export function filasDetalle(d, datos, cfg, estado) {
   if (d.dimension !== "funcion" && d.peso_padre_pct != null) {
     filas.push([`Peso en ${d.nivel_2 || d.nivel_1 || "su grupo"}`, fmt.pct(d.peso_padre_pct, 1)]);
   }
+  if (cfg.nombre === "programas") {
+    // sección con la que se colorea y se filtra; si el programa se reparte, se dice qué parte gestiona la principal
+    const secs = datos.seccionesDe(d.vista, d.anio, d.id_estable);
+    const c = datos.seccionDe(d.vista, d.anio, d.id_estable);
+    const cuota = secs.length > 1 ? secs[0].importe / d3.sum(secs, (x) => x.importe) : 1;
+    if (c && c !== VARIAS) {
+      filas.push(["Sección", `${c} · ${datos.nombreSeccion(c, d.anio)}${cuota < 1 ? ` (principal, ${fmt.pct(100 * cuota, 0)} de su gasto)` : ""}`]);
+    } else if (c === VARIAS) filas.push(["Sección", `varias (${secs.length})`]);
+    const pe = pesoEnSeccion(d, datos, cfg);
+    if (pe != null) filas.push([c === VARIAS ? "Peso en «Varias secciones»" : "Peso en su sección", fmt.pct(pe, 1)]);
+  }
   const va = varAbs(d);
   filas.push(["Var. interanual (€)", fmt.meurSigno(va), null, tono(va)],
     ["Var. interanual (%)", fmt.var(d.var_pct_interanual), null, tono(d.var_pct_interanual)],
     [`Δ peso ${v.base}→${v.fin}`, fmt.pp(d.delta_peso_pp_clavijo_ii), null, tono(d.delta_peso_pp_clavijo_ii)],
     [`Var. ${v.base}→${v.fin}`, fmt.var(d.var_pct_clavijo_ii), null, tono(d.var_pct_clavijo_ii)]);
-  if (cfg.nombre === "programas") {
-    const secs = datos.seccionesDe(d.vista, d.anio, d.id_estable);
-    const c = datos.seccionDe(d.vista, d.anio, d.id_estable);
-    if (c && c !== VARIAS) filas.push(["Sección", `${c} · ${datos.nombreSeccion(c, d.anio)}`]);
-    else if (c === VARIAS) filas.push(["Sección", `varias (${secs.length})`]);
-  }
   return filas;
 }
 
