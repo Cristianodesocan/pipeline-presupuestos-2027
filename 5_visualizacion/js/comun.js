@@ -30,6 +30,8 @@ const HUECO_SECCION = { "01": 15, "05": 20, "06": 9, "08": 12, "09": 17, 10: 13,
 const HUECO_FUNCION = { 11: 12, 13: 11, 14: 9, 23: 4, 24: 8, 26: 5, 31: 1, 32: 2, 33: 21, 41: 16, 42: 6, 43: 19, 44: 14,
   45: 17, 46: 7, 49: 10, 91: 15, 92: 18, 93: 13, 94: 3, 95: 20 };
 export const VARIAS = "varias";
+/** Clave de una categoría en el filtro de la leyenda y en la URL (#seccion=14): los programas sin sección, «sin». */
+export const claveCategoria = (c) => (c == null ? "sin" : c);
 /** Un programa se colorea con su sección si esta concentra al menos este peso de su gasto; si no, «varias». */
 const CUOTA_SECCION_PRINCIPAL = 0.75;
 
@@ -182,7 +184,10 @@ export function configDimension(dim, datos) {
       niveles: ["nivel_1", "nivel_2"], unidad: "programas", unidadLineas: "programas", social: true, art: "los", artLineas: "los",
       singular: "programa", colorNombre: "sección presupuestaria", nombreNivel: ["Función", "Subfunción"],
       categoria: (d) => datos.seccionDe(d.vista, d.anio, d.id_estable), colorCategoria: colorSeccion,
-      nombreCategoria: nombreSeccion, ordenCategoria: porCodigo, capDim: () => "programa",
+      nombreCategoria: (anio, vista) => (c) => (c == null ? "Sin sección asignada" : nombreSeccion(anio, vista)(c)),
+      ordenCategoria: porCodigo, capDim: () => "programa",
+      // la leyenda filtra: clic en una sección = solo sus programas (treemap, tabla, capítulos y su composición)
+      filtroCategoria: true,
     },
     entes: {
       nombre: "entes", treemapDim: "ente", lineasDim: "ente", vistas: null, vistaFija: "individual",

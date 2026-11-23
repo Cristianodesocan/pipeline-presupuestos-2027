@@ -1,17 +1,30 @@
 /* Pestaña «Peso»: treemap con zoom por niveles (§8.3 del diseño).
    Área = importe. Color: categoría (función, sección, sección del programa, tipo de ente) o Δ peso en la ventana del
    gobierno actual (escala divergente centrada en 0). 2px de separación en el color de la superficie; etiquetas solo si caben.
-   Señalar una celda (ratón o foco) avisa al donut de capítulos; clic la fija (o amplía, si es una función). */
+   Señalar una celda (ratón o foco) avisa al donut de capítulos; clic la fija (o amplía, si es una función).
+   En programas, la leyenda filtra: clic en una sección deja solo sus programas (y el donut y su composición los siguen). */
 /* global d3 */
-import { anchoTexto, fmt, mostrarTooltip, moverTooltip, ocultarTooltip, paleta, tintaSobre, tono, varAbs, VARIAS } from "./comun.js";
+import {
+  anchoTexto, claveCategoria, fmt, mostrarTooltip, moverTooltip, ocultarTooltip, paleta, tintaSobre, tono, varAbs, VARIAS,
+} from "./comun.js";
 
 const ALTO_CABECERA = 24;
 
+/** Categoría (sección) por la que se filtra desde la leyenda, o null si no hay filtro o la dimensión no lo admite. */
+export const filtroSeccion = (cfg, estado) => (cfg.filtroCategoria && estado.seccion) || null;
+/** Nombre legible de la sección filtrada («14 · SANIDAD», «Varias secciones», «Sin sección asignada») o null. */
+export function nombreFiltroSeccion(cfg, estado) {
+  const sec = filtroSeccion(cfg, estado);
+  return sec ? cfg.nombreCategoria(+estado.anio, estado.vista)(sec === "sin" ? null : sec) : null;
+}
+
 function filasBase(datos, cfg, estado, dim) {
   const vista = cfg.vistas ? estado.vista : cfg.vistaFija;
+  const sec = filtroSeccion(cfg, estado);
   return datos.treemap.filter((d) => d.dimension === dim && d.vista === vista && d.anio === +estado.anio
     && d.precios === estado.precios && d.id_estable !== "__total__" && d.importe > 0
-    && (!(cfg.social && estado.social === "1") || d.concepto_ced));
+    && (!(cfg.social && estado.social === "1") || d.concepto_ced)
+    && (!sec || claveCategoria(cfg.categoria(d)) === sec));
 }
 
 /** Nivel de zoom válido para la dimensión (capas: funciones → subfunciones; niveles: grupos de la propia tabla). */
@@ -83,14 +96,20 @@ export function filasDetalle(d, datos, cfg, estado) {
   return filas;
 }
 
-export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, alZoom, alSenalar, alFijar }) {
+export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, alZoom, alSenalar, alFijar, alFiltrar }) {
   const pal = paleta();
-  const todas = filasTreemap(datos, cfg, estado);
   const zoom = zoomEfectivo(cfg, estado);
   const filas = filasVisibles(datos, cfg, estado);
   const nivelesRestantes = cfg.capas ? [] : cfg.niveles.slice(zoom.length);
   const ampliaHoja = cfg.capas && zoom.length < cfg.capas.length - 1;   // clic en una función = ver sus subfunciones
-  const escala = escalaColor(todas, cfg, estado, pal);
+  // la escala y la leyenda se calculan sin el filtro de sección: los colores y la escala Δ no cambian al filtrar,
+  // y la leyenda sigue ofreciendo las demás secciones para cambiar de una a otra
+  const sec = filtroSeccion(cfg, estado);
+  const sinFiltro = sec ? { ...estado, seccion: null } : estado;
+  const escala = escalaColor(filasTreemap(datos, cfg, sinFiltro), cfg, estado, pal);
+  const enLeyenda = new Set((sec ? filasVisibles(datos, cfg, sinFiltro) : filas).map(cfg.categoria));
+  const filtro = cfg.filtroCategoria && alFiltrar ? { activa: sec, alElegir: alFiltrar } : null;
+  const leyendaCompleta = () => pintarLeyenda(leyenda, escala, datos, enLeyenda, cfg, filtro);
 
   // migas de pan
   migas.replaceChildren();
@@ -108,9 +127,12 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
 
   contenedor.replaceChildren();
   if (!filas.length) {
-    const p = document.createElement("p"); p.className = "cargando"; p.textContent = "Sin datos para esta combinación de filtros.";
+    const p = document.createElement("p"); p.className = "cargando";
+    p.textContent = sec && enLeyenda.size
+      ? `${nombreFiltroSeccion(cfg, estado)} no tiene programas en esta selección: elige otra sección en la leyenda o quita el filtro.`
+      : "Sin datos para esta combinación de filtros.";
     contenedor.append(p);
-    leyenda.replaceChildren();
+    if (sec && enLeyenda.size) leyendaCompleta(); else leyenda.replaceChildren();
     return;
   }
   const activar = (n) => (ampliaHoja ? alZoom([...zoom, n.data.etiqueta]) : alFijar(n.data.id_estable));
@@ -118,13 +140,12 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
   // móvil (vertical): en un treemap estrecho la mayoría de celdas no tiene sitio para su nombre; se dibuja la misma
   // información como lista de barras ordenada, con nombre y peso en cada fila y los mismos toques (ampliar o fijar)
   if (contenedor.clientWidth < 640) {
-    const modo = pintarListaMovil({ contenedor, filas, escala, estado, zoom, nivel: nivelesRestantes[0], ampliaHoja, pal,
+    pintarListaMovil({ contenedor, filas, escala, estado, zoom, nivel: nivelesRestantes[0], ampliaHoja, pal,
       alGrupo: (g) => alZoom([...zoom, g]), alHoja: (d) => activar({ data: d }) });
-    // la leyenda solo hace falta si el color no lo explica ya la propia fila: Δ peso, o programas (color = su sección)
-    // cuando se ven partidas; en secciones el color es el nombre de la fila y en entes, el encabezado de su grupo
-    if (escala.tipo === "delta" || (cfg.nombre === "programas" && modo !== "grupos")) {
-      pintarLeyenda(leyenda, escala, datos, new Set(filas.map(cfg.categoria)), cfg);
-    } else { leyenda.replaceChildren(); leyenda.className = ""; }
+    // la leyenda solo hace falta si el color no lo explica ya la propia fila: Δ peso, o programas (color = su sección,
+    // y la leyenda sirve además de filtro); en secciones el color es el nombre de la fila y en entes, el encabezado de su grupo
+    if (escala.tipo === "delta" || cfg.filtroCategoria) leyendaCompleta();
+    else { leyenda.replaceChildren(); leyenda.className = ""; }
     return;
   }
 
@@ -204,7 +225,7 @@ export function pintarTreemap({ contenedor, leyenda, migas, datos, cfg, estado, 
     .on("click", (e, n) => activar(n))
     .on("keydown", (e, n) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activar(n); } });
 
-  pintarLeyenda(leyenda, escala, datos, new Set(filas.map(cfg.categoria)), cfg);
+  leyendaCompleta();
 }
 
 function recortar(texto, ancho, fuente) {
@@ -215,19 +236,39 @@ function recortar(texto, ancho, fuente) {
   return s.length > 3 ? s.trimEnd() + "…" : null;
 }
 
-function pintarLeyenda(cont, escala, datos, visibles, cfg) {
+/** filtro (solo programas): { activa: clave de la sección filtrada o null, alElegir(clave) }. Con filtro, cada entrada
+    de la leyenda es un botón: clic = ver solo esa sección; clic en la activa (o en «Todas las secciones») = quitarlo. */
+function pintarLeyenda(cont, escala, datos, visibles, cfg, filtro) {
   cont.replaceChildren();
   cont.className = "";
   if (escala.tipo === "categoria") {
     const cats = escala.cats.filter((c) => visibles.has(c));   // solo lo que se ve; el color no cambia al ampliar
-    if (cats.length < 2) return;
-    const t = document.createElement("div"); t.className = "leyenda-t"; t.textContent = `Color: ${cfg.colorNombre}`;
+    const activa = filtro && filtro.activa;
+    if (cats.length < 2 && !activa) return;
+    const t = document.createElement("div"); t.className = "leyenda-t";
+    t.textContent = `Color: ${cfg.colorNombre}${filtro ? (activa ? " · filtrado por una sección" : " · clic para ver solo sus programas") : ""}`;
     const l = document.createElement("div"); l.className = cats.length > 6 ? "leyenda larga" : "leyenda";
+    if (filtro) { l.classList.add("filtrable"); l.setAttribute("role", "group"); l.setAttribute("aria-label", `Filtrar por ${cfg.colorNombre}`); }
     for (const c of cats) {
-      const it = document.createElement("span"); it.className = "item";
+      const clave = claveCategoria(c);
+      const it = document.createElement(filtro ? "button" : "span"); it.className = "item";
       const sw = document.createElement("span"); sw.className = "sw"; sw.style.background = escala.colorDe.get(c);
       it.append(sw, document.createTextNode(escala.nombre(c)));
+      if (filtro) {
+        const elegida = activa === clave;
+        it.type = "button";
+        it.setAttribute("aria-pressed", elegida);
+        it.title = elegida ? "Quitar el filtro y ver todas las secciones" : "Ver solo los programas de esta sección";
+        if (activa) it.classList.add(elegida ? "activa" : "atenuada");
+        it.addEventListener("click", () => filtro.alElegir(elegida ? null : clave));
+      }
       l.append(it);
+    }
+    if (activa) {
+      const todas = Object.assign(document.createElement("button"), { type: "button", className: "item quitar",
+        textContent: "× Todas las secciones" });
+      todas.addEventListener("click", () => filtro.alElegir(null));
+      l.append(todas);
     }
     cont.append(t, l);
     return;
@@ -251,7 +292,7 @@ let listaAbierta = "";      // clave de la lista que el usuario ha desplegado en
 /** Devuelve el modo pintado: «hojas» (partidas sueltas), «agrupada» (partidas bajo el encabezado de su grupo, como el
     treemap de escritorio) o «grupos» (una fila por grupo, si hay demasiadas partidas: p. ej. los 140 programas). */
 function pintarListaMovil({ contenedor, filas, escala, estado, zoom, nivel, ampliaHoja, pal, alGrupo, alHoja }) {
-  const clave = [estado.dim, estado.vista, estado.anio, estado.precios, estado.social, ...zoom].join("|");
+  const clave = [estado.dim, estado.vista, estado.anio, estado.precios, estado.social, estado.seccion, ...zoom].join("|");
   const delta = escala.tipo === "delta";
   const colorDe = (l) => { const c = new Set(l.map((d) => escala.color(d))); return c.size === 1 ? [...c][0] : null; };
   const hoja = (d) => ({ nombre: d.etiqueta, importe: d.importe, peso: d.peso_total_pct, color: escala.color(d), d,
