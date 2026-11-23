@@ -145,6 +145,17 @@ figcaption { font-size: .875rem; line-height: 1.5; color: var(--text-muted); mar
              margin: 12px 0 4px; }
 .leyenda .sw { width: 13px; height: 13px; border-radius: 3px; flex: none; }
 .leyenda .ln { width: 18px; height: 3px; border-radius: 2px; flex: none; }
+/* leyenda que filtra (programas por sección): cada entrada es un botón; la elegida se marca y las demás se atenúan */
+.leyenda.filtrable { gap: 4px 8px; }
+.leyenda.filtrable .item { font: inherit; color: inherit; text-align: left; background: none; cursor: pointer; min-height: 32px;
+                           border: 1px solid transparent; border-radius: 8px; padding: 4px 8px; }
+.leyenda.filtrable .item:hover { background: var(--accent-bg); }
+.leyenda.filtrable .item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.leyenda.filtrable .item.activa { border-color: var(--accent); background: var(--accent-bg); font-weight: 600; }
+.leyenda.filtrable .item.atenuada { opacity: .55; }
+.leyenda.filtrable .item.atenuada:hover { opacity: 1; }
+.leyenda.filtrable .item.quitar { color: var(--text-muted); border-color: var(--border); align-items: center; }
+.leyenda.larga.filtrable .item .sw { margin-top: 3px; }
 .escala { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--text-muted); margin-top: 10px; }
 .escala .barra { width: 180px; height: 10px; border-radius: 99px; }
 

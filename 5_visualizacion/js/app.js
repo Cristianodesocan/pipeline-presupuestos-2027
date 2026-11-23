@@ -14,7 +14,9 @@ import { calcularFlujo, pintarFlujo } from "./flujo.js";
 import { candidatas, filasSeries, FORMATO_MEDIDA, MAX_SERIES, pintarLineas } from "./lineas.js";
 import { calcularRanking, pintarRanking } from "./ranking.js";
 import { construirPasos, pintarRecorrido } from "./recorrido.js";
-import { filasDetalle, filasTreemap, filasVisibles, pintarTreemap, rutaHasta, zoomEfectivo } from "./treemap.js";
+import {
+  filasDetalle, filasTreemap, filasVisibles, filtroSeccion, nombreFiltroSeccion, pintarTreemap, rutaHasta, zoomEfectivo,
+} from "./treemap.js";
 
 const $ = (id) => document.getElementById(id);
 const estado = leerEstado();
@@ -34,6 +36,7 @@ function resumirFiltros() {
     .map((i) => textoPropio(i.closest("label")));
   if (visible($("anio")) && $("anio").selectedOptions[0]) partes.splice(1, 0, $("anio").selectedOptions[0].textContent);
   if ($("social").checked && visible($("social"))) partes.push("Solo gasto social");
+  if (estado.tab === "peso" && cfg && filtroSeccion(cfg, estado)) partes.push(`Sección ${nombreFiltroSeccion(cfg, estado)}`);
   $("filtros-resumen").textContent = partes.join(" · ");
 }
 
@@ -104,7 +107,7 @@ function prepararControles() {
 
 $("filtros").addEventListener("change", (e) => {
   const { name, value, checked } = e.target;
-  if (name === "dim") { estado.dim = value; estado.zoom = []; estado.sel = null; estado.foco = null; }
+  if (name === "dim") { estado.dim = value; estado.zoom = []; estado.sel = null; estado.foco = null; estado.seccion = null; }
   else if (name === "vista") { estado.vista = value; estado.zoom = []; estado.sel = null; estado.foco = null; }
   else if (e.target.id === "anio") estado.anio = value;
   else if (e.target.id === "social") { estado.social = checked ? "1" : "0"; estado.zoom = []; estado.sel = null; estado.foco = null; }
@@ -151,8 +154,9 @@ function tituloPeso() {
   const fase = datos.fases.get(anio) === "proyecto" ? " (Proyecto)" : "";
   const zoom = zoomEfectivo(cfg, estado);
   const vista = cfg.vistas ? ` · vista ${vistaNombre()}` : "";
+  const sec = nombreFiltroSeccion(cfg, estado);
   if (cfg.capas && zoom.length) return `Peso de las subfunciones de ${zoom[zoom.length - 1]} en ${anio}${fase}`;
-  return `Peso de ${cfg.art} ${cfg.unidad} en ${anio}${fase}${vista}`;
+  return `Peso de ${cfg.art} ${cfg.unidad}${sec ? ` de ${sec}` : ""} en ${anio}${fase}${vista}`;
 }
 
 function pintarPeso() {
@@ -168,15 +172,27 @@ function pintarPeso() {
   pintarTreemap({ contenedor: $("treemap"), leyenda: $("leyenda-peso"), migas: $("migas"), datos, cfg, estado,
     alZoom: (z) => { estado.zoom = z; senalado = null; actualizar(); },
     alSenalar: (d) => { senalado = d; pintarCapitulos(); },
-    alFijar: (id) => { estado.foco = estado.foco === id ? null : id; senalado = null; pintar(); } });
+    alFijar: (id) => { estado.foco = estado.foco === id ? null : id; senalado = null; pintar(); },
+    alFiltrar: filtrarSeccion });
   pintarBarraFoco();
   const filas = filasVisibles(datos, cfg, estado).sort((a, b) => b.importe - a.importe);
   const cols = cfg.nombre === "programas" ? [...COLS_PESO.slice(0, 2), { titulo: "Sección", valor: nombreSeccionDe }, ...COLS_PESO.slice(2)]
     : COLS_PESO;
   pintarTabla($("tabla-peso"), cols, filas);
-  $("csv-peso").onclick = () => descargarCSV(`peso_${estado.dim}_${anio}_${estado.precios}.csv`,
+  const sufijo = filtroSeccion(cfg, estado) ? `_seccion_${estado.seccion}` : "";
+  $("csv-peso").onclick = () => descargarCSV(`peso_${estado.dim}${sufijo}_${anio}_${estado.precios}.csv`,
     [{ titulo: "id_estable", valor: (d) => d.id_estable }, ...cols.map((c) => ({ titulo: c.titulo, valor: c.valor }))], filas);
   pintarCapitulos();
+}
+
+/** Programas: clic en una sección de la leyenda = solo sus programas en el treemap, la tabla, el CSV, el buscador, el
+    donut de capítulos y su composición año a año (null = todas). Se conserva el zoom: la leyenda solo ofrece las
+    secciones que se ven en él. Si la partida fijada no es de la sección, se suelta. */
+function filtrarSeccion(clave) {
+  estado.seccion = clave;
+  senalado = null;
+  if (estado.foco && !filasBuscables().some((d) => d.id_estable === estado.foco)) estado.foco = null;
+  actualizar();
 }
 
 /* ---------- buscador de la pestaña Peso y partida fijada */
@@ -232,6 +248,19 @@ function pintarBarraFoco() {
     placeholder: cfg.nombre === "programas" ? "Buscar programa o sección…" : `Buscar ${cfg.singular}…`,
     etiqueta: `Buscar ${cfg.singular} y fijarlo en el gráfico de capítulos`,
     alElegir: (o) => { estado.zoom = rutaHasta(cfg, o.fila); estado.foco = o.id; senalado = null; actualizar(); } });
+  // filtro de sección activo: chip con su color y × para quitarlo (visible también con el color «Δ peso», sin leyenda de secciones)
+  const sec = filtroSeccion(cfg, estado);
+  if (sec) {
+    const chip = document.createElement("span"); chip.className = "chip foco filtro";
+    const sw = document.createElement("span"); sw.className = "sw";
+    sw.style.background = sec === "sin" ? paleta().otro : colorSeccion(sec);
+    const t = document.createElement("span"); t.className = "t"; t.textContent = `Sección: ${nombreFiltroSeccion(cfg, estado)}`;
+    const x = document.createElement("button"); x.type = "button"; x.textContent = "×";
+    x.setAttribute("aria-label", "Quitar el filtro de sección y ver todos los programas");
+    x.addEventListener("click", () => filtrarSeccion(null));
+    chip.append(sw, t, x);
+    cont.append(chip);
+  }
   const fijada = estado.foco && filas.find((d) => d.id_estable === estado.foco);
   if (fijada) {
     const chip = document.createElement("span"); chip.className = "chip foco";
@@ -259,10 +288,13 @@ function pintarCapitulos() {
   const objeto = senalado || fijada || null;
   const filas = objeto ? [objeto] : visibles;
   const zoom = zoomEfectivo(cfg, estado);
+  const sec = nombreFiltroSeccion(cfg, estado);
+  const social = cfg.social && estado.social === "1";
   const nombre = objeto ? objeto.etiqueta
-    : zoom.length ? zoom[zoom.length - 1]
-      : cfg.social && estado.social === "1" ? "los programas de gasto social"
-        : `${cfg.art === "los" ? "todos los" : "todas las"} ${cfg.unidad}`;
+    : zoom.length ? zoom[zoom.length - 1] + (sec ? ` (programas de ${sec})` : "")
+      : sec ? `los programas${social ? " de gasto social" : ""} de ${sec}`
+        : social ? "los programas de gasto social"
+          : `${cfg.art === "los" ? "todos los" : "todas las"} ${cfg.unidad}`;
   $("titulo-donut").textContent = `¿En qué tipo de gasto? Capítulos de ${nombre}`;
   const anio = +estado.anio;
   $("sub-donut").textContent = `${anio}${datos.fases.get(anio) === "proyecto" ? " (Proyecto)" : ""} · ${preciosTxt()} · `
@@ -325,7 +357,8 @@ function pintarComposicionAnual(objeto) {
   pintarComposicion({ contenedor: $("composicion"), serie, anioSel: +estado.anio, modo: modoComp, fases: datos.fases,
     alElegirAnio: (a) => { estado.anio = String(a); senalado = null; actualizar(); } });
   $("nota-composicion").textContent = `${preciosTxt()[0].toUpperCase()}${preciosTxt().slice(1)} · caps. 1-8 · * Proyecto · `
-    + (objeto ? "misma partida en cada año (huecos: años sin ella)" : "suma de lo visible en cada año, con los mismos filtros")
+    + (objeto ? "misma partida en cada año (huecos: años sin ella)" : "suma de lo visible en cada año, con los mismos filtros"
+      + (!objeto && filtroSeccion(cfg, estado) ? " (en cada año, los programas que esa sección gestiona ese año)" : ""))
     + " · clic en una columna para ver ese año.";
 }
 document.querySelectorAll('input[name="comp"]').forEach((i) => i.addEventListener("change", (e) => {

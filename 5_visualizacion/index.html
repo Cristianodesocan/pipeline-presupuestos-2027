@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/odesocan.css?v=1acd94010d">
+  <link rel="stylesheet" href="css/odesocan.css?v=55a63fa0b4">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 </head>
 <body>
@@ -56,7 +56,7 @@
         <div class="seg" role="radiogroup" aria-label="Dimensión">
           <label data-ayuda="Para qué se gasta: sanidad, educación, servicios sociales, empleo, vivienda… Agrupa el gasto por la política pública a la que sirve, la gestione quien la gestione."><input type="radio" name="dim" value="funciones" checked>Funciones</label>
           <label data-ayuda="Quién lo gasta: cada consejería o sección presupuestaria (por ejemplo, 14 Sanidad). Muestra cuánto dinero gestiona cada departamento del Gobierno."><input type="radio" name="dim" value="secciones">Secciones</label>
-          <label data-ayuda="El nivel más detallado: cada programa de gasto (por ejemplo, 312F Atención especializada). Se colorean por la sección que los gestiona y se pueden buscar por sección."><input type="radio" name="dim" value="programas">Programas</label>
+          <label data-ayuda="El nivel más detallado: cada programa de gasto (por ejemplo, 312F Atención especializada). Se colorean por la sección que los gestiona: busca por sección o haz clic en una sección de la leyenda para ver solo sus programas."><input type="radio" name="dim" value="programas">Programas</label>
           <label data-ayuda="Organismos con presupuesto propio, como el Servicio Canario de la Salud o el Servicio Canario de Empleo. No se suman al resto: se financian con transferencias de la Administración general."><input type="radio" name="dim" value="entes">Entes</label>
         </div>
       </div>
@@ -137,7 +137,7 @@
           <p class="nota-caps" id="nota-composicion"></p>
         </div>
         <figcaption>Pasa el ratón por un rectángulo del gráfico 1 para ver su reparto por capítulos; haz clic para fijarlo (o búscalo arriba).
-          Sin selección, el donut suma todo lo que se ve en el gráfico 1. Pasa el ratón por cada capítulo para saber qué incluye.
+          Sin selección, el donut suma todo lo que se ve en el gráfico 1 (en programas, también filtrado por la sección elegida en la leyenda). Pasa el ratón por cada capítulo para saber qué incluye.
           Fuente: Tomo 3, tablas por capítulos (2.11, 2.14, 2.16 y 3.2). Elaboración propia, ODESOCAN.</figcaption>
       </figure>
     </section>
@@ -212,10 +212,10 @@
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
   <!-- versiones:inicio -->
   <script type="importmap">
-  {"imports": {"./js/buscador.js": "./js/buscador.js?v=8fb521af54", "./js/comun.js": "./js/comun.js?v=d446b92b05", "./js/donut.js": "./js/donut.js?v=6dba127fe9", "./js/estado.js": "./js/estado.js?v=b3a25dbcb7", "./js/flujo.js": "./js/flujo.js?v=04b51226b7", "./js/incrustar.js": "./js/incrustar.js?v=02a391780a", "./js/lineas.js": "./js/lineas.js?v=46febe93c5", "./js/ranking.js": "./js/ranking.js?v=d06bda77b5", "./js/recorrido.js": "./js/recorrido.js?v=069e4b0f4d", "./js/treemap.js": "./js/treemap.js?v=c31fa58994"}}
+  {"imports": {"./js/buscador.js": "./js/buscador.js?v=8fb521af54", "./js/comun.js": "./js/comun.js?v=7f874dd0dd", "./js/donut.js": "./js/donut.js?v=6dba127fe9", "./js/estado.js": "./js/estado.js?v=be6f13c73a", "./js/flujo.js": "./js/flujo.js?v=04b51226b7", "./js/incrustar.js": "./js/incrustar.js?v=02a391780a", "./js/lineas.js": "./js/lineas.js?v=46febe93c5", "./js/ranking.js": "./js/ranking.js?v=d06bda77b5", "./js/recorrido.js": "./js/recorrido.js?v=069e4b0f4d", "./js/treemap.js": "./js/treemap.js?v=3dd458082b"}}
   </script>
   <!-- versiones:fin -->
-  <script type="module" src="js/app.js?v=5dfb065c3e"></script>
+  <script type="module" src="js/app.js?v=aeff982b8c"></script>
   <script>
     // Con doble clic (file://) el navegador no ejecuta módulos ni lee data/*.csv: avisar en vez de quedarse en blanco.
     if (!/^https?:$/.test(location.protocol)) {
