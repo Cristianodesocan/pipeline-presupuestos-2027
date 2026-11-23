@@ -15,7 +15,8 @@ import { candidatas, filasSeries, FORMATO_MEDIDA, MAX_SERIES, pintarLineas } fro
 import { calcularRanking, pintarRanking } from "./ranking.js";
 import { construirPasos, pintarRecorrido } from "./recorrido.js";
 import {
-  filasDetalle, filasTreemap, filasVisibles, filtroSeccion, nombreFiltroSeccion, pintarTreemap, rutaHasta, zoomEfectivo,
+  filasDetalle, filasTreemap, filasVisibles, filtroSeccion, nombreFiltroSeccion, pesoEnSeccion, pintarTreemap, rutaHasta,
+  zoomEfectivo,
 } from "./treemap.js";
 
 const $ = (id) => document.getElementById(id);
@@ -176,8 +177,10 @@ function pintarPeso() {
     alFiltrar: filtrarSeccion });
   pintarBarraFoco();
   const filas = filasVisibles(datos, cfg, estado).sort((a, b) => b.importe - a.importe);
-  const cols = cfg.nombre === "programas" ? [...COLS_PESO.slice(0, 2), { titulo: "Sección", valor: nombreSeccionDe }, ...COLS_PESO.slice(2)]
-    : COLS_PESO;
+  const cols = cfg.nombre === "programas" ? [...COLS_PESO.slice(0, 2), { titulo: "Sección", valor: nombreSeccionDe },
+    ...COLS_PESO.slice(2, 4),
+    { titulo: "Peso en su sección", valor: (d) => pesoEnSeccion(d, datos, cfg), fmt: (v) => fmt.pct(v, 2), numero: true },
+    ...COLS_PESO.slice(4)] : COLS_PESO;
   pintarTabla($("tabla-peso"), cols, filas);
   const sufijo = filtroSeccion(cfg, estado) ? `_seccion_${estado.seccion}` : "";
   $("csv-peso").onclick = () => descargarCSV(`peso_${estado.dim}${sufijo}_${anio}_${estado.precios}.csv`,
@@ -302,7 +305,7 @@ function pintarCapitulos() {
   const ficha = $("ficha-donut");
   ficha.replaceChildren();
   if (objeto) {
-    for (const [k, v, , signo] of filasDetalle(objeto, datos, cfg, estado).filter(([k]) => /^(Importe|Peso sobre|Var\. interanual|Sección)/.test(k))) {
+    for (const [k, v, , signo] of filasDetalle(objeto, datos, cfg, estado).filter(([k]) => /^(Importe|Peso sobre|Peso en su sección|Peso en «Varias|Var\. interanual|Sección)/.test(k))) {
       const s = document.createElement("span"); s.append(document.createTextNode(`${k}: `));
       const b = document.createElement("b"); b.textContent = signo ? `${signo === "pos" ? "▲" : "▼"} ${v}` : v;
       if (signo) b.className = signo;

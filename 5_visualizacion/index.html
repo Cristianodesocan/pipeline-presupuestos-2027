@@ -186,7 +186,10 @@
         <li><strong>Funciones</strong>: para qué se gasta (sanidad, educación, servicios sociales…); clic en una función para ver sus subfunciones.
           <strong>Colores</strong>: cada sección y la función equivalente comparten color (Sanidad: sección 14 y función 31), y cada programa toma el de la sección que lo gestiona («varias secciones» si ninguna reúne el 75 % de su gasto).</li>
         <li><strong>Pesos</strong> sobre el total de la propia tabla: caps. 1-8 en funciones, secciones y programas; tabla «comparativo por entes»
-          en entes, que <strong>no se suma</strong> a la Administración general (los organismos se financian con sus transferencias).</li>
+          en entes, que <strong>no se suma</strong> a la Administración general (los organismos se financian con sus transferencias).
+          En programas, el <strong>peso en su sección</strong> se calcula sobre todos los programas de esa sección en el año (aunque
+          se haya ampliado una función o activado «Solo gasto social»), así que los de una sección suman 100 %. Un programa
+          compartido cuenta entero en su sección principal (la que gestiona al menos el 75 % de su gasto); si ninguna llega, en «Varias secciones».</li>
         <li><strong>Variación interanual</strong>: frente al presupuesto inicial del año anterior de la misma partida. El Tomo compara con el
           presupuesto anterior «ajustado» a la nueva estructura, así que, cuando una consejería o un programa cambia de competencias, el
           porcentaje puede diferir del publicado.</li>
@@ -212,10 +215,10 @@
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
   <!-- versiones:inicio -->
   <script type="importmap">
-  {"imports": {"./js/buscador.js": "./js/buscador.js?v=8fb521af54", "./js/comun.js": "./js/comun.js?v=7f874dd0dd", "./js/donut.js": "./js/donut.js?v=6dba127fe9", "./js/estado.js": "./js/estado.js?v=be6f13c73a", "./js/flujo.js": "./js/flujo.js?v=04b51226b7", "./js/incrustar.js": "./js/incrustar.js?v=02a391780a", "./js/lineas.js": "./js/lineas.js?v=46febe93c5", "./js/ranking.js": "./js/ranking.js?v=d06bda77b5", "./js/recorrido.js": "./js/recorrido.js?v=069e4b0f4d", "./js/treemap.js": "./js/treemap.js?v=3dd458082b"}}
+  {"imports": {"./js/buscador.js": "./js/buscador.js?v=8fb521af54", "./js/comun.js": "./js/comun.js?v=7f874dd0dd", "./js/donut.js": "./js/donut.js?v=6dba127fe9", "./js/estado.js": "./js/estado.js?v=be6f13c73a", "./js/flujo.js": "./js/flujo.js?v=04b51226b7", "./js/incrustar.js": "./js/incrustar.js?v=02a391780a", "./js/lineas.js": "./js/lineas.js?v=46febe93c5", "./js/ranking.js": "./js/ranking.js?v=d06bda77b5", "./js/recorrido.js": "./js/recorrido.js?v=069e4b0f4d", "./js/treemap.js": "./js/treemap.js?v=95cd04cb2a"}}
   </script>
   <!-- versiones:fin -->
-  <script type="module" src="js/app.js?v=aeff982b8c"></script>
+  <script type="module" src="js/app.js?v=165a4d3461"></script>
   <script>
     // Con doble clic (file://) el navegador no ejecuta módulos ni lee data/*.csv: avisar en vez de quedarse en blanco.
     if (!/^https?:$/.test(location.protocol)) {
