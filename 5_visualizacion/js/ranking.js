@@ -1,4 +1,4 @@
-/* Pestaña «Evolución», gráfico 4: ¿qué ha cambiado entre dos años? Las 10 partidas que más suben y las 10 que más
+/* Pestaña «Evolución», gráfico 5: ¿qué ha cambiado entre dos años? Las 10 partidas que más suben y las 10 que más
    bajan en euros (con los filtros de arriba). Barras divergentes desde un eje central (verde sube ▲, rojo baja ▼),
    nombres a la izquierda y valores en una columna alineada a la derecha. Clic = añadir la partida a las líneas. */
 /* global d3 */
@@ -52,7 +52,7 @@ export function pintarRanking({ contenedor, res, desde, hasta, enLineas, alElegi
   const bloques = [["Más suben", res.suben], ["Más bajan", res.bajan]].filter(([, l]) => l.length);
   const alto = d3.sum(bloques, ([, l]) => cab + l.length * fila) + 6;
   const svg = d3.select(contenedor).append("svg").attr("viewBox", `0 0 ${ancho} ${alto}`).attr("role", "img")
-    .attr("aria-label", `Partidas que más suben y más bajan entre ${desde} y ${hasta}. Usa «Ver tabla» del gráfico 3 para las series.`);
+    .attr("aria-label", `Partidas que más suben y más bajan entre ${desde} y ${hasta}. Usa «Ver tabla» del gráfico 4 para las series.`);
   // eje del cero: línea continua en escritorio; en móvil, un tramo por fila para no tachar los nombres
   if (!estrecho) svg.append("line").attr("x1", centro).attr("x2", centro).attr("y1", 0).attr("y2", alto).attr("stroke", pal.muted);
   let y = 0;

@@ -367,3 +367,12 @@ html.incrustada .recorrido { position: absolute; bottom: auto; top: var(--vista-
 }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Gráfico 3 (pestaña Peso): proyectos de mayor importe */
+.lista-proyectos { list-style: decimal; margin: 6px 0 0; padding-left: 24px; display: grid; gap: 9px; font-size: 14px; color: var(--text); }
+.lista-proyectos li::marker { color: var(--text-muted); font-weight: 600; }
+.lista-proyectos li.cargando { list-style: none; margin-left: -24px; }
+.lista-proyectos .lp-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.lista-proyectos .lp-nombre { overflow-wrap: anywhere; }
+.lista-proyectos .lp-cab b { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--text-strong); }
+.lista-proyectos .lp-meta { font-size: 13px; color: var(--text-muted); margin-top: 2px; }

@@ -56,12 +56,14 @@ export const codigoFuncion = (id) => {
 export const sinCodigo = (t) => (t || "").replace(/\s*\([^()]*\)\s*$/, "");
 
 export async function cargarDatos() {
-  const [treemap, series, meta, capitulos, aniosInfo] = await Promise.all([
+  const [treemap, series, meta, capitulos, aniosInfo, transferencias] = await Promise.all([
     d3.csv("data/viz_treemap.csv", tipar(NUM_TREEMAP)),
     d3.csv("data/viz_series.csv", tipar(NUM_SERIES)),
     d3.csv("data/viz_meta.csv", tipar(["inicio", "fin"])),
     d3.csv("data/viz_capitulos.csv", tipar(NUM_CAPS)).catch(() => []),   // opcional: sin él no hay donut
     d3.csv("data/viz_anios.csv", tipar(["anio", "deflactor", "poblacion", "pib_nominal"])).catch(() => []),
+    // opcional: transferencias por tipo de entidad (Tomos 7 y 8, pipeline «transferencias a entidades»); sin él no hay gráfico 3
+    d3.csv("data/viz_transferencias.csv", tipar(["anio", "capitulo", "sector_orden", "importe"])).catch(() => []),
   ]);
   const infoAnio = new Map(aniosInfo.map((d) => [d.anio, d]));
   const vistaEstructura = [...new Set(treemap.map((d) => d.vista))].find((v) => v && v.startsWith("estructura_")) || "estructura";
@@ -113,11 +115,26 @@ export async function cargarDatos() {
   }
   for (const l of seccionesPrograma.values()) l.sort((a, b) => b.importe - a.importe || d3.ascending(a.seccion, b.seccion));
 
+  // transferencias: cada fila hereda el id estable y la familia de su par (sección, programa), para seguirla igual que el donut
+  const idsPar = new Map(capitulos.filter((d) => d.dimension === "programa")
+    .map((d) => [`${d.anio}|${d.seccion}|${d.programa}`, { id_estable: d.id_estable, id_grupo: d.id_grupo }]));
+  const deflactor = new Map(capitulos.filter((d) => d.deflactor).map((d) => [d.anio, d.deflactor]));
+  const idsPrograma = (anio, seccion, programa) => idsPar.get(`${anio}|${seccion}|${programa}`) || { id_estable: null, id_grupo: null };
+  for (const t of transferencias) t.id_grupo = idsPrograma(t.anio, t.seccion, t.programa).id_grupo;
+  const transfAnio = d3.group(transferencias, (d) => d.anio);
+
   return {
     treemap, series, meta, anios, ultimo, fases, ventanas, actual, vistaEstructura,
     ventanaActual: { base: actual ? actual.inicio - 1 : ultimo - 3, fin: Math.min(actual ? actual.fin : ultimo, ultimo) },
     ultimaCarga: (meta.find((d) => d.id === "ultima_carga") || {}).valor,
     hayCapitulos: capitulos.length > 0,
+    hayTransferencias: transferencias.length > 0,
+    /** Transferencias del año por (sección, programa, capítulo, tipo de entidad, naturaleza), en euros corrientes. */
+    transferenciasDe: (anio) => transfAnio.get(anio) || [],
+    /** {id_estable, id_grupo} del programa en esa sección y año (los proyectos se siguen con ellos). */
+    idsPrograma,
+    /** Factor a euros constantes del año (el mismo que usan los capítulos). */
+    deflactorDe: (anio) => deflactor.get(anio) || (infoAnio.get(anio) || {}).deflactor || 1,
     /** Capítulos de una partida: {1: €, 2: €, …, 9: €} en los precios pedidos, o null si no hay desglose. */
     capitulos(dimension, vista, anio, id, precios) {
       const o = caps.get(`${dimension}|${vista}|${anio}|${id}`);

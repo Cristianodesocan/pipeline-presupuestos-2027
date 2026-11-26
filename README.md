@@ -15,10 +15,12 @@ Pipeline de análisis de los Presupuestos de Canarias 2015-2027. Diseño: `../..
 ## Puesta en marcha
 
 ```bash
-python3 -m venv .venv
+python3 -m venv .venv.nosync && ln -s .venv.nosync .venv   # fuera de iCloud (ver nota)
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python 00_maestro.py --paralelo        # todo el pipeline, destino local
 ```
+
+> **Entorno fuera de iCloud.** El Escritorio se sincroniza con iCloud y «Optimizar almacenamiento» descargó del disco los ficheros de `.venv` (2026-11-26): `import pandas` se quedaba bloqueado sin consumir CPU. El entorno vive ahora en `.venv.nosync` (las carpetas `*.nosync` no se sincronizan) y `.venv` es un enlace a él, así que los comandos no cambian.
 
 ## Orquestador (`00_maestro.py`)
 
@@ -158,6 +160,7 @@ Los enlaces `auto` se usan salvo que se rechacen. Los que están en revisión si
 
   El test `test_postgres_rls_solo_vistas` se ejecuta si `PG_TEST_URL` apunta a un PostgreSQL de prueba en localhost.
 - **`v_viz_capitulos`** (→ `viz_capitulos.csv`): presupuesto inicial por capítulos 1-9 de cada sección (orgánica y estructura), función, subfunción, ente, programa de cada ente y par (sección, programa), en euros corrientes con su deflactor. Los pares y los programas de los entes llevan el código de programa del año, que la web usa para enlazar transferencias y entes por subfunción.
+- **`viz_transferencias.csv` y `viz_transferencias_proyectos.csv`** (gráfico 3, opcionales): **no salen de este pipeline**, sino del pipeline hermano «Pipeline - transferencias a entidades» (Tomos 7 y 8), con `.venv/bin/python -I 4_carga/exportar_viz.py --destino <este repo>/5_visualizacion/data`. Son las transferencias corrientes (cap. 4) y de capital (cap. 7) por año × sección × programa × tipo de entidad receptora × naturaleza, y la lista de proyectos. El exportador se niega a escribir si su suma por (año, sección, programa, capítulo) no coincide al euro con `cap_4`/`cap_7` de `viz_capitulos.csv`; hoy cuadra en los 2.074 pares. Si faltan, la web oculta el gráfico 3. Hay que volver a exportarlos cuando cambie `viz_capitulos.csv`.
 - **`v_viz_anios`** (→ `viz_anios.csv`): población, PIB nominal, deflactor y su estatus (verificado o estimación) por año, para las medidas por habitante y % del PIB. Sale de las tablas 2.11, 2.14, 2.16 y 3.2 del Tomo. La suma de los caps. 1-8 cuadra con el importe del treemap en todas las partidas; la única diferencia es el SCS en 2021 (0,55 M€, un 0,02 %), que viene de las propias tablas 3.1 y 3.2.
 - **Convenciones de `ana_metricas`.** Las vistas de la web dependen de ellas (`ventana`, `incluye_mrr`, `ruta_jerarquia`), que están al principio de `vistas_viz.sql`.
 - **DuckDB 2.0.0 reemplaza cada tabla completa.** El anti-join (`NOT EXISTS`/`EXCEPT`) contra una tabla con clave primaria daba resultados erróneos dentro de una transacción de escritura: la primera carga de `ana_metricas` quedó vacía sin error. Las altas y bajas se cuentan ahora en pandas y se comprueba que se escriben todas las filas. PostgreSQL mantiene el *upsert*.

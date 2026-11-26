@@ -11,6 +11,7 @@ import { pintarComposicion, pintarDonut, sumarCapitulos } from "./donut.js";
 import { escribirEstado, estadoBase, leerEstado } from "./estado.js";
 import { desplazarElemento, iniciarIncrustacion } from "./incrustar.js";
 import { calcularFlujo, pintarFlujo } from "./flujo.js";
+import { calcularEntidades, esperarProyectos, pintarEntidades, pintarListaProyectos, proyectosDe } from "./entidades.js";
 import { candidatas, filasSeries, FORMATO_MEDIDA, MAX_SERIES, pintarLineas } from "./lineas.js";
 import { calcularRanking, pintarRanking } from "./ranking.js";
 import { construirPasos, pintarRecorrido } from "./recorrido.js";
@@ -121,7 +122,7 @@ for (const [id, tab] of [["tab-peso", "peso"], ["tab-evolucion", "evolucion"]]) 
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") { estado.tab = estado.tab === "peso" ? "evolucion" : "peso"; actualizar(); $(`tab-${estado.tab}`).focus(); }
   });
 }
-for (const [boton, tabla] of [["ver-tabla-peso", "tabla-peso"], ["ver-tabla-evo", "tabla-evo"]]) {
+for (const [boton, tabla] of [["ver-tabla-peso", "tabla-peso"], ["ver-tabla-evo", "tabla-evo"], ["ver-tabla-entidades", "tabla-entidades"]]) {
   $(boton).addEventListener("click", () => {
     const t = $(tabla); t.hidden = !t.hidden;
     $(boton).setAttribute("aria-expanded", !t.hidden); $(boton).textContent = t.hidden ? "Ver tabla" : "Ocultar tabla";
@@ -338,10 +339,68 @@ function pintarCapitulos() {
     $("nota-flujo").textContent = "Enlace por subfunción: el Tomo 3 no publica a quién va cada transferencia. Se muestran los entes con "
       + "presupuesto propio que gastan en las mismas subfunciones; tienen además otros ingresos (Estado, fondos europeos, tasas), "
       + "por eso sus importes no coinciden con lo transferido. Clic en un ente para verlo completo."
-      + (flujo.otrosEntes > 0.5e6 ? ` Otros entes de esas subfunciones suman ${fmt.meur(flujo.otrosEntes)}.` : "");
+      + (flujo.otrosEntes > 0.5e6 ? ` Otros entes de esas subfunciones suman ${fmt.meur(flujo.otrosEntes)}.` : "")
+      + (datos.hayTransferencias ? " A quién va realmente cada transferencia, por tipo de entidad (Tomos 7 y 8), está en el gráfico 3." : "");
   }
   avisoTransferencias(verFlujo ? 0 : cuota4, objeto);
   pintarComposicionAnual(objeto);
+  pintarTransferencias(filas, nombre, caps);
+}
+
+/* ---------- gráfico 3: ¿a quién se transfiere? (Tomos 7 y 8; misma selección que el donut) */
+let turnoEntidades = 0;
+const COLS_PROYECTOS = (tipos) => [
+  { titulo: "Proyecto", valor: (p) => p.proyecto_den },
+  { titulo: "Código", valor: (p) => p.proyecto_cod },
+  { titulo: "Tipo de entidad", valor: (p) => (tipos.get(p.tipo_entidad_id) || {}).tipo || p.tipo_entidad_id },
+  { titulo: "Sector", valor: (p) => (tipos.get(p.tipo_entidad_id) || {}).sector || "" },
+  { titulo: "Naturaleza", valor: (p) => p.naturaleza },
+  { titulo: "Cap.", valor: (p) => p.capitulo },
+  { titulo: "Sección", valor: (p) => p.seccion },
+  { titulo: "Programa", valor: (p) => p.programa },
+  { titulo: "Municipio", valor: (p) => p.municipio },
+  { titulo: "Isla", valor: (p) => p.isla },
+  { titulo: "Importe (M€)", valor: (p) => p.valor, fmt: (v) => fmt.meur(v).replace(" M€", ""), numero: true },
+];
+function pintarTransferencias(filas, nombre, caps) {
+  const card = $("card-entidades");
+  card.hidden = !datos.hayTransferencias || cfg.nombre === "entes";
+  if (card.hidden) return;
+  const turno = ++turnoEntidades;
+  const anio = +estado.anio;
+  $("titulo-entidades").textContent = `¿A quién se transfiere? ${mayuscula(nombre)}`;
+  $("sub-entidades").textContent = `${anio}${datos.fases.get(anio) === "proyecto" ? " (Proyecto)" : ""} · ${preciosTxt()} · `
+    + "caps. 4 y 7 por tipo de entidad receptora";
+  const res = calcularEntidades(datos, cfg, estado, filas);
+  const lienzo = $("entidades"), tablaProy = $("tabla-entidades");
+  if (!res) {        // secciones en vista estructura: los programas se reparten entre consejerías y no se siguen
+    for (const id of ["leyenda-entidades", "lista-proyectos"]) $(id).replaceChildren();
+    tablaProy.replaceChildren();
+    $("titulo-proyectos").hidden = true;
+    $("nota-entidades").textContent = "";
+    lienzo.replaceChildren(Object.assign(document.createElement("p"), { className: "cargando",
+      textContent: "En la vista Estructura cada sección reúne programas de varias consejerías: cambia a la vista Orgánica para ver a quién transfiere cada una." }));
+    $("csv-entidades").onclick = null;
+    return;
+  }
+  pintarEntidades({ contenedor: lienzo, leyenda: $("leyenda-entidades"), nota: $("nota-entidades"),
+    lista: $("lista-proyectos"), tituloLista: $("titulo-proyectos"), res, capsDonut: caps, nombre: mayuscula(nombre) });
+  if (!res.tipos.length) { tablaProy.replaceChildren(); $("csv-entidades").onclick = null; return; }
+  const tipos = new Map(datos.transferenciasDe(anio).map((t) => [t.tipo_entidad_id, { tipo: t.tipo_entidad, sector: t.sector }]));
+  const nombresTipo = new Map([...tipos].map(([k, v]) => [k, v.tipo]));
+  const pintarProyectos = () => {
+    if (turno !== turnoEntidades) return true;          // la selección ha cambiado mientras se cargaban
+    const proys = proyectosDe(datos, cfg, estado, filas);
+    pintarListaProyectos({ lista: $("lista-proyectos"), titulo: $("titulo-proyectos"), filas: proys, nombresTipo, total: res.total });
+    if (!proys) return false;
+    const cols = COLS_PROYECTOS(tipos);
+    pintarTabla(tablaProy, cols, proys);
+    const sufijo = filtroSeccion(cfg, estado) ? `_seccion_${estado.seccion}` : "";
+    $("csv-entidades").onclick = () => descargarCSV(`transferencias_${estado.dim}${sufijo}_${anio}_${estado.precios}.csv`,
+      [...cols.slice(0, -1).map((c) => ({ titulo: c.titulo, valor: c.valor })), { titulo: "Importe (€)", valor: (p) => Math.round(p.valor) }], proys);
+    return true;
+  };
+  if (!pintarProyectos()) esperarProyectos(datos).then(pintarProyectos);   // 1.ª vez: se piden los proyectos (1,2 MB)
 }
 
 function irAEnte(id) {
@@ -448,7 +507,7 @@ function pintarCambios(soc) {
   $("pie-ranking").textContent = `${res.n} partidas comparables en los dos años.`
     + (res.excluidas ? ` ${res.excluidas} quedan fuera por no tener dato comparable en uno de ellos (altas, bajas o cambios de código)`
       + (cfg.nombre === "programas" && estado.vista !== "familia" ? "; la vista Familia recupera parte de ellas." : ".") : "")
-    + " Clic en una barra para añadirla al gráfico 3. Fuente: Tomo 3. Elaboración propia, ODESOCAN.";
+    + " Clic en una barra para añadirla al gráfico 4. Fuente: Tomo 3. Elaboración propia, ODESOCAN.";
 }
 for (const id of ["rank-desde", "rank-hasta"]) {
   $(id).addEventListener("change", (e) => { estado[id === "rank-desde" ? "desde" : "hasta"] = e.target.value; pintar(); });
