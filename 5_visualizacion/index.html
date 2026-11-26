@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/odesocan.css?v=55a63fa0b4">
+  <link rel="stylesheet" href="css/odesocan.css?v=64cecc88da">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 </head>
 <body>
@@ -140,13 +140,39 @@
           Sin selección, el donut suma todo lo que se ve en el gráfico 1 (en programas, también filtrado por la sección elegida en la leyenda). Pasa el ratón por cada capítulo para saber qué incluye.
           Fuente: Tomo 3, tablas por capítulos (2.11, 2.14, 2.16 y 3.2). Elaboración propia, ODESOCAN.</figcaption>
       </figure>
+
+      <figure class="chart-card" id="card-entidades" style="margin-left:0;margin-right:0" hidden>
+        <div class="chart-head">
+          <div>
+            <span class="badge">Gráfico 3</span>
+            <h2 id="titulo-entidades">¿A quién se transfiere? Tipos de entidad receptora</h2>
+            <p class="subtitulo" id="sub-entidades"></p>
+          </div>
+          <div class="acciones">
+            <button class="btn" type="button" id="ver-tabla-entidades" aria-expanded="false">Ver tabla</button>
+            <button class="btn" type="button" id="csv-entidades">Descargar CSV</button>
+          </div>
+        </div>
+        <div class="leyenda" id="leyenda-entidades"></div>
+        <div class="lienzo" id="entidades" role="list"></div>
+        <p class="nota-caps" id="nota-entidades"></p>
+        <div class="sub-bloque" id="bloque-proyectos">
+          <h3 id="titulo-proyectos">Proyectos con mayor importe</h3>
+          <ol class="lista-proyectos" id="lista-proyectos"></ol>
+        </div>
+        <div class="tabla-wrap" id="tabla-entidades" hidden></div>
+        <figcaption>Desglose de los capítulos 4 (transferencias corrientes) y 7 (transferencias de capital) del gráfico 2 según quién
+          recibe el dinero, con la misma selección (lo señalado, lo fijado o todo lo visible en el gráfico 1). Pasa el ratón por una barra
+          para ver el reparto por capítulo y naturaleza. «Ver tabla» y «Descargar CSV» dan todos los proyectos de la selección.
+          Fuente: Tomos 7 «Anexo de Transferencias Corrientes» y 8 «Anexo de Operaciones de Capital». Elaboración propia, ODESOCAN.</figcaption>
+      </figure>
     </section>
 
     <section id="panel-evolucion" role="tabpanel" aria-labelledby="tab-evolucion" hidden>
       <figure class="chart-card" id="card-lineas" style="margin-left:0;margin-right:0">
         <div class="chart-head">
           <div>
-            <span class="badge">Gráfico 3</span>
+            <span class="badge">Gráfico 4</span>
             <h2 id="titulo-lineas">Evolución</h2>
             <p class="subtitulo" id="sub-lineas"></p>
           </div>
@@ -166,7 +192,7 @@
       <figure class="chart-card" id="card-ranking" style="margin-left:0;margin-right:0">
         <div class="chart-head">
           <div>
-            <span class="badge">Gráfico 4</span>
+            <span class="badge">Gráfico 5</span>
             <h2 id="titulo-ranking">¿Qué ha cambiado?</h2>
             <p class="subtitulo" id="sub-ranking"></p>
           </div>
@@ -195,8 +221,11 @@
           porcentaje puede diferir del publicado.</li>
         <li><strong>Gobierno actual</strong>: presupuestos 2024-2027 frente al último del gobierno anterior (2023). Si aún falta algún presupuesto de la legislatura, la ventana llega al último año disponible.</li>
         <li><strong>Capítulos</strong> (gráfico 2): clasificación económica del gasto (personal, bienes y servicios, transferencias, inversiones…), caps. 1-8 como el gráfico 1. El cap. 9 (devolución de deuda) se indica aparte.</li>
+        <li><strong>Tipos de entidad</strong> (gráfico 3): los Tomos 7 y 8 sí detallan cada proyecto de transferencia y su subconcepto, que dice
+          a qué tipo de entidad va (cabildos, ayuntamientos, familias e instituciones sin fines de lucro, empresas, sector público autonómico…).
+          Sus totales coinciden al euro con los caps. 4 y 7 del gráfico 2. Hasta 2018 no se distingue entre transferencia y subvención.</li>
         <li><strong>Sigue el dinero</strong>: el Tomo 3 no publica a quién va cada transferencia (caps. 4 y 7); el gráfico la enlaza con los entes
-          que gastan en la misma subfunción (Sanidad → Servicio Canario de la Salud). Es un enlace orientativo: los entes tienen además otros ingresos.</li>
+          que gastan en la misma subfunción (Sanidad → Servicio Canario de la Salud). Es un enlace orientativo: los entes tienen además otros ingresos. El destinatario real, por tipo de entidad, está en el gráfico 3.</li>
         <li><strong>Por habitante y % del PIB</strong>: población y PIB nominal de Canarias del INE. El % del PIB usa siempre euros corrientes;
           el PIB publicado llega a 2024 y la población del último año es una estimación.</li>
         <li><strong>Euros constantes</strong> de 2025 con el IPC de Canarias (INE). Los años con IPC incompleto o previsto son estimaciones.</li>
@@ -215,10 +244,10 @@
   <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
   <!-- versiones:inicio -->
   <script type="importmap">
-  {"imports": {"./js/buscador.js": "./js/buscador.js?v=8fb521af54", "./js/comun.js": "./js/comun.js?v=7f874dd0dd", "./js/donut.js": "./js/donut.js?v=6dba127fe9", "./js/estado.js": "./js/estado.js?v=be6f13c73a", "./js/flujo.js": "./js/flujo.js?v=04b51226b7", "./js/incrustar.js": "./js/incrustar.js?v=02a391780a", "./js/lineas.js": "./js/lineas.js?v=46febe93c5", "./js/ranking.js": "./js/ranking.js?v=d06bda77b5", "./js/recorrido.js": "./js/recorrido.js?v=069e4b0f4d", "./js/treemap.js": "./js/treemap.js?v=95cd04cb2a"}}
+  {"imports": {"./js/buscador.js": "./js/buscador.js?v=8fb521af54", "./js/comun.js": "./js/comun.js?v=ab14e3cbb0", "./js/donut.js": "./js/donut.js?v=6dba127fe9", "./js/entidades.js": "./js/entidades.js?v=9f0fe80a8f", "./js/estado.js": "./js/estado.js?v=be6f13c73a", "./js/flujo.js": "./js/flujo.js?v=fd209c67b7", "./js/incrustar.js": "./js/incrustar.js?v=02a391780a", "./js/lineas.js": "./js/lineas.js?v=46febe93c5", "./js/ranking.js": "./js/ranking.js?v=77df24e638", "./js/recorrido.js": "./js/recorrido.js?v=069e4b0f4d", "./js/treemap.js": "./js/treemap.js?v=95cd04cb2a"}}
   </script>
   <!-- versiones:fin -->
-  <script type="module" src="js/app.js?v=165a4d3461"></script>
+  <script type="module" src="js/app.js?v=718eb0bd6d"></script>
   <script>
     // Con doble clic (file://) el navegador no ejecuta módulos ni lee data/*.csv: avisar en vez de quedarse en blanco.
     if (!/^https?:$/.test(location.protocol)) {

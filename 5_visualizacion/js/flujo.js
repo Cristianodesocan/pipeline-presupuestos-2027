@@ -9,7 +9,7 @@ const DIRECTOS = [1, 2, 3, 6, 8], TRANSFERENCIAS = [4, 7];
 const caps18 = (d, f) => Object.fromEntries(CAPITULOS.map((c) => [c.n, (d[`cap_${c.n}`] || 0) * f]));
 
 /** Clave con la que se reconoce si un par (sección, programa) pertenece a lo seleccionado; null si no se puede. */
-function clavePar(cfg, estado, fila) {
+export function clavePar(cfg, estado, fila) {
   if (cfg.nombre === "funciones") {
     const c = fila.dimension === "subfuncion" ? (/^SF(\d{3})/.exec(fila.id_estable) || [])[1] : codigoFuncion(fila.id_estable);
     return c ? { k: c, de: (p) => (p.programa || "").startsWith(c) } : null;
