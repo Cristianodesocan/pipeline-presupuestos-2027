@@ -376,3 +376,5 @@ html.incrustada .recorrido { position: absolute; bottom: auto; top: var(--vista-
 .lista-proyectos .lp-nombre { overflow-wrap: anywhere; }
 .lista-proyectos .lp-cab b { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--text-strong); }
 .lista-proyectos .lp-meta { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+/* celdas con la cifra completa en la ficha emergente (pintarTabla, opción `completo`) */
+td.con-completo { cursor: help; text-decoration: underline dotted var(--text-muted); text-underline-offset: 3px; }
