@@ -360,7 +360,8 @@ const COLS_PROYECTOS = (tipos) => [
   { titulo: "Programa", valor: (p) => p.programa },
   { titulo: "Municipio", valor: (p) => p.municipio },
   { titulo: "Isla", valor: (p) => p.isla },
-  { titulo: "Importe (M€)", valor: (p) => p.valor, fmt: (v) => fmt.meur(v).replace(" M€", ""), numero: true },
+  { titulo: "Importe (M€)", valor: (p) => p.valor, fmt: (v) => fmt.meur(v).replace(" M€", ""), numero: true,
+    completo: (v) => `${fmt.entero(v)} €` },
 ];
 function pintarTransferencias(filas, nombre, caps) {
   const card = $("card-entidades");

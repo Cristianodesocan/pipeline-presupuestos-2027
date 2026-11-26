@@ -317,12 +317,15 @@ export function moverTooltip(evento) {
 export function ocultarTooltip() { tip().hidden = true; }
 
 /* ---------- tabla accesible y CSV */
+/** Columnas: {titulo, valor, fmt?, numero?, signo?, completo?}. Con `completo(v)` la celda muestra al pasar el ratón
+ *  la cifra completa (p. ej. «1.234.567 €» donde la tabla dice «1,2»), con la ficha emergente de la web. */
 export function pintarTabla(contenedor, columnas, filas) {
   contenedor.replaceChildren();
   const tabla = document.createElement("table");
   const thead = tabla.createTHead().insertRow();
   for (const c of columnas) { const th = document.createElement("th"); th.textContent = c.titulo; th.scope = "col"; thead.append(th); }
   const tb = tabla.createTBody();
+  let conCompleto = false;
   for (const f of filas) {
     const tr = tb.insertRow();
     for (const c of columnas) {
@@ -330,7 +333,25 @@ export function pintarTabla(contenedor, columnas, filas) {
       const v = c.valor(f);
       td.textContent = c.fmt ? c.fmt(v) : (v ?? "—");
       if (c.numero) td.className = "n" + (c.signo && v != null ? (v > 0 ? " pos" : v < 0 ? " neg" : "") : "");
+      if (c.completo && v != null) {
+        td.dataset.completo = c.completo(v);
+        td.dataset.columna = c.titulo.replace(/\s*\([^)]*\)\s*$/, "");      // «Importe (M€)» → «Importe»
+        td.classList.add("con-completo");
+        conCompleto = true;
+      }
     }
+  }
+  if (conCompleto) {           // un solo manejador por tabla (puede tener cientos de filas)
+    tabla.addEventListener("mouseover", (e) => {
+      const td = e.target.closest("td[data-completo]");
+      if (!td) return;
+      mostrarTooltip(e, td.parentElement.cells[0].textContent, [[td.dataset.columna, td.dataset.completo]]);
+    });
+    tabla.addEventListener("mousemove", (e) => { if (e.target.closest("td[data-completo]")) moverTooltip(e); });
+    tabla.addEventListener("mouseout", (e) => {
+      const td = e.target.closest("td[data-completo]");
+      if (td && !td.contains(e.relatedTarget)) ocultarTooltip();
+    });
   }
   contenedor.append(tabla);
 }
